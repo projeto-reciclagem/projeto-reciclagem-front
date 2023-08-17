@@ -1,0 +1,13 @@
+.about {
+    width: 100%;
+    height: 100vh;
+    background-color: darkblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-title {
+    color: aliceblue;
+    font-size: 3em;
+}
