@@ -1,8 +1,8 @@
 # projeto-sprint
 
-# Dentro da pasta "Institucional" deve realizar os seguintes comandos para execução do programa:
-# npm i
-# npm run dev
+**Dentro da pasta "Institucional" deve realizar os seguintes comandos para execução do programa:**
+- npm i
+- npm run dev
 
 
 # Padrões de cód: 
