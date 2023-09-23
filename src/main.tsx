@@ -1,10 +1,10 @@
-import './css/styles-default.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Index from './Index'
+import { Routes } from './Routes.tsx'
+import './globals.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Index />
-  </React.StrictMode>
+    <Routes />
+  </React.StrictMode>,
 )
