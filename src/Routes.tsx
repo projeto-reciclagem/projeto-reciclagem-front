@@ -2,13 +2,13 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import App from "./App";
+import { Home } from "./pages/home/Home";
 
 // !!! Aqui é onde vamos adicionar tudo que vai vir de Rotas de navegação entre páginas do nosso projeto !!!
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <Home />
   },
 ])
 
