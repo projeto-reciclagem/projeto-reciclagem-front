@@ -56,6 +56,11 @@ export default {
           900: "#4F4223",
         },
       },
+      backgroundImage: {
+        'carrossel-item1': 'url("./src/assets/img/carrossel-item1.jpg")',
+        'carrossel-item2': 'url("./src/assets/img/carrossel-item2.jpg")',
+        'carrossel-item3': 'url("./src/assets/img/carrossel-item3.jpg")',
+      }
     }
   },
   plugins: [],
