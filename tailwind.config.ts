@@ -5,6 +5,10 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'sans': 'roboto',
+      'mono': 'ubuntu',
+    },
     extend: {
       colors: {
         leaf: {
@@ -55,13 +59,19 @@ export default {
           800: "#68562E",
           900: "#4F4223",
         },
+        cards: {
+          paper: '#35C1FD',
+          plastic: '#F87272',
+          metal: '#F8A035',
+          glass: '#1BD00B',
+        },
       },
       backgroundImage: {
-        'carrossel-item1': 'url("./src/assets/img/carrossel-item1.jpg")',
-        'carrossel-item2': 'url("./src/assets/img/carrossel-item2.jpg")',
-        'carrossel-item3': 'url("./src/assets/img/carrossel-item3.jpg")',
-      }
-    }
+        'carousel-item1': 'url("./src/assets/img/carrossel-item1.jpg")',
+        'carousel-item2': 'url("./src/assets/img/carrossel-item2.jpg")',
+        'carousel-item3': 'url("./src/assets/img/carrossel-item3.jpg")',
+      },
+    },
   },
   plugins: [],
 }
