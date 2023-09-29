@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import { CardsSlider } from '../../components/CardsSlider'
 import { CarrosselSlider } from '../../components/CarrosselSlider'
+
 import HomeSection1 from '@/assets/img/home-section1.jpg'
-import Header from '../../components/Header'
 
 export default function Home() {
   return (
@@ -23,7 +26,7 @@ export default function Home() {
           <CardsSlider />
         </section>
         <figure>
-          <img src={HomeSection1} alt="" className='w-full h-full odd:rounded-3xl'/>
+          <img src={HomeSection1} alt="" className='w-full h-full odd:rounded-3xl shadow-md'/>
         </figure>
       </section>
       <section className='min-w-full px-28 py-14 bg-[url("@/assets/img/home-section2.jpg")] bg-cover'>
@@ -37,11 +40,14 @@ export default function Home() {
             <b> adoraríamos</b> tê-lo como nosso parceiro!
           </p>
           <p>Juntos, podemos fazer a diferença e contribuir para um mundo mais sustentável.</p>
-          <button className='bg-moss-green-300 text-zinc-950 font-normal px-4 py-2 rounded-2xl hover:bg-moss-green-500 hover:text-white transition-all'>
-            Seja um parceiro
-          </button>
+          <Link to={'parceiro'}>
+            <button className='bg-moss-green-300 text-zinc-950 font-normal px-4 py-2 rounded-2xl hover:bg-moss-green-500 hover:text-white transition-all'>
+              Seja um parceiro
+            </button>
+          </Link>
         </section>
       </section>
+      <Footer />
     </main>
   )
 }
