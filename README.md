@@ -1,6 +1,6 @@
 # projeto-sprint
 
-**Dentro da pasta "Institucional" deve realizar os seguintes comandos para execução do programa:**
+**Dentro do repositório deve realizar os seguintes comandos para execução do programa:**
 Instalar pacotes:
 
 NPM:
