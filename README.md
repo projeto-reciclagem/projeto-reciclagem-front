@@ -1,7 +1,7 @@
 # projeto-sprint
 
 **Dentro da pasta "Institucional" deve realizar os seguintes comandos para execução do programa:**
-- npm i
+- npm i && npm i swiper
 - npm run dev
 
 
