@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
+import { CardsSlider } from '../../components/CardsSlider'
 import { CarrosselSlider } from '../../components/CarrosselSlider'
 
 import EcoSystemLogoBlack from '@/assets/eco-system-black-logo.svg'
 import HomeSection1 from '@/assets/img/home-section1.jpg'
-import { Slider } from '../../components/Slider'
-import { SwiperSlide } from 'swiper/react'
 
 const navItems = [
   {
@@ -22,17 +21,8 @@ const navItems = [
 ]
 
 export function Home() {
-  const cardsSettings = {
-    spaceBetween: 24,
-    slidesPerView: 3,
-    style: {
-      width: '618px'
-    }
-  }
-  
   return (
     <main className='min-w-full min-h-screen bg-moss-green-50'>
-      {/* TODO componentizar */}
       <nav className='flex items-center justify-between min-w-full px-28 py-3 bg-[#F1F1F1] shadow-lg'>
         <img src={EcoSystemLogoBlack} alt="Logo da EcoSystem com texto em preto" />
         <div className='flex gap-6 font-mono text-sm'>
@@ -49,8 +39,7 @@ export function Home() {
         </div>
       </nav>
       <CarrosselSlider />
-      {/* TODO fazer o bloco com os cards de reciclagem */}
-      <section className='flex justify-between px-28 py-12 gap-16 min-w-full border border-red-600'>
+      <section className='flex justify-between px-28 py-12 gap-16 min-w-full'>
         <section className='flex flex-col gap-4 max-w-[618px]'>
           <h1 className='font-medium text-4xl text-camel-900 w-[618px]'>
             A melhor coisa é poder ajudar o mundo do conforto de casa
@@ -61,21 +50,12 @@ export function Home() {
           <h3 className='text-xl font-medium text-marine-900 w-[618px]'>
             Aqui estão alguns dos materiais que você pode estar reciclando:
           </h3>
-          <Slider settings={cardsSettings}>
-            <SwiperSlide className='h-[248px] px-4 py-6 bg-cards-paper rounded-3xl'>
-            </SwiperSlide>
-            <SwiperSlide className='h-[248px] px-4 py-6 bg-cards-plastic rounded-3xl'> 
-            </SwiperSlide>
-            <SwiperSlide className='h-[248px] px-4 py-6 bg-cards-metal rounded-3xl'>
-            </SwiperSlide>
-            <SwiperSlide className='h-[248px] px-4 py-6 bg-cards-glass rounded-3xl'>
-            </SwiperSlide>
-          </Slider>
+          <CardsSlider />
         </section>
         <figure>
           <img src={HomeSection1} alt="" className='rounded-3xl'/>
         </figure>
-     </section>
+      </section>
     </main>
   )
 }
