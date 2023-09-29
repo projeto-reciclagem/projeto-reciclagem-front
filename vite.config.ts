@@ -5,6 +5,9 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  optimizeDeps: {
+    exclude: ['swiper', '@splidejs/react-splide']
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src")
