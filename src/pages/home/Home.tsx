@@ -33,7 +33,7 @@ export default function Home() {
         <section className='flex flex-col justify-center items-start w-[816px] gap-8 text-white text-2xl font-light'>
           <h1 className='font-medium text-5xl'>Se torne uma empresa parceira!</h1>
           <p>
-            A <b>ECO System</b> nasceu com um propósito simples: <b>transformar</b> o mercado de produtos recicláveis.
+            A <b>EcoSystem</b> nasceu com um propósito simples: <b>transformar</b> o mercado de produtos recicláveis.
           </p>
           <p>
             Se a sua empresa trabalha com produtos recicláveis ou se você se interessa pelo nosso projeto, 

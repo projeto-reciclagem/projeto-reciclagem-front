@@ -6,7 +6,7 @@ export default function Header() {
 
     const navItems = [
         {
-            value: "Seja parceiro",
+            value: "Seja um parceiro",
             path: "/parceiro",
         },
         {
