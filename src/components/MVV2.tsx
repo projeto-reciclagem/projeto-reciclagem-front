@@ -1,6 +1,4 @@
-import React from "react";
-
-interface Props {
+interface MVV2Props {
     titulo: string,
     img: string,
     texto: string,
@@ -8,7 +6,7 @@ interface Props {
     id: string
 }
 
-const MVV2: React.FC<Props> = ({ titulo, img, texto, className, id }) => {
+function MVV2({ titulo, img, texto, className, id }: MVV2Props) {
     return (
         <div className={className} id={id}>
             <div className="flex items-center">

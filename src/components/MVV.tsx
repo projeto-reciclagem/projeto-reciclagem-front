@@ -1,6 +1,4 @@
-import React from "react";
-
-interface Props {
+interface MVVProps {
     titulo: string,
     img: string,
     texto: string,
@@ -8,7 +6,7 @@ interface Props {
     id: string
 }
 
-const MVV: React.FC<Props> = ({ titulo, img, texto, className, id }) => {
+function MVV ({ titulo, img, texto, className, id }: MVVProps) {
     return (
         <div className={className} id={id}>
             <div className="flex items-center">

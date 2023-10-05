@@ -18,7 +18,6 @@ import samuca from '@/assets/img/samuca.png'
 export default function QuemSomos() {
     useEffect(() => {
         document.addEventListener('scroll', rolar);
-        // const ultimaPosicao = 0;
         const missao = document.getElementById('missao') as HTMLElement;
         const visao = document.getElementById('visao') as HTMLElement;
         const valores = document.getElementById('valores') as HTMLElement;
@@ -43,8 +42,6 @@ export default function QuemSomos() {
             } else {
                 valores.style.left = '-1500px';
             }
-
-            // ultimaPosicao = atualPosicao;
         }
     }, [])
 
