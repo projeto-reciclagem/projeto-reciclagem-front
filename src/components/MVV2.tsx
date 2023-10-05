@@ -1,21 +1,26 @@
 interface MVV2Props {
-    titulo: string,
-    img: string,
-    texto: string,
-    className: string,
-    id: string
+  titulo: string
+  img: string
+  texto: string
+  className: string
+  id: string
 }
 
-function MVV2({ titulo, img, texto, className, id }: MVV2Props) {
-    return (
-        <div className={className} id={id}>
-            <div className="flex items-center">
-                <img src={img} className="w-24 mr-6" />
-                <h3 className="text-camel-900 font-medium text-9xl font-mono mb-4">{titulo}</h3>
-            </div>
-            <p className="text-3xl text-right leading-10 tracking-wider mr-28 w-8/12" style={{ wordSpacing: '10px' }}>{texto}</p>
-        </div>
-    )
+export default function MVV2({ titulo, img, texto, className, id }: MVV2Props) {
+  return (
+    <div className={className} id={id}>
+      <div className="flex items-center">
+        <img src={img} className="w-24 mr-6" />
+        <h3 className="text-camel-900 font-medium text-9xl font-mono mb-4">
+          {titulo}
+        </h3>
+      </div>
+      <p
+        className="text-3xl text-right leading-10 tracking-wider mr-28 w-8/12"
+        style={{ wordSpacing: '10px' }}
+      >
+        {texto}
+      </p>
+    </div>
+  )
 }
-
-export default MVV2;

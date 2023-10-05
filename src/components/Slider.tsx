@@ -7,7 +7,7 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 
 interface SliderProps {
-  settings: SwiperProps 
+  settings: SwiperProps
   children: ReactNode
 }
 
@@ -16,7 +16,7 @@ export function Slider({ settings, children }: SliderProps) {
     <Swiper
       modules={[EffectFade, Navigation, Pagination, A11y]}
       {...settings}
-      className='flex'
+      className="flex"
     >
       {children}
     </Swiper>
