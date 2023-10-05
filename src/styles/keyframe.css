@@ -1,0 +1,23 @@
+@keyframes wiggle {
+    to {
+        color: #4C872D;
+        word-spacing: 30px;
+    }
+
+    from {
+        color: #68562E;
+        word-spacing: 5px;
+    }
+}
+
+@keyframes members {
+    to {
+        left: 270px;
+    } from {
+        left: -500px;
+    }
+}
+
+.augusto {
+    background-color: #4C872D;
+}
