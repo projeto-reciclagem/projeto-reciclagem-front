@@ -3,12 +3,20 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import UserIcon from "../../components/UserIcon";
 import LockIcon from "../../components/LockIcon";
+import { User2Icon } from "lucide-react";
 
 export default function Login() {
     return (
         <main className="min-w-screen min-h-screen bg-moss-green-50">
             <Header />
             <section className="min-w-full max-h-[1440px] flex justify-center">
+            <section className="min-w-[140px] min-h-[140px] flex absolute top-28 justify-center items-center rounded-full bg-marine-300 z-10">
+                    <section className="min-w-[130px] min-h-[130px] flex justify-center items-center rounded-full bg-white z-20">
+                        <section className="min-w-[93px] min-h-[93px] flex justify-center items-center rounded-full bg-moss-green-50">
+                            <User2Icon color="#6d9f90" size={70} className="rounded-full z-30" />
+                        </section>
+                    </section>
+                </section>
                 <section className="min-h-[563px] min-w-[676px] rounded-xl my-28 flex flex-col gap-4 justify-center bg-leaf-100">
                     <h1 className="min-h-[37px] min-w-[383px] flex justify-center relative top-10 text-3xl text-marine-900">Seja bem-vindo à EcoSystem</h1>
                     <UserIcon />

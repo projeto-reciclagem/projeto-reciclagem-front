@@ -10,7 +10,7 @@ export default function Header() {
         },
         {
             value: "Quem somos",
-            path: "/sobre",
+            path: "/quem-somos",
         },
         {
             value: "Cadastro",
