@@ -72,6 +72,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #4C591E;
   border-radius: 50px;
+}
 
 #ipt_login::placeholder {
   color: #1a503f;
@@ -93,3 +94,4 @@ body {
 
 #icon {
   margin-top: 3px;
+}
