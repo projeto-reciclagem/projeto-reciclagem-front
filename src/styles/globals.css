@@ -59,6 +59,20 @@
   color: #000000;
 }
 
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #b7c2b1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4C591E;
+  border-radius: 50px;
+
 #ipt_login::placeholder {
   color: #1a503f;
   font-size: 20px;
@@ -79,4 +93,3 @@
 
 #icon {
   margin-top: 3px;
-}
