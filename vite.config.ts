@@ -6,11 +6,11 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['swiper', '@splidejs/react-splide']
+    exclude: ['swiper', '@splidejs/react-splide'],
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src")
-    }
-  }
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 })

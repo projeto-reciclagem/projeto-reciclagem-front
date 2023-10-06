@@ -1,7 +1,13 @@
-import { LockIcon } from "lucide-react";
+import { LockIcon } from 'lucide-react'
 
 const IconLock = () => {
-    return <LockIcon color="#1a503f" size={56} className="flex relative top-6 left-9 bg-marine-50" />
+  return (
+    <LockIcon
+      color="#1a503f"
+      size={56}
+      className="relative left-9 top-6 flex bg-marine-50"
+    />
+  )
 }
 
-export default IconLock;
+export default IconLock
