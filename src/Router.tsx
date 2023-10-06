@@ -11,7 +11,7 @@ const routes = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: 'quem-somos',
+    path: '/quem-somos',
     element: <QuemSomos />,
   },
   {
