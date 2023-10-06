@@ -72,4 +72,24 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #4C591E;
   border-radius: 50px;
+
+#ipt_login::placeholder {
+  color: #1a503f;
+  font-size: 20px;
 }
+
+#ipt_login {
+  padding-left: 0.75rem;
+}
+
+#ipt_senha::placeholder {
+  color: #1a503f;
+  font-size: 20px;
+}
+
+#ipt_senha {
+  padding-left: 0.75rem;
+}
+
+#icon {
+  margin-top: 3px;
