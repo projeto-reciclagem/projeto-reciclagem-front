@@ -40,15 +40,15 @@ export function CarrosselSlider() {
       {contents.map((content) => (
         <SwiperSlide
           key={content.bgImg}
-          className="flex justify-center items-center"
+          className="flex items-center justify-center"
         >
           <div
-            className={`flex flex-col justify-center w-11/12 h-[608px] px-16 gap-8 ${content.bgImg} bg-cover rounded-3xl shadow-lg`}
+            className={`flex h-[608px] w-11/12 flex-col justify-center gap-8 px-16 ${content.bgImg} rounded-3xl bg-cover shadow-lg`}
           >
-            <h1 className="text-4xl font-medium w-[568px] text-leaf-500 leading-normal">
+            <h1 className="w-[568px] text-4xl font-medium leading-normal text-leaf-500">
               {content.title}
             </h1>
-            <p className="text-2xl w-[568px] leading-snug text-white">
+            <p className="w-[568px] text-2xl leading-snug text-white">
               {content.text}
             </p>
           </div>

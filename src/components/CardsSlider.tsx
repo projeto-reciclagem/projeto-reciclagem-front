@@ -48,11 +48,11 @@ export function CardsSlider() {
       {contents.map((content) => (
         <SwiperSlide
           key={content.material}
-          className={`flex flex-col justify-between items-center h-[248px] px-4 py-6 ${content.color} rounded-3xl`}
+          className={`flex h-[248px] flex-col items-center justify-between px-4 py-6 ${content.color} rounded-3xl`}
         >
           <h3 className="text-xl font-medium">{content.material}</h3>
           <content.Icon size={48} />
-          <p className="w-[141px] leading-6 text-base font-medium text-center">
+          <p className="w-[141px] text-center text-base font-medium leading-6">
             {content.text}
           </p>
         </SwiperSlide>

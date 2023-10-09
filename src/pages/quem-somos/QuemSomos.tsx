@@ -59,10 +59,10 @@ export default function QuemSomos() {
     <>
       <Header />
       {/* Frase inspiradora */}
-      <section className="bg-white flex items-center justify-center w-full h-[90vh] px-40 relative overflow-hidden shadow-lg">
+      <section className="relative flex h-[90vh] w-full items-center justify-center overflow-hidden bg-white px-40 shadow-lg">
         <img src={img} className="absolute z-[0] opacity-50" />
         <h3
-          className="text-6xl text-camel-800 border-spacing-4 font-medium text-center text-shadow-md tracking-widest leading-snug z-[1]"
+          className="text-shadow-md z-[1] border-spacing-4 text-center text-6xl font-medium leading-snug tracking-widest text-camel-800"
           style={{
             wordSpacing: '5px',
             animation: 'wiggle 7s infinite alternate 2s ease-in-out',
@@ -75,11 +75,11 @@ export default function QuemSomos() {
       </section>
 
       {/* Sobre nós */}
-      <section className="flex justify-center items-center gap-12 w-full h-[70vh] relative">
-        <div className="img-team w-2/5 h-[40vh] rounded-md bg-[url('../assets/img/team.png')] bg-cover bg-center top-0 shadow-2xl" />
+      <section className="relative flex h-[70vh] w-full items-center justify-center gap-12">
+        <div className="img-team top-0 h-[40vh] w-2/5 rounded-md bg-[url('../assets/img/team.png')] bg-cover bg-center shadow-2xl" />
 
-        <div className="img-team w-[37%] h-[25vh] rounded-md flex flex-col gap-6">
-          <h2 className=" text-4xl text-camel-900 font-bold font-mono">
+        <div className="img-team flex h-[25vh] w-[37%] flex-col gap-6 rounded-md">
+          <h2 className=" font-mono text-4xl font-bold text-camel-900">
             Sobre nós
           </h2>
           <div
@@ -100,10 +100,10 @@ export default function QuemSomos() {
       </section>
 
       {/* Nosso membros */}
-      <section className="flex flex-row-reverse justify-center items-center gap-12 w-full h-[70vh] relative">
-        <div className="flex  overflow-hidden flex-col items-center justify-center img-team w-2/5 h-[40vh] rounded-md bg-slate-300/0">
+      <section className="relative flex h-[70vh] w-full flex-row-reverse items-center justify-center gap-12">
+        <div className="img-team  flex h-[40vh] w-2/5 flex-col items-center justify-center overflow-hidden rounded-md bg-slate-300/0">
           <div
-            className="flex items-center h-full pl-60 relative left-[-500px]"
+            className="relative left-[-500px] flex h-full items-center pl-60"
             style={{
               animation: 'members 20s infinite alternate ease-out',
               animationPlayState: hovered ? 'paused' : '',
@@ -150,8 +150,8 @@ export default function QuemSomos() {
           </div>
         </div>
 
-        <div className="img-team w-[37%] h-[20vh] rounded-md flex flex-col gap-6 text-right">
-          <h2 className=" text-4xl text-camel-900 font-mono font-bold">
+        <div className="img-team flex h-[20vh] w-[37%] flex-col gap-6 rounded-md text-right">
+          <h2 className=" font-mono text-4xl font-bold text-camel-900">
             Nossos membros
           </h2>
           <div
@@ -172,13 +172,13 @@ export default function QuemSomos() {
       </section>
 
       {/* Missão, Visão e Valores */}
-      <section className="flex flex-col justify-center items-center w-full h-auto p-10">
+      <section className="flex h-auto w-full flex-col items-center justify-center p-10">
         <MVV
           id="missao"
           titulo="Missão"
           img={missao}
           texto="Facilitar uma parceria inovadora entre cooperativas de reciclagem e condomínios de apartamento para promover a reciclagem, conscientização ambiental e construir um mundo mais limpo e sustentável."
-          className="flex flex-col w-full h-full gap-4 px-8 relative left-[-1000px] transition-all duration-500"
+          className="relative left-[-1000px] flex h-full w-full flex-col gap-4 px-8 transition-all duration-500"
         />
 
         <MVV2
@@ -186,7 +186,7 @@ export default function QuemSomos() {
           titulo="Visão"
           img={visao}
           texto="Ser líder na transformação da percepção da reciclagem, criando uma rede local de parcerias que beneficie o meio ambiente e as comunidades, tornando a reciclagem uma parte essencial da vida cotidiana."
-          className="flex flex-col items-end w-full h-full gap-4 px-8 relative right-[-1500px] transition-all duration-700"
+          className="relative right-[-1500px] flex h-full w-full flex-col items-end gap-4 px-8 transition-all duration-700"
         />
 
         <MVV
@@ -195,7 +195,7 @@ export default function QuemSomos() {
           img={valores}
           texto='Sustentabilidade, Inovação, Colaboração, Responsabilidade Social.  
                 "Nosso compromisso com a sustentabilidade nos impulsiona a inovar, colaborar e assumir nossa responsabilidade social, criando um impacto positivo duradouro."'
-          className="flex flex-col w-full h-full gap-4 px-8 relative left-[-1000px] transition-all duration-700"
+          className="relative left-[-1000px] flex h-full w-full flex-col gap-4 px-8 transition-all duration-700"
         />
       </section>
     </>

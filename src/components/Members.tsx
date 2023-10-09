@@ -19,23 +19,23 @@ function Members({ nome, cargo, texto, img }: MembersProps) {
   }
 
   return (
-    <div className="flex flex-col items-center mx-8">
+    <div className="mx-8 flex flex-col items-center">
       <div
         className="members-main
-                w-48
-                h-48
-                flex
                 relative
-                overflow-hidden
-                rounded-full
-                transition-all duration-500
-                bg-[url('@/assets/img/augusto.jpg')] bg-cover bg-center
-                hover:h-80
-                hover:border-solid border-4 border-moss-green-800
-                hover:bg-top
-                hover:mt-6
-                hover:cursor-pointer
                 z-10
+                flex
+                h-48
+                w-48
+                overflow-hidden
+                rounded-full border-4
+                border-moss-green-800 bg-[url('@/assets/img/augusto.jpg')] bg-cover
+                bg-center
+                transition-all duration-500 hover:mt-6
+                hover:h-80
+                hover:cursor-pointer
+                hover:border-solid
+                hover:bg-top
                 "
         style={{ backgroundImage: `url(${img})` }}
         onMouseOver={handleMouseOver}
@@ -43,22 +43,22 @@ function Members({ nome, cargo, texto, img }: MembersProps) {
       >
         <div
           className="test
+                absolute
+                top-48
+                flex h-44
                 w-full
-                h-44
-                flex flex-col
+                flex-col
                 justify-start
-                p-2
-                bg-moss-green-700/75
-                absolute top-48
+                bg-moss-green-700/75 p-2
                 "
         >
           <h5 className="text-lg font-medium text-gray-50">{nome}</h5>
           <p className="text-base">{cargo}</p>
-          <p className="text-sm text-camel-50 text-center">{texto}</p>
+          <p className="text-center text-sm text-camel-50">{texto}</p>
         </div>
       </div>
       <p
-        className="transition-all duration-300 text-lg font-medium"
+        className="text-lg font-medium transition-all duration-300"
         style={{
           position: hovered ? 'relative' : 'static',
           top: hovered ? '-50px' : '0',
