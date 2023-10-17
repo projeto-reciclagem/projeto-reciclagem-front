@@ -48,7 +48,7 @@ export default function Header() {
             </li>
           ))}
         </ul>
-        <Link to={'login'}>
+        <Link to={'/login'}>
           <button className="relative rounded-md bg-moss-green-500 px-6 py-2 text-zinc-50 transition-all duration-500 ease-out hover:bg-moss-green-800">
             Login
           </button>
