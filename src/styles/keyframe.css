@@ -17,3 +17,19 @@
         left: -500px;
     }
 }
+
+@keyframes fade {
+    to {
+        opacity: 0;
+    } from {
+        opacity: 1;
+    }
+}
+
+@keyframes cursor {
+    0% {
+        transform: translateX(150px) rotate(30deg);
+    } 100% {
+        transform: translateX(0px) rotate(0deg);
+    }
+}

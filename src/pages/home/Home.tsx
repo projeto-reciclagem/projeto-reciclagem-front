@@ -4,15 +4,13 @@ import Footer from '../../components/Footer'
 import { CardsSlider } from '../../components/CardsSlider'
 import { CarrosselSlider } from '../../components/CarrosselSlider'
 
-import HomeSection1 from '@/assets/img/home-section1.jpg'
-
 export default function Home() {
   return (
-    <main className="min-h-screen min-w-full bg-moss-green-50">
+    <main className="min-h-screen w-full bg-moss-green-50">
       <Header />
       <CarrosselSlider />
-      <section className="flex min-w-full justify-around gap-16 px-28 py-12">
-        <section className="flex max-w-[618px] flex-col gap-4">
+      <section className="flex justify-around w-5/6 h-[75vh] gap-16 mx-auto py-32 mb-24">
+        <div className="flex flex-col justify-center w-[650px] gap-4 ">
           <h1 className="w-[618px] text-4xl font-medium text-camel-900">
             A melhor coisa é poder ajudar o mundo do conforto de casa
           </h1>
@@ -24,14 +22,8 @@ export default function Home() {
             Aqui estão alguns dos materiais que você pode estar reciclando:
           </h3>
           <CardsSlider />
-        </section>
-        <figure>
-          <img
-            src={HomeSection1}
-            alt=""
-            className="h-full w-full shadow-md odd:rounded-3xl"
-          />
-        </figure>
+        </div>
+        <figure className=" w-2/3 bg-[url('@/assets/img/recicle.jpg')] bg-bottom bg-cover rounded-lg" />
       </section>
       <section className='min-w-full bg-[url("@/assets/img/home-section2.jpg")] bg-cover px-28 py-14'>
         <section className="flex w-[816px] flex-col items-start justify-center gap-8 text-2xl font-light text-white">

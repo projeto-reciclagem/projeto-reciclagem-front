@@ -6,13 +6,14 @@ import {
   BatteryEmpty,
   Martini,
 } from '@phosphor-icons/react'
+import { useState } from 'react'
 
 export function CardsSlider() {
   const settings = {
     spaceBetween: 24,
-    slidesPerView: 3,
+    slidesPerView: 2.5,
     style: {
-      width: '618px',
+      width: '650px',
     },
   }
 
@@ -43,20 +44,37 @@ export function CardsSlider() {
     },
   ]
 
+  const [hovered, setHovered] = useState(false)
+
+  const handleMouseOver = () => {
+    setHovered(true)
+  }
+
+  const handleMouseOut = () => {
+    setHovered(false)
+  }
+
   return (
-    <Slider settings={settings}>
-      {contents.map((content) => (
-        <SwiperSlide
-          key={content.material}
-          className={`flex h-[248px] flex-col items-center justify-between px-4 py-6 ${content.color} rounded-3xl`}
-        >
-          <h3 className="text-xl font-medium">{content.material}</h3>
-          <content.Icon size={48} />
-          <p className="w-[141px] text-center text-base font-medium leading-6">
-            {content.text}
-          </p>
-        </SwiperSlide>
-      ))}
-    </Slider>
+    <div className="" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <Slider settings={settings}>
+        <div className="w-full h-full none items-center justify-center absolute z-10 transition-all" style={{ animation: 'fade 2s alternate infinite', display: hovered ? 'none' : 'flex'}}>
+          <span className="material-symbols-outlined text-[3.5em] transition-all" style={{animation: 'cursor 1500ms alternate infinite' }}>
+            pan_tool_alt
+          </span>
+        </div>  
+        {contents.map((content) => (
+          <SwiperSlide
+            key={content.material}
+            className={`flex h-[248px] flex-col items-center justify-between px-4 py-6 ${content.color} rounded-3xl`}
+          >
+            <h3 className="text-xl font-medium">{content.material}</h3>
+            <content.Icon size={48} />
+            <p className="text-center text-base font-medium leading-6">
+              {content.text}
+            </p>
+          </SwiperSlide>
+        ))}
+      </Slider>
+    </div>
   )
 }
