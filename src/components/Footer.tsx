@@ -11,6 +11,10 @@ export default function Footer() {
     navigate('/');
   }
 
+  const handleQuemSomos = () => {
+    navigate('/quem-somos');
+  }
+
   const redeSociais = [
     { "nome": "Facebook", "icone": "facebook" },
     { "nome": "Instagram", "icone": "instagram" },
@@ -75,7 +79,7 @@ export default function Footer() {
             <ul className='flex flex-col gap-4'>
               <li className='text-4xl text-moss-green-500 font-mono w-3/4
               relative transition-all duration-100 hover:text-moss-green-800 cursor-pointer hover:before:w-10/12 hover:translate-x-4 footer__contact'>Seja um Parceiro</li>
-              <li className='text-4xl text-moss-green-500 font-mono w-4/6
+              <li onClick={handleQuemSomos} className='text-4xl text-moss-green-500 font-mono w-4/6
               relative transition-all duration-100 hover:text-moss-green-800 cursor-pointer hover:before:w-9/12 hover:translate-x-4 footer__contact'>Quem somos</li>
             </ul>
           </div>
