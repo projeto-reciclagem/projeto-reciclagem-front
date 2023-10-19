@@ -60,7 +60,8 @@ export default function Header() {
                         </li>
                     ))}
                 </ul>
-                <button className="relative rounded-md bg-moss-green-500 px-6 py-2 text-zinc-50 transition-all duration-500 ease-out hover:bg-moss-green-800">
+                <button className="relative rounded-md bg-moss-green-500 px-6 py-2 text-zinc-50 transition-all duration-500 ease-out hover:bg-moss-green-800"
+                    onClick={handleLogin}>
                     Login
                 </button>
             </div>
