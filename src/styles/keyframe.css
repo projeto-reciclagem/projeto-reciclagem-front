@@ -13,7 +13,9 @@
 @keyframes members {
     to {
         left: 270px;
-    } from {
+    }
+
+    from {
         left: -500px;
     }
 }
@@ -21,7 +23,9 @@
 @keyframes fade {
     to {
         opacity: 0;
-    } from {
+    }
+
+    from {
         opacity: 1;
     }
 }
@@ -29,7 +33,50 @@
 @keyframes cursor {
     0% {
         transform: translateX(150px) rotate(30deg);
-    } 100% {
+    }
+
+    100% {
         transform: translateX(0px) rotate(0deg);
     }
+}
+
+
+
+.footer__li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    background-color: #CADEBF;
+    width: 100%;
+    height: 100%;
+    border-left: 2px solid #549431;
+    animation: typing 2s steps(30) infinite;
+    cursor: default;
+}
+
+@keyframes slide {
+    100% {
+        top: -380px;
+    }
+}
+
+@keyframes typing {
+
+    40%,
+    60% {
+        left: 100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+.footer__contact::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    border-bottom: 2px solid #4C872D;
+    transition: all 300ms ease-in-out;
 }
