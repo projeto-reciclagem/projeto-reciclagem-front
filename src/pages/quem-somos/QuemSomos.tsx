@@ -14,6 +14,8 @@ import marcus from '@/assets/img/marcus.jpg'
 import vini from '@/assets/img/vini.jpg'
 import iury from '@/assets/img/iury.png'
 import samuca from '@/assets/img/samuca.png'
+import LastSection from '../../components/LastSection'
+import Footer from '../../components/Footer'
 
 export default function QuemSomos() {
   useEffect(() => {
@@ -172,6 +174,7 @@ export default function QuemSomos() {
       </section>
 
       {/* Missão, Visão e Valores */}
+      <LastSection>
       <section className="flex h-auto w-full flex-col items-center justify-center p-10">
         <MVV
           id="missao"
@@ -198,6 +201,8 @@ export default function QuemSomos() {
           className="relative left-[-1000px] flex h-full w-full flex-col gap-4 px-8 transition-all duration-700"
         />
       </section>
+      </LastSection>
+      <Footer />
     </>
   )
 }
