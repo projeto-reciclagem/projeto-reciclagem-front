@@ -1,57 +1,87 @@
-import { Link } from 'react-router-dom'
-import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import UserIcon from '../../components/UserIcon'
-import LockIcon from '../../components/LockIcon'
-import { User2Icon } from 'lucide-react'
+import logo from '../../assets/eco-system-logo.svg'
+import LastSection from '../../components/LastSection'
+import Input from '../../components/Input'
+import { Eye, Mail } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import Dropdown from '../../components/Dropdown'
 
 export default function Login() {
+  const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
+
+  const handleGoHome = () => {
+    navigate('/')
+  }
+
+  const options = ['(11) 3589-4043', 'suporte@ecosystem.com']
+
   return (
-    <main className="min-w-screen min-h-screen bg-moss-green-50">
-      <Header />
-      <section className="flex max-h-[1440px] min-w-full justify-center">
-        <section className="min-w-[140px] min-h-[140px] flex absolute top-28 justify-center items-center rounded-full bg-marine-300 z-10">
-          <section className="min-w-[130px] min-h-[130px] flex justify-center items-center rounded-full bg-white z-20">
-            <section className="min-w-[93px] min-h-[93px] flex justify-center items-center rounded-full bg-moss-green-50">
-              <User2Icon color="#6d9f90" size={70} className="rounded-full z-30" />
-            </section>
-          </section>
-        </section>
-        <section className="my-28 flex min-h-[563px] min-w-[676px] flex-col justify-center gap-4 rounded-xl bg-leaf-100">
-          <h1 className="relative top-10 flex min-h-[37px] min-w-[383px] justify-center text-3xl text-marine-900">
-            Seja bem-vindo à EcoSystem
-          </h1>
-          <UserIcon />
-          <input
-            id="ipt_login"
-            type="text"
-            className="relative left-1 top-2 flex min-h-[56px] min-w-[500px] self-center"
-            placeholder="E-mail"
+    <>
+      <LastSection>
+        <section className="float-left h-[100vh] w-5/12 bg-[url('@/assets/img/eco.jpg')] bg-cover bg-center"></section>
+        <nav className="flex h-[15vh] justify-between bg-marine-900 px-10 py-2">
+          <img
+            src={logo}
+            onClick={handleGoHome}
+            className="w-44 cursor-pointer"
           />
-          <LockIcon />
-          <input
-            id="ipt_senha"
-            type="password"
-            className="relative bottom-12 left-1 flex min-h-[56px] min-w-[500px] self-center"
-            placeholder="Senha"
-          />
-          <span className="relative bottom-16 left-2/3 ml-4 flex text-sm">
-            <a href="">Esqueceu sua senha?</a>
-          </span>
-          <span className="relative bottom-12 flex self-center text-base">
-            Não possui cadastro?
-            <a href="" className="text-camel-500">
-              Clique aqui
-            </a>
-          </span>
-          <Link to={'dashboard'}>
-            <button className="relative bottom-5 left-60 ml-3 flex rounded-xl bg-moss-green-500 px-16 py-2 font-normal text-zinc-50 transition-all duration-500 ease-in-out hover:bg-moss-green-800">
-              Entrar
+          <div className="relative flex w-2/6 items-center justify-center gap-5">
+            <Dropdown
+              text="Fale conosco"
+              options={options}
+              className="relative cursor-pointer whitespace-nowrap py-8 text-center text-lg text-moss-green-100 transition-all duration-200"
+            />
+            <button className="w-32 whitespace-nowrap rounded-md bg-moss-green-300 py-2 text-lg transition-all duration-200 hover:bg-moss-green-700 hover:text-moss-green-50 hover:drop-shadow-md">
+              Cadastre-se
             </button>
-          </Link>
+          </div>
+        </nav>
+        <section className="flex h-[85vh] w-7/12 items-center justify-center bg-marine-900">
+          <div className="box flex h-[60vh] w-5/12 flex-col items-center justify-start gap-10">
+            <h3 className="mb-4 font-mono text-4xl text-moss-green-50">
+              Log in to EcoSystem
+            </h3>
+            <div className="flex w-full flex-col gap-12">
+              <Input label="Email" id="email" type="email">
+                <Mail className="absolute right-4 top-2 h-5 w-5 text-moss-green-100" />
+              </Input>
+              <Input
+                label="Senha"
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+              >
+                <Eye
+                  className="absolute right-4 top-2 h-6 w-5 cursor-pointer text-moss-green-100"
+                  onClick={handleShowPassword}
+                />
+                <div
+                  className={`absolute right-6 top-2 ${
+                    showPassword ? 'h-[25px]' : 'h-[0]'
+                  } w-[2px] -rotate-[25deg] rounded-xl bg-rose-100 transition-all duration-150`}
+                ></div>
+              </Input>
+            </div>
+            <div className="flex w-full flex-col items-center justify-center gap-2">
+              <button className="w-full select-none rounded-lg bg-moss-green-300 py-2 text-lg text-moss-green-900 transition-all duration-300 hover:bg-moss-green-700 hover:text-moss-green-50 hover:drop-shadow-md">
+                Entrar
+              </button>
+              <p className="select-none text-lg text-moss-green-100">
+                Não tem conta?
+                <span className="ml-1 cursor-pointer text-moss-green-500">
+                  Cadastre-se
+                </span>
+              </p>
+            </div>
+          </div>
         </section>
-      </section>
+      </LastSection>
       <Footer />
-    </main>
+    </>
   )
 }
