@@ -22,10 +22,6 @@ export default function Header() {
       value: 'Quem somos',
       path: '/quem-somos',
     },
-    {
-      value: 'Cadastro',
-      path: '/cadastro',
-    },
   ]
 
   return (
@@ -64,7 +60,7 @@ export default function Header() {
           className="relative rounded-md bg-moss-green-500 px-6 py-2 text-zinc-50 transition-all duration-500 ease-out hover:bg-moss-green-800"
           onClick={handleLogin}
         >
-          Log in
+          Acessar
         </button>
       </div>
     </nav>

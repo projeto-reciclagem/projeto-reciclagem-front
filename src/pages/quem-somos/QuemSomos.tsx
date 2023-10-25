@@ -61,7 +61,7 @@ export default function QuemSomos() {
     <>
       <Header />
       {/* Frase inspiradora */}
-      <section className="relative flex h-[90vh] w-full items-center justify-center overflow-hidden bg-white px-40 shadow-lg">
+      <section className="relative flex h-[91vh] w-full items-center justify-center overflow-hidden bg-white px-40 shadow-lg">
         <img src={img} className="absolute z-[0] opacity-50" />
         <h3
           className="text-shadow-md z-[1] border-spacing-4 text-center text-6xl font-medium leading-snug tracking-widest text-camel-800"
@@ -70,14 +70,13 @@ export default function QuemSomos() {
             animation: 'wiggle 7s infinite alternate 2s ease-in-out',
           }}
         >
-          &quot; Lembre-se, cada pequeno esforço conta e contribui para um
-          planeta mais saudável e sustentável. Vamos juntos fazer a diferença!
-          &quot;
+          "Lembre-se, cada pequeno esforço conta e contribui para um planeta
+          mais saudável e sustentável. Vamos juntos fazer a diferença!"
         </h3>
       </section>
 
       {/* Sobre nós */}
-      <section className="relative flex h-[70vh] w-full items-center justify-center gap-12">
+      <section className="relative flex h-screen w-full items-center justify-center gap-12">
         <div className="img-team top-0 h-[40vh] w-2/5 rounded-md bg-[url('../assets/img/team.png')] bg-cover bg-center shadow-2xl" />
 
         <div className="img-team flex h-[25vh] w-[37%] flex-col gap-6 rounded-md">
@@ -102,7 +101,7 @@ export default function QuemSomos() {
       </section>
 
       {/* Nosso membros */}
-      <section className="relative flex h-[70vh] w-full flex-row-reverse items-center justify-center gap-12">
+      <section className="relative flex h-screen w-full flex-row-reverse items-center justify-center gap-12">
         <div className="img-team  flex h-[40vh] w-2/5 flex-col items-center justify-center overflow-hidden rounded-md bg-slate-300/0">
           <div
             className="relative left-[-500px] flex h-full items-center pl-60"
@@ -175,32 +174,32 @@ export default function QuemSomos() {
 
       {/* Missão, Visão e Valores */}
       <LastSection>
-      <section className="flex h-auto w-full flex-col items-center justify-center p-10">
-        <MVV
-          id="missao"
-          titulo="Missão"
-          img={missao}
-          texto="Facilitar uma parceria inovadora entre cooperativas de reciclagem e condomínios de apartamento para promover a reciclagem, conscientização ambiental e construir um mundo mais limpo e sustentável."
-          className="relative left-[-1000px] flex h-full w-full flex-col gap-4 px-8 transition-all duration-500"
-        />
+        <section className="flex h-auto w-full flex-col items-center justify-center p-10">
+          <MVV
+            id="missao"
+            titulo="Missão"
+            img={missao}
+            texto="Facilitar uma parceria inovadora entre cooperativas de reciclagem e condomínios de apartamento para promover a reciclagem, conscientização ambiental e construir um mundo mais limpo e sustentável."
+            className="relative left-[-1000px] flex h-full w-full flex-col gap-4 px-8 transition-all duration-500"
+          />
 
-        <MVV2
-          id="visao"
-          titulo="Visão"
-          img={visao}
-          texto="Ser líder na transformação da percepção da reciclagem, criando uma rede local de parcerias que beneficie o meio ambiente e as comunidades, tornando a reciclagem uma parte essencial da vida cotidiana."
-          className="relative right-[-1500px] flex h-full w-full flex-col items-end gap-4 px-8 transition-all duration-700"
-        />
+          <MVV2
+            id="visao"
+            titulo="Visão"
+            img={visao}
+            texto="Ser líder na transformação da percepção da reciclagem, criando uma rede local de parcerias que beneficie o meio ambiente e as comunidades, tornando a reciclagem uma parte essencial da vida cotidiana."
+            className="relative right-[-1500px] flex h-full w-full flex-col items-end gap-4 px-8 transition-all duration-700"
+          />
 
-        <MVV
-          id="valores"
-          titulo="Valores"
-          img={valores}
-          texto='Sustentabilidade, Inovação, Colaboração, Responsabilidade Social.  
+          <MVV
+            id="valores"
+            titulo="Valores"
+            img={valores}
+            texto='Sustentabilidade, Inovação, Colaboração, Responsabilidade Social.  
                 "Nosso compromisso com a sustentabilidade nos impulsiona a inovar, colaborar e assumir nossa responsabilidade social, criando um impacto positivo duradouro."'
-          className="relative left-[-1000px] flex h-full w-full flex-col gap-4 px-8 transition-all duration-700"
-        />
-      </section>
+            className="relative left-[-1000px] flex h-full w-full flex-col gap-4 px-8 transition-all duration-700"
+          />
+        </section>
       </LastSection>
       <Footer />
     </>
