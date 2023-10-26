@@ -3,7 +3,7 @@
 @tailwind utilities;
 @font-face {
   font-family: 'ubuntu';
-  src: url('@/assets/fonts/ubuntu/Ubuntu-Light.ttf') format('opentype');
+  src: url('./src/assets/fonts/ubuntu/Ubuntu-Light.ttf') format('opentype');
   font-weight: 300;
 }
 @font-face {
