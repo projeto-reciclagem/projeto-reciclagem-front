@@ -9,7 +9,7 @@ export default function MVV2({ titulo, texto, className, id }: MVV2Props) {
   return (
     <div className={className} id={id}>
       <div className="flex items-center">
-        <h3 className="mb-4 font-mono text-9xl font-medium text-marine-100">
+        <h3 className="mb-4 font-mono text-6xl font-medium text-marine-100">
           {titulo}
         </h3>
       </div>
