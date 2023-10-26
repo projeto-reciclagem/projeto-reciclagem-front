@@ -1,55 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @font-face {
   font-family: 'ubuntu';
   src: url('@/assets/fonts/ubuntu/Ubuntu-Light.ttf') format('opentype');
   font-weight: 300;
 }
-
 @font-face {
   font-family: 'ubuntu';
   src: url('@/assets/fonts/ubuntu/Ubuntu-Regular.ttf') format('opentype');
   font-weight: normal;
 }
-
 @font-face {
   font-family: 'ubuntu';
   src: url('@/assets/fonts/ubuntu/Ubuntu-Medium.ttf') format('opentype');
   font-weight: 500;
 }
-
 @font-face {
   font-family: 'ubuntu';
   src: url('@/assets/fonts/ubuntu/Ubuntu-Bold.ttf') format('opentype');
   font-weight: 700;
 }
-
 @font-face {
   font-family: 'roboto';
   src: url('@/assets/fonts/roboto-condensed/RobotoCondensed-Light.ttf') format('opentype');
   font-weight: 300;
 }
-
 @font-face {
   font-family: 'roboto';
   src: url('@/assets/fonts/roboto-condensed/RobotoCondensed-Regular.ttf') format('opentype');
   font-weight: normal;
 }
-
 @font-face {
   font-family: 'roboto';
   src: url('@/assets/fonts/roboto-condensed/RobotoCondensed-Medium.ttf') format('opentype');
   font-weight: 500;
 }
-
 @font-face {
   font-family: 'roboto';
   src: url('@/assets/fonts/roboto-condensed/RobotoCondensed-Bold.ttf') format('opentype');
   font-weight: 700;
 }
-
 /* Customização do banner da home */
 .swiper-button-next {
   color: #000000;

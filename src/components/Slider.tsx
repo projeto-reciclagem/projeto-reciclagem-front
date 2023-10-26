@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { Swiper, SwiperProps } from 'swiper/react'
 import { A11y, Navigation, Pagination, EffectFade } from 'swiper/modules'
-
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
