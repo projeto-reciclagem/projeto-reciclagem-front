@@ -16,7 +16,7 @@ const routes = createBrowserRouter([
     element: <QuemSomos />,
   },
   {
-    path: '/login',
+    path: '/acesso',
     element: <Login />,
   },
   {
