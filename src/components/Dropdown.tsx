@@ -17,7 +17,7 @@ export default function Dropdown({ options, text, className }: DropdownProps) {
     >
       {text}
       {isOpen && (
-        <ul className="options round absolute left-1 top-24 rounded-md bg-moss-green-300 px-4 py-2">
+        <ul className="options round absolute left-1 top-20 rounded-md bg-moss-green-300 px-4 py-2">
           {options.map((option, index) => (
             <li
               key={index}

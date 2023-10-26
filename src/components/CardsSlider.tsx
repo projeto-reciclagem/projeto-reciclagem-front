@@ -13,7 +13,7 @@ export function CardsSlider() {
     spaceBetween: 24,
     slidesPerView: 2.5,
     style: {
-      width: '650px',
+      width: '550px',
     },
   }
 
@@ -57,15 +57,24 @@ export function CardsSlider() {
   return (
     <div className="" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <Slider settings={settings}>
-        <div className="w-full h-full none items-center justify-center absolute z-10 transition-all" style={{ animation: 'fade 2s alternate infinite', display: hovered ? 'none' : 'flex'}}>
-          <span className="material-symbols-outlined text-[3.5em] transition-all" style={{animation: 'cursor 1500ms alternate infinite' }}>
+        <div
+          className="none absolute z-10 h-full w-full items-center justify-center transition-all"
+          style={{
+            animation: 'fade 2s alternate infinite',
+            display: hovered ? 'none' : 'flex',
+          }}
+        >
+          <span
+            className="material-symbols-outlined text-[3.5em] transition-all"
+            style={{ animation: 'cursor 1500ms alternate infinite' }}
+          >
             pan_tool_alt
           </span>
-        </div>  
+        </div>
         {contents.map((content) => (
           <SwiperSlide
             key={content.material}
-            className={`flex h-[248px] flex-col items-center justify-between px-4 py-6 ${content.color} rounded-3xl`}
+            className={`flex h-[278px] flex-col items-center justify-between px-4 py-6 ${content.color} rounded-3xl`}
           >
             <h3 className="text-xl font-medium">{content.material}</h3>
             <content.Icon size={48} />

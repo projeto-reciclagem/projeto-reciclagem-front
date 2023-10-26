@@ -11,7 +11,7 @@ export default function Home() {
       <main className="h-full w-full bg-moss-green-50">
         <Header />
         <CarrosselSlider />
-        <section className="mx-auto mb-24 flex h-[80vh] w-5/6 gap-24 py-32">
+        <section className="mx-auto mb-24  flex h-[90vh] w-5/6 items-center gap-24">
           <div className="flex w-[650px] flex-col justify-center gap-4 ">
             <h1 className="w-[618px] text-4xl font-medium text-camel-900">
               A melhor coisa é poder ajudar o mundo do conforto de casa
@@ -25,7 +25,7 @@ export default function Home() {
             </h3>
             <CardsSlider />
           </div>
-          <figure className=" w-2/3 rounded-lg bg-[url('@/assets/img/recicle.jpg')] bg-cover bg-bottom" />
+          <div className="h-3/4 w-full rounded-lg bg-[url('@/assets/img/recicle.jpg')] bg-cover bg-bottom" />
         </section>
         <LastSection>
           <section className='h-[100vh] w-full bg-[url("@/assets/img/imageSection2.png")] bg-cover bg-bottom'>

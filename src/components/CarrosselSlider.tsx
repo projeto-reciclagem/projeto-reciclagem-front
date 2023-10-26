@@ -43,7 +43,7 @@ export function CarrosselSlider() {
           className="flex items-center justify-center"
         >
           <div
-            className={`flex h-[608px] w-11/12 flex-col justify-center gap-8 px-16 mt-16 ${content.bgImg} rounded-3xl bg-cover shadow-lg`}
+            className={`mt-16 flex h-[608px] w-11/12 flex-col justify-center gap-8 px-16 ${content.bgImg} rounded-3xl bg-cover shadow-lg`}
           >
             <h1 className="w-[568px] text-4xl font-medium leading-normal text-leaf-500">
               {content.title}

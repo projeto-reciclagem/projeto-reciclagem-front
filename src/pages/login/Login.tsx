@@ -111,7 +111,7 @@ export default function Login() {
           </div>
           <div
             className={`box relative ${
-              toMove ? '-top-64' : 'top-[100%]'
+              toMove ? '-top-44' : 'top-[100%]'
             } flex h-[60vh] w-7/12 flex-col items-center justify-start gap-10 transition-all duration-500`}
           >
             <div className="select absolute -top-24 left-0 flex w-full items-center justify-center">
