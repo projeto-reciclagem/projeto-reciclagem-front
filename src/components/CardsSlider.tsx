@@ -13,7 +13,7 @@ export function CardsSlider() {
     spaceBetween: 24,
     slidesPerView: 2.5,
     style: {
-      width: '550px',
+      width: '650px',
     },
   }
 
