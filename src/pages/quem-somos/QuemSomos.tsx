@@ -8,7 +8,7 @@ import augusto from '@/assets/img/augusto.jpg'
 import nilton from '@/assets/img/nilton.jpeg'
 import marcus from '@/assets/img/marcus.jpg'
 import vini from '@/assets/img/vini.jpg'
-import iury from '@/assets/img/iury.png'
+import iury from '@/assets/img/ury.png'
 import samuca from '@/assets/img/samuca.png'
 import LastSection from '../../components/LastSection'
 import Footer from '../../components/Footer'
@@ -23,20 +23,20 @@ export default function QuemSomos() {
     function rolar() {
       const atualPosicao = window.scrollY
 
-      if (atualPosicao > 1600) {
-        missao.style.left = '100px'
+      if (atualPosicao > 1400) {
+        missao.style.left = '120px'
       } else {
         missao.style.left = '-1500px'
       }
 
-      if (atualPosicao > 1800) {
-        visao.style.left = '100px'
+      if (atualPosicao > 1500) {
+        visao.style.left = '120px'
       } else {
         visao.style.left = '-1500px'
       }
 
-      if (atualPosicao > 2000) {
-        valores.style.left = '100px'
+      if (atualPosicao > 1600) {
+        valores.style.left = '120px'
       } else {
         valores.style.left = '-1500px'
       }
@@ -51,7 +51,7 @@ export default function QuemSomos() {
         <img src={img} className="absolute z-[0] opacity-90" />
         <div className="absolute h-[90vh] w-full bg-gradient-to-tl from-rose-50/0 to-moss-green-900/90"></div>
         <h3
-          className="text-shadow-md relative -top-10 z-[1] w-full border-spacing-4 rounded-2xl p-4 pl-10 text-left font-mono text-6xl font-medium leading-snug tracking-widest text-camel-100"
+          className="text-shadow-md relative -top-10 z-[1] w-full border-spacing-4 rounded-2xl p-4 pl-10 text-left font-mono text-6xl font-medium leading-snug tracking-widest text-camel-50"
           style={{
             wordSpacing: '5px',
             // animation: 'wiggle 7s infinite alternate 2s ease-in-out',
@@ -66,7 +66,7 @@ export default function QuemSomos() {
       <section className="relative -top-14 z-10 flex h-[80vh] w-full items-center justify-center gap-12 rounded-se-[60px] rounded-ss-[60px] bg-gradient-to-t from-moss-green-600 to-moss-green-300">
         <div className="img-team top-0 h-[40vh] w-2/5 rounded-xl bg-[url('../assets/img/team.png')] bg-cover bg-center shadow-2xl" />
 
-        <div className="img-team flex h-[25vh] w-[37%] flex-col gap-6 rounded-md">
+        <div className="img-team flex h-[43vh] w-[37%] flex-col gap-6 rounded-md">
           <h2 className=" font-mono text-4xl font-bold text-moss-green-900">
             Sobre nós
           </h2>
@@ -87,8 +87,8 @@ export default function QuemSomos() {
         </div>
       </section>
       {/* Nosso membros */}
-      <section className="relative -top-14 flex h-[70vh] w-full flex-row-reverse items-center justify-center gap-12 bg-gradient-to-t from-moss-green-800 to-moss-green-600">
-        <div className="img-team flex h-[80vh] w-2/5 flex-col items-center justify-center gap-5 overflow-hidden rounded-md bg-slate-300/0">
+      <section className="relative -top-14 flex h-[70vh] w-full flex-row-reverse items-center justify-center gap-0 bg-gradient-to-t from-moss-green-800 to-moss-green-600">
+        <div className="img-team flex h-[80vh] w-2/4 flex-col items-center justify-center gap-5 overflow-hidden rounded-md bg-slate-300/0">
           <div className="flex">
             <Members
               img={augusto}
@@ -130,7 +130,7 @@ export default function QuemSomos() {
             />
           </div>
         </div>
-        <div className="img-team flex h-[30vh] w-[33%] flex-col gap-6 rounded-md text-right">
+        <div className="img-team flex h-[45vh] w-[40%] flex-col gap-6 rounded-md text-right">
           <h2 className=" font-mono text-4xl font-bold text-marine-900">
             Nossos membros
           </h2>
@@ -153,7 +153,7 @@ export default function QuemSomos() {
 
       {/* Missão, Visão e Valores */}
       <LastSection>
-        <section className="relative -top-14 flex h-[110vh] w-full flex-col items-center justify-center bg-moss-green-800 p-10 py-20">
+        <section className="relative -top-14 flex h-[110vh] w-full flex-col items-center justify-center gap-5 bg-moss-green-800 p-10 py-20">
           <MVV
             id="missao"
             titulo="Missão"
@@ -165,7 +165,7 @@ export default function QuemSomos() {
             id="visao"
             titulo="Visão"
             texto="Ser líder na transformação da percepção da reciclagem, criando uma rede local de parcerias que beneficie o meio ambiente e as comunidades, tornando a reciclagem uma parte essencial da vida cotidiana."
-            className="relative left-[-1300px] flex h-full w-3/4 flex-col gap-4 px-8 transition-all duration-500"
+            className="relative left-[-1000px] flex h-full w-3/4 flex-col gap-4 px-8 transition-all duration-500"
           />
 
           <MVV
@@ -173,7 +173,7 @@ export default function QuemSomos() {
             titulo="Valores"
             texto='Sustentabilidade, Inovação, Colaboração, Responsabilidade Social.  
                 "Nosso compromisso com a sustentabilidade nos impulsiona a inovar, colaborar e assumir nossa responsabilidade social, criando um impacto positivo duradouro."'
-            className="relative left-[-1500px] flex h-full w-3/4 flex-col gap-4 px-8 transition-all duration-700"
+            className="relative left-[-1000px] flex h-full w-3/4 flex-col gap-4 px-8 transition-all duration-700"
           />
         </section>
       </LastSection>
