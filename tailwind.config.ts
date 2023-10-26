@@ -64,9 +64,9 @@ export default {
         },
       },
       backgroundImage: {
-        'carousel-item1': 'url("./src/assets/img/carrossel-item1.jpg")',
-        'carousel-item2': 'url("./src/assets/img/carrossel-item2.jpg")',
-        'carousel-item3': 'url("./src/assets/img/carrossel-item3.jpg")',
+        'carousel-item1': 'url("@/assets/img/carrossel-item-1.svg")',
+        'carousel-item2': 'url("@/assets/img/carrossel-item-2.svg")',
+        'carousel-item3': 'url("@/assets/img/carrossel-item-3.svg")',
       },
     },
   },
