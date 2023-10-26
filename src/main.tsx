@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Routes } from './Routes.tsx'
-import './globals.css'
+import { App } from './App'
+
+import './styles/globals.css'
+import './styles/keyframe.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Routes />
+    <App />
   </React.StrictMode>,
 )
