@@ -25,7 +25,7 @@ export function LayoutCooperativa({ children }: LayoutCooperativaProps) {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex w-screen">
         <nav
           className={`relative flex h-screen w-2/12 flex-col items-center gap-10 bg-moss-green-800 pt-8 transition-all duration-150
           ${!menuus ? 'left-[-238px] ' : 'left-0'}`}
@@ -103,8 +103,8 @@ export function LayoutCooperativa({ children }: LayoutCooperativaProps) {
           )}
         </div>
         <main
-          className={`absolute h-screen bg-moss-green-50 transition-all duration-150 ${
-            !menuus ? 'left-[4%] w-full' : 'left-[16.666667%] w-10/12'
+          className={`absolute h-screen border-l-4 border-moss-green-500 bg-moss-green-800 transition-all duration-150 ${
+            !menuus ? 'left-[4%] w-[95.9999vw]' : 'left-[16.666667%] w-10/12'
           }`}
         >
           {children}
