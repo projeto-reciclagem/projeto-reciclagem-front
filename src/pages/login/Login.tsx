@@ -4,9 +4,9 @@ import logo from '../../assets/eco-system-logo.svg'
 
 import Footer from '../../components/Footer'
 import Dropdown from '../../components/Dropdown'
-import { Input } from '../../components/Input'
 import { Link } from 'react-router-dom'
 import { FormLogin } from '../../components/FormLogin'
+import { FormCadastro } from '../../components/FormCadastro'
 
 export default function Login() {
   const [toMove, setToMove] = useState(false)
@@ -78,6 +78,7 @@ export default function Login() {
               toMove ? '-top-44' : 'top-[100%]'
             } flex h-[60vh] w-7/12 flex-col items-center justify-start gap-10 transition-all duration-500`}
           >
+            {/* Label condominio/cooperativa */}
             <div className="select absolute -top-24 left-0 flex w-full items-center justify-center">
               <p
                 className={`cursor-pointer select-none rounded-s-full text-xl transition-all duration-300 ${
@@ -100,38 +101,18 @@ export default function Login() {
                 Sou um <b>Condominio</b>
               </p>
             </div>
-            <div className="flex w-full flex-col gap-16">
-              <div className="flex gap-5">
-                <Input label="Nome completo" id="name-cad" type="text" />
-                <Input label="CNPJ" id="cnpj-cad" type="text" />
-              </div>
-              <div className="flex gap-5">
-                <Input label="Email" id="email-cad" type="email" />
-                <Input label="Telefone" id="phone-cad" type="tel" />
-              </div>
-              <div className="flex gap-5">
-                <Input label="Senha" id="password-cad" type="password" />
-                <Input
-                  label="Confirmar senha"
-                  id="confirm-password-cad"
-                  type="password"
-                />
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-2">
-                <button className="w-full select-none rounded-lg bg-moss-green-300 py-2 text-lg text-moss-green-900 transition-all duration-300 hover:bg-moss-green-700 hover:text-moss-green-50 hover:drop-shadow-md">
-                  Cadastrar
-                </button>
-                <p className="select-none text-lg text-moss-green-100">
-                  Já possui conta?
-                  <span
-                    className="ml-1 cursor-pointer text-moss-green-500"
-                    onClick={handleMove}
-                  >
-                    Entre!
-                  </span>
-                </p>
-              </div>
-            </div>
+
+            {/* Form cadastro */}
+            <FormCadastro />
+            <p className="select-none text-lg text-moss-green-100">
+              Já possui conta?
+              <span
+                className="ml-1 cursor-pointer text-moss-green-500"
+                onClick={handleMove}
+              >
+                Entre!
+              </span>
+            </p>
           </div>
         </section>
       </main>
