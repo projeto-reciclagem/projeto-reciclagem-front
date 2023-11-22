@@ -99,3 +99,33 @@
     border-bottom: 2px solid #CADEBF;
     transition: all 300ms ease-in-out;
 }
+
+.navbar-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0%;
+    height: 40px;
+    border-bottom: 2px solid #4C872D;
+    transition: all 300ms ease-in-out;
+}
+
+.navbar-item:hover::before {
+    width: 80%;
+    animation: tess 250ms ease-in-out;
+}
+
+@keyframes tess {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    100% {
+        width: 80%;
+        border-bottom: 2px solid #4C872D;
+    }
+}
