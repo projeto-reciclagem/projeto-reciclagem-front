@@ -16,7 +16,6 @@
     "@react-google-maps/api": "^2.19.2",
     "axios": "^1.5.1",
     "lucide-react": "^0.284.0",
-    "material-icons": "^1.13.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",

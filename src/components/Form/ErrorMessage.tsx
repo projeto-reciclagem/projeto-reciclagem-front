@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useFormContext } from 'react-hook-form'
 
 interface ErrorMessageProps {
@@ -31,5 +30,5 @@ export function ErrorMessage({ field }: ErrorMessageProps) {
     return null
   }
 
-  return <span>{fieldError.message?.toString()}</span>
+  return <span className="text-red-500">{fieldError.message?.toString()}</span>
 }

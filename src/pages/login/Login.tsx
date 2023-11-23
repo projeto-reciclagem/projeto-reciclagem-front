@@ -1,12 +1,10 @@
 import { useState } from 'react'
-
-import logo from '../../assets/eco-system-logo.svg'
-
+import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import Dropdown from '../../components/Dropdown'
-import { Link } from 'react-router-dom'
 import { FormLogin } from '../../components/FormLogin'
 import { FormCadastro } from '../../components/FormCadastro'
+import logo from '../../assets/eco-system-logo.svg'
 
 export default function Login() {
   const [toMove, setToMove] = useState(false)
@@ -53,12 +51,12 @@ export default function Login() {
             </button>
           </div>
         </nav>
-        <section className="flex h-[85vh] w-7/12 flex-col items-center justify-center bg-marine-900 transition-all duration-300">
+        <div className="flex h-[85vh] w-7/12 flex-col items-center justify-center bg-marine-900 transition-all duration-300">
           {/* Login Form */}
           <div
             className={`box relative ${
-              toMove ? '-top-[100%]' : 'top-32'
-            } flex h-[60vh] w-5/12 flex-col items-center justify-start gap-8 transition-all duration-500`}
+              toMove ? '-top-[100%]' : 'top-44'
+            } flex h-[60vh] w-5/12 flex-1 flex-col items-center justify-start gap-8 transition-all duration-500`}
           >
             <FormLogin />
             <p className="select-none text-lg text-moss-green-100">
@@ -76,7 +74,7 @@ export default function Login() {
           <div
             className={`box relative ${
               toMove ? '-top-44' : 'top-[100%]'
-            } flex h-[60vh] w-7/12 flex-col items-center justify-start gap-10 transition-all duration-500`}
+            } flex h-[60vh] w-7/12 flex-1 flex-col items-center justify-start gap-10 transition-all duration-500`}
           >
             {/* Label condominio/cooperativa */}
             <div className="select absolute -top-24 left-0 flex w-full items-center justify-center">
@@ -101,7 +99,6 @@ export default function Login() {
                 Sou um <b>Condominio</b>
               </p>
             </div>
-
             {/* Form cadastro */}
             <FormCadastro />
             <p className="select-none text-lg text-moss-green-100">
@@ -114,7 +111,7 @@ export default function Login() {
               </span>
             </p>
           </div>
-        </section>
+        </div>
       </main>
       <Footer />
     </>

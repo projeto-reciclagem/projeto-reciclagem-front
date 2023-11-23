@@ -1,22 +1,47 @@
 import { useForm, FormProvider } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
+import { z } from 'zod'
+import { api } from '../lib/axios'
 import { Form } from './Form'
 
 const loginUserSchema = z.object({
   email: z.string().min(1, 'O e-mail é obrigatório!').email().toLowerCase(),
-  senha: z.string().min(6, 'A senha deve ter no mínimo 6 carácteres'),
+  senha: z.string(),
 })
 
 type LoginUserData = z.infer<typeof loginUserSchema>
 
 export function FormLogin() {
+  const navigate = useNavigate()
+
   const loginForm = useForm<LoginUserData>({
     resolver: zodResolver(loginUserSchema),
   })
 
-  function loginUser(data: LoginUserData) {
-    console.log(data)
+  async function loginUser(data: LoginUserData) {
+    await api
+      .post('/usuarios/login', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        if (res.status === 200 && res?.data) {
+          sessionStorage.setItem('token', res.data.token)
+          sessionStorage.setItem('tipo', res.data.tipoUsuario)
+        }
+      })
+      .catch((err) => {
+        // TODO: dependendo dos erros vai fazer coisa diferente
+        if (err.res.status === 404) {
+          console.log('Usuário não encontrado')
+        } else {
+          console.log('Usuário inválido')
+        }
+      })
+
+    navigate('/cooperativa')
   }
 
   const {
@@ -26,12 +51,12 @@ export function FormLogin() {
 
   return (
     <>
-      <h3 className="mb-4 font-mono text-4xl text-moss-green-50">
+      <h3 className="mb-9 font-mono text-4xl text-moss-green-50">
         Login to EcoSystem
       </h3>
       <FormProvider {...loginForm}>
         <form
-          className="flex w-full flex-col gap-10"
+          className="flex w-full flex-col gap-16"
           onSubmit={handleSubmit(loginUser)}
         >
           <Form.Field>
