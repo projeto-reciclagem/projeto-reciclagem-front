@@ -3,6 +3,7 @@ import Home from './pages/home/Home'
 import Login from './pages/login/Login'
 import QuemSomos from './pages/quem-somos/QuemSomos'
 import Cooperativa from './pages/cooperativa/Cooperativa'
+import LandingPageCond from './pages/dash-condominio/LandingPageCond'
 import CoopPedidos from './pages/cooperativa/CoopPedidos'
 import CoopCondominios from './pages/cooperativa/CoopCondominios'
 import CoopChat from './pages/cooperativa/CoopChat'
@@ -35,6 +36,10 @@ const routes = createBrowserRouter([
   {
     path: '/cooperativa/condominios',
     element: <CoopCondominios />,
+  },
+  {
+    path: '/condominio',
+    element: <LandingPageCond />,
   },
   {
     path: '/cooperativa/chat',
