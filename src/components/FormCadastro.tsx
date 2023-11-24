@@ -1,7 +1,9 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+
 import { Form } from './Form'
+import { api } from '../lib/axios'
 
 const registerUserSchema = z.object({
   nome: z.string().min(3, 'Nome inválido'),
@@ -12,15 +14,44 @@ const registerUserSchema = z.object({
   confirmacaoSenha: z.string(),
 })
 
+interface CadastroProps {
+  tipoUsuario: string
+  handleMove: VoidFunction
+}
+
 type RegisterUserData = z.infer<typeof registerUserSchema>
 
-export function FormCadastro() {
+export function FormCadastro({ tipoUsuario, handleMove }: CadastroProps) {
   const registerForm = useForm<RegisterUserData>({
     resolver: zodResolver(registerUserSchema),
   })
 
-  function registerUser(data: RegisterUserData) {
-    console.log(data)
+  async function registerUser(data: RegisterUserData) {
+    if (tipoUsuario === 'cooperativa') {
+      await api
+        .post('/cooperativas/cadastrar', data, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then(() => {
+          console.log('movendo')
+
+          handleMove()
+        })
+    } else {
+      await api
+        .post('/condominios/cadastrar', data, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then(() => {
+          console.log('movendo')
+
+          handleMove()
+        })
+    }
   }
 
   const {
@@ -37,7 +68,7 @@ export function FormCadastro() {
         <div className="flex gap-5">
           <Form.Field className="w-full">
             <Form.Label
-              htmlFor=""
+              htmlFor="nome"
               className="text-moss-green-50 transition-all duration-150"
             >
               Nome completo
@@ -68,7 +99,7 @@ export function FormCadastro() {
         <div className="flex gap-5">
           <Form.Field className="w-full">
             <Form.Label
-              htmlFor=""
+              htmlFor="email"
               className="text-moss-green-50 transition-all duration-150"
             >
               Email
@@ -83,13 +114,13 @@ export function FormCadastro() {
 
           <Form.Field className="w-full">
             <Form.Label
-              htmlFor=""
+              htmlFor="telefone"
               className="text-moss-green-50 transition-all duration-150"
             >
               Telefone
             </Form.Label>
             <Form.Input
-              id="phone-cad"
+              id="telefone"
               name="telefone"
               type="tel"
               className="w-full select-none rounded-none border-b-2 border-moss-green-700 bg-transparent p-2 text-lg text-moss-green-100 outline-none"
@@ -99,13 +130,13 @@ export function FormCadastro() {
         <div className="flex gap-5">
           <Form.Field className="w-full">
             <Form.Label
-              htmlFor=""
+              htmlFor="senha"
               className="text-moss-green-50 transition-all duration-150"
             >
               Senha
             </Form.Label>
             <Form.Input
-              id="password-cad"
+              id="senha"
               name="senha"
               type="password"
               className="w-full select-none rounded-none border-b-2 border-moss-green-700 bg-transparent p-2 text-lg text-moss-green-100 outline-none"
@@ -114,13 +145,13 @@ export function FormCadastro() {
 
           <Form.Field className="w-full">
             <Form.Label
-              htmlFor=""
+              htmlFor="confirmacaoSenha"
               className="text-moss-green-50 transition-all duration-150"
             >
               Confirmar senha
             </Form.Label>
             <Form.Input
-              id="confirm-password-cad"
+              id="confirmacaoSenha"
               name="confirmacaoSenha"
               type="password"
               className="w-full select-none rounded-none border-b-2 border-moss-green-700 bg-transparent p-2 text-lg text-moss-green-100 outline-none"
