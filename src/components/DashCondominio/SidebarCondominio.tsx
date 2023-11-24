@@ -1,7 +1,7 @@
 import logo from '@/assets/eco-system-logo.svg'
 import { LogOut } from 'lucide-react'
 import { useState } from 'react'
-import { KanbanSquare } from 'lucide-react'
+import { KanbanSquare, MessageCircle, ClipboardList, BarChart4, Cog} from 'lucide-react'
 
 interface SideBarCondominioProps {
     children: React.ReactNode
@@ -30,8 +30,27 @@ export default function SideBarCondominio({ children }: SideBarCondominioProps) 
                             <div className="h-32 w-32 rounded-full bg-moss-green-50" />
                             <p className="text-2xl text-moss-green-50">Olá, User!</p>
                         </div>
-                        <div>
-                            <KanbanSquare className='w-12 h-12 '></KanbanSquare>
+                        <div className='flex flex-col p-4 gap-6'>
+                            <div className='flex flex-row items-center gap-4'>
+                                <KanbanSquare className='w-10 h-10 '></KanbanSquare>
+                                <button className=' text-marine-900'>Overview</button>
+                            </div>
+                            <div className='flex flex-row items-center gap-4'>
+                                <MessageCircle className='w-10 h-10 '></MessageCircle>
+                                <button className=' text-marine-900'>Chat</button>
+                            </div>
+                            <div className='flex flex-row items-center gap-4'>
+                                <ClipboardList className='w-10 h-10 '></ClipboardList>
+                                <button className=' text-marine-900'>Pedidos</button>
+                            </div>
+                            <div className='flex flex-row items-center gap-4'>
+                                <BarChart4 className='w-10 h-10 '></BarChart4>
+                                <button className=' text-marine-900'>Relatório</button>
+                            </div>
+                            <div className='flex flex-row items-center gap-4'>
+                                <Cog className='w-10 h-10 '></Cog>
+                                <button className=' text-marine-900'>Config</button>
+                            </div>
                         </div>
                     </nav>
                 </div>
