@@ -8,17 +8,14 @@ import logo from '../../assets/eco-system-logo.svg'
 
 export default function Login() {
   const [toMove, setToMove] = useState(false)
-  const [condomino, setCondomino] = useState(false)
-  const [cooperativa, setCooperativa] = useState(true)
+  const [tipoUsuario, setTipoUsuario] = useState('cooperativa')
 
-  const handleCooperativa = () => {
-    setCooperativa(true)
-    setCondomino(false)
-  }
-
-  const handleCondomino = () => {
-    setCondomino(true)
-    setCooperativa(false)
+  function handleTipoUsuario() {
+    if (tipoUsuario === 'cooperativa') {
+      setTipoUsuario('condominio')
+    } else {
+      setTipoUsuario('cooperativa')
+    }
   }
 
   const handleMove = () => {
@@ -80,27 +77,27 @@ export default function Login() {
             <div className="select absolute -top-24 left-0 flex w-full items-center justify-center">
               <p
                 className={`cursor-pointer select-none rounded-s-full text-xl transition-all duration-300 ${
-                  cooperativa
+                  tipoUsuario === 'cooperativa'
                     ? 'bg-moss-green-300 px-10 py-2 text-moss-green-800'
                     : 'bg-moss-green-900 px-10 py-2 text-moss-green-600'
                 }`}
-                onClick={handleCooperativa}
+                onClick={handleTipoUsuario}
               >
                 Sou uma <b>Cooperativa</b>
               </p>
               <p
                 className={`cursor-pointer select-none rounded-e-full text-xl transition-all duration-300 ${
-                  condomino
+                  tipoUsuario === 'condominio'
                     ? 'bg-moss-green-300 px-10 py-2 text-moss-green-800'
                     : 'bg-moss-green-900 px-10 py-2 text-moss-green-600'
                 }`}
-                onClick={handleCondomino}
+                onClick={handleTipoUsuario}
               >
                 Sou um <b>Condominio</b>
               </p>
             </div>
             {/* Form cadastro */}
-            <FormCadastro />
+            <FormCadastro tipoUsuario={tipoUsuario} handleMove={handleMove} />
             <p className="select-none text-lg text-moss-green-100">
               Já possui conta?
               <span
