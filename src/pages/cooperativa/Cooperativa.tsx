@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { LayoutCooperativa } from '../../components/DashCooperativa/LayoutCooperativa'
 
 export default function Cooperativa() {
+  // Funções da Overview
   const [selected1, setSelected1] = useState(true)
   const [selected2, setSelected2] = useState(false)
   const [selected3, setSelected3] = useState(false)
@@ -24,7 +25,10 @@ export default function Cooperativa() {
 
   return (
     <>
-      <LayoutCooperativa>
+      <LayoutCooperativa page="Overview" />
+      <main
+        className={`absolute left-[1.5%] h-screen w-full border-l-4 border-moss-green-500 bg-moss-green-800 transition-all duration-150`}
+      >
         <div className="mx-auto flex h-[30vh] w-11/12 items-center justify-between gap-5 bg-transparent">
           <div className="flex h-[200px] w-[300px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
             <p className="text-lg">Coletas feitas na última semana</p>
@@ -77,7 +81,7 @@ export default function Cooperativa() {
             <h4 className="text-center">Reciclagem Semanal</h4>
           </div>
         </div>
-      </LayoutCooperativa>
+      </main>
     </>
   )
 }

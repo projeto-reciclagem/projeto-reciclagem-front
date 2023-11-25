@@ -1,29 +1,48 @@
 import logo from '@/assets/eco-system-logo.svg'
 import { LogOut } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface LayoutCooperativaProps {
-  children: React.ReactNode
+  page: string
 }
 
-export function LayoutCooperativa({ children }: LayoutCooperativaProps) {
-  const [menuus, setMenu] = useState(true)
-  const [activeItem, setActiveItem] = useState('')
+export function LayoutCooperativa({ page }: LayoutCooperativaProps) {
+  const [menuus, setMenu] = useState(false)
+  const [activeItem, setActiveItem] = useState(page)
+  const navigate = useNavigate()
 
   const toggleMenu = () => {
     setMenu(!menuus)
   }
 
-  const handleSetActiveItem = (item: string) => {
+  const handleSetActiveItem = (item: string, route: string) => {
     setActiveItem(item)
+    navigate(route)
   }
+
+  useEffect(() => {
+    if (activeItem === 'Overview') {
+      navigate('/cooperativa')
+    } else if (activeItem === 'Pedidos') {
+      navigate('/cooperativa/pedidos')
+    } else if (activeItem === 'Condomínios') {
+      navigate('/cooperativa/condominios')
+    } else if (activeItem === 'Chat') {
+      navigate('/cooperativa/chat')
+    } else if (activeItem === 'Relatório') {
+      navigate('/cooperativa/relatorio')
+    } else if (activeItem === 'Configurações') {
+      navigate('/cooperativa/configuracoes')
+    }
+  }, [activeItem, navigate])
 
   return (
     <>
       <div className="flex w-screen">
         <nav
-          className={`relative flex h-screen w-2/12 flex-col items-center gap-10 bg-moss-green-800 pt-8 transition-all duration-150
-          ${!menuus ? 'left-[-12.79%] ' : 'left-0'}`}
+          className={`absolute top-0 z-10 flex h-screen w-2/12 flex-col items-center gap-10 border-r-4 border-moss-green-500 bg-moss-green-900 pt-8 transition-all duration-150
+          ${!menuus ? 'left-[-12.79%]' : 'left-0'}`}
         >
           {/* Logo */}
           <img src={logo} alt="" className="w-6/12" />
@@ -38,90 +57,132 @@ export function LayoutCooperativa({ children }: LayoutCooperativaProps) {
               <li
                 className={`flex select-none items-center gap-3 text-xl text-moss-green-50 ${
                   activeItem === 'Overview'
-                    ? 'mx-auto w-[120%] -translate-x-6 justify-center rounded-full bg-moss-green-300 py-1'
+                    ? `mx-auto w-[120%] ${
+                        menuus ? '-translate-x-6' : '-translate-x-14'
+                      } justify-center rounded-full bg-moss-green-300 py-1`
                     : ''
                 }`}
-                onClick={() => handleSetActiveItem('Overview')}
+                onClick={() => handleSetActiveItem(page, '/cooperativa')}
               >
-                <span className="material-symbols-outlined text-3xl text-moss-green-500">
+                <span className="material-symbols-outlined text-4xl text-moss-green-500">
                   insert_chart
                 </span>
-                <p className="navbar-item relative cursor-pointer transition-all duration-100 hover:translate-x-2">
+                <p
+                  className={`navbar-item relative cursor-pointer transition-all duration-100 ${
+                    activeItem === 'Overview' ? '' : 'hover:translate-x-2'
+                  }`}
+                >
                   Overview
                 </p>
               </li>
               <li
                 className={`flex select-none items-center gap-3 text-xl text-moss-green-50 ${
                   activeItem === 'Pedidos'
-                    ? 'mx-auto w-[120%] -translate-x-6 justify-center rounded-full bg-moss-green-300 py-1'
+                    ? `mx-auto w-[120%] ${
+                        menuus ? '-translate-x-6' : '-translate-x-14'
+                      } justify-center rounded-full bg-moss-green-300 py-1`
                     : ''
                 }`}
-                onClick={() => handleSetActiveItem('Pedidos')}
+                onClick={() =>
+                  handleSetActiveItem(page, '/cooperativa/pedidos')
+                }
               >
-                <span className="material-symbols-outlined text-3xl text-moss-green-500">
+                <span className="material-symbols-outlined text-4xl text-moss-green-500">
                   assignment
                 </span>
-                <p className="navbar-item relative cursor-pointer transition-all duration-100 hover:translate-x-2">
+                <p
+                  className={`navbar-item relative cursor-pointer transition-all duration-100 ${
+                    activeItem === 'Pedidos' ? '' : 'hover:translate-x-2'
+                  }`}
+                >
                   Pedidos
                 </p>
               </li>
               <li
                 className={`flex select-none items-center gap-3 text-xl text-moss-green-50 ${
                   activeItem === 'Condomínios'
-                    ? 'mx-auto w-[120%] -translate-x-6 justify-center rounded-full bg-moss-green-300 py-1'
+                    ? `mx-auto w-[120%] ${
+                        menuus ? '-translate-x-6' : '-translate-x-14'
+                      } justify-center rounded-full bg-moss-green-300 py-1`
                     : ''
                 }`}
-                onClick={() => handleSetActiveItem('Condomínios')}
+                onClick={() =>
+                  handleSetActiveItem(page, '/cooperativa/condominios')
+                }
               >
-                <span className="material-symbols-outlined text-3xl text-moss-green-500">
+                <span className="material-symbols-outlined text-4xl text-moss-green-500">
                   apartment
                 </span>
-                <p className="navbar-item relative cursor-pointer transition-all duration-100 hover:translate-x-2">
+                <p
+                  className={`navbar-item relative cursor-pointer transition-all duration-100 ${
+                    activeItem === 'Condomínios' ? '' : 'hover:translate-x-2'
+                  }`}
+                >
                   Condomínios
                 </p>
               </li>
               <li
                 className={`flex select-none items-center gap-3 text-xl text-moss-green-50 ${
                   activeItem === 'Chat'
-                    ? 'mx-auto w-[120%] -translate-x-6 justify-center rounded-full bg-moss-green-300 py-1'
+                    ? `mx-auto w-[120%] ${
+                        menuus ? '-translate-x-6' : '-translate-x-14'
+                      } justify-center rounded-full bg-moss-green-300 py-1`
                     : ''
                 }`}
-                onClick={() => handleSetActiveItem('Chat')}
+                onClick={() => handleSetActiveItem(page, '/cooperativa/chat')}
               >
-                <span className="material-symbols-outlined text-3xl text-moss-green-500">
+                <span className="material-symbols-outlined text-4xl text-moss-green-500">
                   chat
                 </span>
-                <p className="navbar-item relative cursor-pointer transition-all duration-100 hover:translate-x-2">
+                <p
+                  className={`navbar-item relative cursor-pointer transition-all duration-100 ${
+                    activeItem === 'Chat' ? '' : 'hover:translate-x-2'
+                  }`}
+                >
                   Chat
                 </p>
               </li>
               <li
                 className={`flex select-none items-center gap-3 text-xl text-moss-green-50 ${
                   activeItem === 'Relatório'
-                    ? 'mx-auto w-[120%] -translate-x-6 justify-center rounded-full bg-moss-green-300 py-1'
+                    ? `mx-auto w-[120%] ${
+                        menuus ? '-translate-x-6' : '-translate-x-14'
+                      } justify-center rounded-full bg-moss-green-300 py-1`
                     : ''
                 }`}
-                onClick={() => handleSetActiveItem('Relatório')}
+                onClick={() =>
+                  handleSetActiveItem(page, '/cooperativa/relatorio')
+                }
               >
-                <span className="material-symbols-outlined text-3xl text-moss-green-500">
+                <span className="material-symbols-outlined text-4xl text-moss-green-500">
                   finance
                 </span>
-                <p className="navbar-item relative cursor-pointer transition-all duration-100 hover:translate-x-2">
+                <p
+                  className={`navbar-item relative cursor-pointer transition-all duration-100 ${
+                    activeItem === 'Relatório' ? '' : 'hover:translate-x-2'
+                  }`}
+                >
                   Relatório
                 </p>
               </li>
               <li
                 className={`flex select-none items-center gap-3 text-xl text-moss-green-50 ${
                   activeItem === 'Configurações'
-                    ? 'mx-auto w-[120%] -translate-x-6 justify-center rounded-full bg-moss-green-300 py-1'
+                    ? `mx-auto w-[120%] ${
+                        menuus ? '-translate-x-6' : '-translate-x-14'
+                      } justify-center rounded-full bg-moss-green-300 py-1`
                     : ''
                 }`}
-                onClick={() => handleSetActiveItem('Configurações')}
+                onClick={() => handleSetActiveItem(page, '/cooperativa/config')}
               >
-                <span className="material-symbols-outlined text-3xl text-moss-green-500">
+                <span className="material-symbols-outlined text-4xl text-moss-green-500">
                   settings
                 </span>
-                <p className="navbar-item relative cursor-pointer transition-all duration-100 hover:translate-x-2">
+                <p
+                  className={`navbar-item relative cursor-pointer transition-all duration-100 ${
+                    activeItem === 'Configurações' ? '' : 'hover:translate-x-2'
+                  }`}
+                >
                   Configurações
                 </p>
               </li>
@@ -152,13 +213,6 @@ export function LayoutCooperativa({ children }: LayoutCooperativaProps) {
             </span>
           )}
         </div>
-        <main
-          className={`absolute h-screen border-l-4 border-moss-green-500 bg-moss-green-800 transition-all duration-150 ${
-            !menuus ? 'left-[3.87%] w-[95.9999vw]' : 'left-[16.666667%] w-10/12'
-          }`}
-        >
-          {children}
-        </main>
       </div>
     </>
   )
