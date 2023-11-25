@@ -1,5 +1,4 @@
 import logo from '@/assets/eco-system-logo.svg'
-import graphic from '@/assets/lp_condominio_graphic.jpg'
 import { LogOut } from 'lucide-react'
 import { useState } from 'react'
 import { KanbanSquare, MessageCircle, ClipboardList, BarChart4, Cog } from 'lucide-react'

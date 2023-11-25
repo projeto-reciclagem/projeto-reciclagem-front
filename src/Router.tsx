@@ -4,6 +4,7 @@ import Login from './pages/login/Login'
 import QuemSomos from './pages/quem-somos/QuemSomos'
 import Cooperativa from './pages/cooperativa/Cooperativa'
 import LandingPageCond from './pages/dash-condominio/LandingPageCond'
+import ConfigCond from './pages/dash-condominio/ConfigCond'
 import CoopPedidos from './pages/cooperativa/CoopPedidos'
 import CoopCondominios from './pages/cooperativa/CoopCondominios'
 
@@ -37,7 +38,10 @@ const routes = createBrowserRouter([
   {
     path: '/condominio',
     element: <LandingPageCond />
-  }
+  },
+  {path: '/config-condominio',
+    element: <ConfigCond />
+  },
 ])
 
 export function Router() {
