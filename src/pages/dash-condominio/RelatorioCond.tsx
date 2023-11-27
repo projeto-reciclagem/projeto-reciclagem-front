@@ -7,9 +7,7 @@ import CarbonChart from "../../components/DashCondominio/CarbonChart.js";
 import ValorChart from "../../components/DashCondominio/ValorChart.js";
 
 export default function RelatorioCond() {
-
-    const location = useLocation();
-    const [currentPage, setCurrentPage] = useState(location.pathname);
+    
     const [selectedChart, setSelectedChart] = useState('materiais');
 
     const handleChartChange = (chartType : string) => {
@@ -36,7 +34,7 @@ export default function RelatorioCond() {
                             <button className={`flex self-center p-1 gap-2 items-center rounded-lg bg-moss-green-300`}>Exportar Dados</button>
                         </div>
                     </div>
-                    <div className='flex self-center justify-center w-[1080px] h-[588px] bg-marine-50 rounded-xl'>
+                    <div className='flex self-center justify-center w-[1094px] h-[588px] bg-marine-50 rounded-xl'>
                         {selectedChart === 'materiais' && <MaterialChart />}
                         {selectedChart === 'carbono' && <CarbonChart />}
                         {selectedChart === 'valor' && <ValorChart />}
