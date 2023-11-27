@@ -6,6 +6,7 @@ import Cooperativa from './pages/cooperativa/Cooperativa'
 import LandingPageCond from './pages/dash-condominio/LandingPageCond'
 import ConfigCond from './pages/dash-condominio/ConfigCond'
 import RelatorioCond from './pages/dash-condominio/RelatorioCond'
+import PedidosCond from './pages/dash-condominio/PedidosCond'
 import CoopPedidos from './pages/cooperativa/CoopPedidos'
 import CoopCondominios from './pages/cooperativa/CoopCondominios'
 import CoopChat from './pages/cooperativa/CoopChat'
@@ -57,8 +58,12 @@ const routes = createBrowserRouter([
   },
   {
     path: '/relatorio-condominio',
-    element: <RelatorioCond />
-  }
+    element: <RelatorioCond />,
+  },
+  {
+    path: '/pedidos-condominio',
+    element: <PedidosCond />,
+  },
 ])
 
 export function Router() {
