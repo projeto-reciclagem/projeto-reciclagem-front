@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import SideBarCondominio from "../../components/DashCondominio/SidebarCondominio";
 import { useState } from 'react'
+import MaterialChart from "../../components/DashCondominio/MaterialChart";
 
 export default function LandingPageCond() {
 
@@ -25,7 +26,8 @@ export default function LandingPageCond() {
               <p className='text-4xl text-moss-green-500'>7 dias atrás</p>
             </div>
           </div>
-          <div className='flex self-center justify-center w-[1080px] h-[560px] bg-marine-50 rounded-xl'>
+          <div className='flex self-center justify-center w-[1094px] h-[560px] bg-marine-50 rounded-xl'>
+            <MaterialChart />
           </div>
         </div>
       </main>

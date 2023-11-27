@@ -1,36 +1,25 @@
+import React from 'react';
 import Chart from 'react-apexcharts';
 
 const MaterialChart = () => {
-    // Dados fictícios para o exemplo
+    
     const data = {
         series: [
             {
-                name: 'Papel',
-                data: [
-                    { x: '2023-11-01', y: 5 },
-                    { x: '2023-11-02', y: 8 },
-                ],
-            },
-            {
                 name: 'Plástico',
-                data: [
-                    { x: '2023-11-01', y: 10 },
-                    { x: '2023-11-02', y: 12 },
-                ],
+                data: [2.5, 4.7, 3.8, 6.1, 3.6, 3.3],
             },
             {
-                name: 'Metal',
-                data: [
-                    { x: '2023-11-01', y: 3 },
-                    { x: '2023-11-02', y: 5 },
-                ],
+                name: 'Papel',
+                data: [2, 4.8, 4, 5.3, 3.9, 3.5],
             },
             {
                 name: 'Vidro',
-                data: [
-                    { x: '2023-11-01', y: 2 },
-                    { x: '2023-11-02', y: 4 },
-                ],
+                data: [1, 3, 2, 3.7, 2.3, 2],
+            },
+            {
+                name: 'Metal',
+                data: [1, 2.8, 2.4, 3.9, 2, 2],
             },
         ],
         options: {
@@ -44,46 +33,32 @@ const MaterialChart = () => {
                 style: {
                     fontSize: '24px',
                     fontFamily: 'RobotoCondensed, sans-serif',
-                    fontWeight: 400
-                },
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '55%',
-                    endingShape: 'rounded',
+                    fontWeight: 400,
                 },
             },
             dataLabels: {
                 enabled: false,
             },
             xaxis: {
-                type: 'date',  // Especifica que o eixo x contém dados de data e hora
-                categories: [
-                    '2023-11-01',
-                    '2023-11-02',
-                ],
+                categories: ['Março/2023', 'Abril/2023', 'Maio/2023', 'Junho/2023', 'Julho/2023', 'Agosto/2023'],
             },
             yaxis: {
                 title: {
                     text: 'Quantidade (kg)',
                 },
             },
-            fill: {
-                opacity: 1,
-            },
+            colors: ['#FF5733', '#3366FF', '#66FF66', '#FFFF66'], // Cores para cada tipo de material
         },
     };
 
     return (
-        <div className='flex self-center items-center justify-center'>
+        <div>
             <Chart
                 options={data.options}
                 series={data.series}
                 type="bar"
                 height={540}
-                width={1000}
-            />
+                width={1000} />
         </div>
     );
 };
