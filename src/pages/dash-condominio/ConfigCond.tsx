@@ -6,7 +6,7 @@ export default function ConfigCond() {
 
     return (
         <>
-            <main className="flex flex-row w-max h-max justify-center px-3 items-center bg-marine-50">
+            <main className="flex flex-row w-max h-max justify-center items-center bg-marine-50">
                 <SideBarCondominio>
 
                 </SideBarCondominio>
