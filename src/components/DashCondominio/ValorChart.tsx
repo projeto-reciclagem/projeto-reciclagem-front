@@ -52,7 +52,7 @@ const ValorChart: React.FC<ValorChartProps> = (props) => {
                 options={data.options}
                 series={data.series}
                 type="area"
-                height={540}
+                height={400}
                 width={1000}
             />
         </div>

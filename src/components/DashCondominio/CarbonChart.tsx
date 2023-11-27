@@ -46,7 +46,7 @@ const CarbonChart = () => {
                 options={data.options}
                 series={data.series}
                 type="line"
-                height={540}
+                height={400}
                 width={1000}
             />
         </div>
