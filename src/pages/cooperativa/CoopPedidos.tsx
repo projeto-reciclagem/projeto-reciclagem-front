@@ -8,12 +8,24 @@ import { api } from '../../lib/axios'
 
 import 'react-day-picker/dist/style.css'
 
+interface Condominio {
+  id: number
+  nome: string
+}
+
+interface Cooperativa {
+  id: number
+  nome: string
+}
+
 interface Schedule {
   id: number
   qtBags: number
   status: string
   datAgendamento: Date
-  datRetirada: Date
+  datRetirada?: Date
+  condominio: Condominio
+  cooperativa: Cooperativa
 }
 
 export default function CoopPedidos() {
@@ -31,7 +43,7 @@ export default function CoopPedidos() {
       })
       .then((res) => {
         if (res.data.length > 0) {
-          handleSchedules(res)
+          res.data.map((item: Schedule) => handleSchedules(item))
         }
       })
   }, [selectedDay])
@@ -75,7 +87,78 @@ export default function CoopPedidos() {
           </div>
           <div className="inferior flex h-[50vh] w-full items-center justify-center">
             {/* Aqui ficará o histórico, na div (historico) */}
-            <div className="historico flex h-full w-[85%] bg-slate-300"></div>
+            <div className="flex h-full w-[85%] bg-marine-200 p-4">
+              <table className="w-full min-w-[600px] border-collapse">
+                <thead>
+                  <tr>
+                    <th className="bg-moss-green-400 p-4 text-left text-sm first:rounded-tl-lg">
+                      Nome Condominio
+                    </th>
+                    <th className="bg-moss-green-400 p-4 text-left text-sm">
+                      Data agend.
+                    </th>
+                    <th className="bg-moss-green-400 p-4 text-left text-sm">
+                      Responsável
+                    </th>
+                    <th className="bg-moss-green-400 p-4 text-left text-sm">
+                      Nº Bags Pet
+                    </th>
+                    <th className="bg-moss-green-400 p-4 text-left text-sm">
+                      Nº Bags Cobre
+                    </th>
+                    <th className="bg-moss-green-400 p-4 text-left text-sm">
+                      Nº Bags Papelão
+                    </th>
+                    <th className="bg-moss-green-400 p-4 text-left text-sm last:rounded-tr-lg">
+                      Nº Bags Alumínio
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {schedules.length > 0 ? (
+                    schedules.map((schedule, index) => (
+                      <tr key={schedule.id}>
+                        <td
+                          className={`border-t-4 border-moss-green-800 bg-moss-green-700 p-4 text-sm ${
+                            index === schedules.length - 1
+                              ? 'first:rounded-bl-lg'
+                              : ''
+                          }`}
+                        >
+                          {schedule.condominio.nome}
+                        </td>
+                        <td className="border-t-4 border-moss-green-800 bg-moss-green-700 p-4 text-sm">
+                          Data
+                        </td>
+                        <td className="border-t-4 border-moss-green-800 bg-moss-green-700 p-4 text-sm">
+                          {schedule.cooperativa.nome}
+                        </td>
+                        <td className="border-t-4 border-moss-green-800 bg-moss-green-700 p-4 text-sm">
+                          10 Bags
+                        </td>
+                        <td className="border-t-4 border-moss-green-800 bg-moss-green-700 p-4 text-sm">
+                          5 Bags
+                        </td>
+                        <td className="border-t-4 border-moss-green-800 bg-moss-green-700 p-4 text-sm">
+                          2 Bags
+                        </td>
+                        <td
+                          className={`border-t-4 border-moss-green-800 bg-moss-green-700 p-4 text-sm ${
+                            index === schedules.length - 1
+                              ? 'last:rounded-br-lg'
+                              : ''
+                          }`}
+                        >
+                          4 Bags
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <span>Teste</span>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </main>
