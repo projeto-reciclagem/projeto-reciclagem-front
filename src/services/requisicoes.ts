@@ -52,11 +52,66 @@ function updatePriceMaterial(data: MaterialsProps) {
 
 // Requisições Cooperativas
 // GET: /cooperativas/listar
+function getAllCooperatives() {
+  api.get('/cooperativas/listar').then((res) => {
+    return res.data
+  })
+}
+
 // GET: /cooperativas/buscar/{id}
+function getCooperativeById() {
+  const id = 0
+  api.get(`/cooperativas/buscar/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // POST: /cooperativas/cadastrar
+function addCooperative(data: CooperativeProps) {
+  api
+    .post('/cooperativas/cadastrar', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
+
 // POST: /cooperativas/exportar-dados/{nomeArq}
+function exportCooperativeData(nomeArq: string) {
+  api
+    .post(`/cooperativas/exportar-dados/${nomeArq}`, {
+      headers: {
+        'Content-type': 'application/csv',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
+
 // PUT: /cooperativas/atualizar/{id}
+function updateCooperativeData(data: CooperativeProps) {
+  const id = 0
+  api
+    .put(`/cooperativas/atualizar/${id}`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
 // DELETE: /cooperativas/deletar/{id}
+function deleteCooperative() {
+  const id = 0
+  api.delete(`/cooperativas/atualizar/${id}`).then((res) => {
+    return res.data
+  })
+}
 
 // Requisições Condomínios
 // GET: /condominios/listar
