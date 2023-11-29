@@ -271,6 +271,17 @@ function deleteSchedule(data: ScheduleProps) {
 
 // Requisições Usuário
 // POST: /usuarios/login
+function loginUser(data: UserProps) {
+  api
+    .post('/usuarios/login', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
 
 // Requisições Material-Coletado
 // GET: /materiais/coletados/valor-total/mes/{id}
