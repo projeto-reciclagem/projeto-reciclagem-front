@@ -37,8 +37,8 @@ interface ScheduleProps {
   datRetirada: Date
   qtBag: number
   status: string
-  fkCooperativa: number
-  fkCondominio: number
+  fkCooperativa?: number
+  fkCondominio?: number
 }
 
 interface UserProps {
@@ -59,14 +59,14 @@ interface UploadImageProps {
 // Requisições Materiais
 
 // GET: /materiais/precos/listar
-function getPriceMaterials() {
+export function getPriceMaterials() {
   api.get('/materiais/precos/listar').then((res) => {
     return res.data
   })
 }
 
 // GET: /materiais/precos/listar/cooperativa/{id}
-function getPriceMaterialsByCooperative() {
+export function getPriceMaterialsByCooperative() {
   const id = 0
   api.get(`/materiais/precos/listar/cooperativa/${id}`).then((res) => {
     return res.data
@@ -74,7 +74,7 @@ function getPriceMaterialsByCooperative() {
 }
 
 // POST: /materiais/precos/cadastrar
-function addPriceMaterial(data: MaterialsProps) {
+export function addPriceMaterial(data: MaterialsProps) {
   api
     .post('/materiais/precos/cadastrar', data, {
       headers: {
@@ -87,7 +87,7 @@ function addPriceMaterial(data: MaterialsProps) {
 }
 
 // PUT: /materiais/precos/atualizar/{id}
-function updatePriceMaterial(data: MaterialsProps) {
+export function updatePriceMaterial(data: MaterialsProps) {
   const id = 0
   api
     .put(`/materiais/precos/atualizar/${id}`, data, {
@@ -102,14 +102,14 @@ function updatePriceMaterial(data: MaterialsProps) {
 
 // Requisições Cooperativas
 // GET: /cooperativas/listar
-function getAllCooperatives() {
+export function getAllCooperatives() {
   api.get('/cooperativas/listar').then((res) => {
     return res.data
   })
 }
 
 // GET: /cooperativas/buscar/{id}
-function getCooperativeById() {
+export function getCooperativeById() {
   const id = 0
   api.get(`/cooperativas/buscar/${id}`).then((res) => {
     return res.data
@@ -117,7 +117,7 @@ function getCooperativeById() {
 }
 
 // POST: /cooperativas/cadastrar
-function addCooperative(data: CooperativeProps) {
+export function addCooperative(data: CooperativeProps) {
   api
     .post('/cooperativas/cadastrar', data, {
       headers: {
@@ -130,7 +130,7 @@ function addCooperative(data: CooperativeProps) {
 }
 
 // POST: /cooperativas/exportar-dados/{nomeArq}
-function exportCooperativeData(nomeArq: string) {
+export function exportCooperativeData(nomeArq: string) {
   api
     .post(`/cooperativas/exportar-dados/${nomeArq}`, {
       headers: {
@@ -143,7 +143,7 @@ function exportCooperativeData(nomeArq: string) {
 }
 
 // PUT: /cooperativas/atualizar/{id}
-function updateCooperativeData(data: CooperativeProps) {
+export function updateCooperativeData(data: CooperativeProps) {
   const id = 0
   api
     .put(`/cooperativas/atualizar/${id}`, data, {
@@ -155,8 +155,9 @@ function updateCooperativeData(data: CooperativeProps) {
       return res.data
     })
 }
+
 // DELETE: /cooperativas/deletar/{id}
-function deleteCooperative() {
+export function deleteCooperative() {
   const id = 0
   api.delete(`/cooperativas/deletar/${id}`).then((res) => {
     return res.data
@@ -165,14 +166,14 @@ function deleteCooperative() {
 
 // Requisições Condomínios
 // GET: /condominios/listar
-function getAllCondos() {
+export function getAllCondos() {
   api.get('/condominios/listar').then((res) => {
     return res.data
   })
 }
 
 // GET: /condominios/buscar/{id}
-function getCondoById() {
+export function getCondoById() {
   const id = 0
   api.get(`/condominios/buscar/${id}`).then((res) => {
     return res.data
@@ -180,7 +181,7 @@ function getCondoById() {
 }
 
 // POST: /condominios/cadastrar
-function addCondo(data: CondoProps) {
+export function addCondo(data: CondoProps) {
   api
     .post('/condominios/cadastrar', data, {
       headers: {
@@ -192,7 +193,7 @@ function addCondo(data: CondoProps) {
     })
 }
 // PUT: /condominios/atualizar/{id}
-function updateCondoData(data: CondoProps) {
+export function updateCondoData(data: CondoProps) {
   const id = 0
   api
     .put(`/condominios/atualizar/${id}`, data, {
@@ -205,7 +206,7 @@ function updateCondoData(data: CondoProps) {
     })
 }
 // DELETE: /condominios/deletar/{id}
-function deleteCondo() {
+export function deleteCondo() {
   const id = 0
   api.delete(`/condominios/deletar/${id}`).then((res) => {
     return res.data
@@ -214,28 +215,34 @@ function deleteCondo() {
 
 // Requisições Agendamentos
 // GET: /agendamentos/listar
-function getAllSchedules() {
+export function getAllSchedules() {
   api.get('/agendamentos/listar').then((res) => {
     return res.data
   })
 }
 
 // GET: /agendamentos/historico
-function getSchedulesHistory() {
+export function getSchedulesHistory() {
   api.get('/agendamentos/historico').then((res) => {
     return res.data
   })
 }
 
 // GET: /agendamentos/buscar/data
-function getSchedulesByDate(date: Date) {
-  api.get('/agendamentos/historico').then((res) => {
-    return res.data
-  })
+export function getSchedulesByDate(date: Date) {
+  api
+    .get('/agendamentos/buscar/data', {
+      params: {
+        data: date,
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
 }
 
 // GET: /agendamentos/ultima-coleta/{id}
-function getLastSchedule() {
+export function getLastSchedule() {
   const id = 0
   api.get(`/agendamentos/ultima-coleta/${id}`).then((res) => {
     return res.data
@@ -243,7 +250,7 @@ function getLastSchedule() {
 }
 
 // GET: /agendamentos/coletas/ultima-semana/{id}
-function getLastWeekCollectSchedules() {
+export function getLastWeekCollectSchedules() {
   const id = 0
   api.get(`/agendamentos/coletas/ultima-semana/${id}`).then((res) => {
     return res.data
@@ -251,7 +258,7 @@ function getLastWeekCollectSchedules() {
 }
 
 // GET: /agendamentos/coletas-solicitadas/mes/{id}
-function getRequestedSchedulesOfMonth() {
+export function getRequestedSchedulesOfMonth() {
   const id = 0
   api.get(`/agendamentos/coletas-solicitadas/mes/${id}`).then((res) => {
     return res.data
@@ -259,7 +266,7 @@ function getRequestedSchedulesOfMonth() {
 }
 
 // GET: /agendamentos/atendimentos/ultima-semana/{id}
-function getLastWeekSchedules() {
+export function getLastWeekSchedules() {
   const id = 0
   api.get(`/agendamentos/atendimentos/ultima-semana/${id}`).then((res) => {
     return res.data
@@ -267,7 +274,7 @@ function getLastWeekSchedules() {
 }
 
 // POST: /agendamentos/cadastrar
-function addSchedule(data: ScheduleProps) {
+export function addSchedule(data: ScheduleProps) {
   api
     .post('/agendamentos/cadastrar', data, {
       headers: {
@@ -280,7 +287,7 @@ function addSchedule(data: ScheduleProps) {
 }
 
 // PUT: /agendamentos/atualizar/{id}
-function updateSchedule(data: ScheduleProps) {
+export function updateSchedule(data: ScheduleProps) {
   const id = 0
   api
     .post(`/agendamentos/atualizar/${id}`, data, {
@@ -294,7 +301,7 @@ function updateSchedule(data: ScheduleProps) {
 }
 
 // DELETE: /agendamentos/deletar/{id}
-function deleteSchedule(data: ScheduleProps) {
+export function deleteSchedule() {
   const id = 0
   api
     .post(`/agendamentos/deletar/${id}`, {
@@ -309,7 +316,7 @@ function deleteSchedule(data: ScheduleProps) {
 
 // Requisições Usuário
 // POST: /usuarios/login
-function loginUser(data: UserProps) {
+export function loginUser(data: UserProps) {
   api
     .post('/usuarios/login', data, {
       headers: {
@@ -323,7 +330,7 @@ function loginUser(data: UserProps) {
 
 // Requisições Material-Coletado
 // GET: /materiais/coletados/valor-total/mes/{id}
-function getTotalPriceOfMaterialsCollectedLastMonth() {
+export function getTotalPriceOfMaterialsCollectedLastMonth() {
   const id = 0
   api.get(`/materiais/coletados/valor-total/mes/${id}`).then((res) => {
     return res.data
@@ -331,7 +338,7 @@ function getTotalPriceOfMaterialsCollectedLastMonth() {
 }
 
 // GET: /materiais/coletados/total-coletado/semana/{id}
-function getTotalAmountMaterialsCollectedLastWeek() {
+export function getTotalAmountMaterialsCollectedLastWeek() {
   const id = 0
   api.get(`/materiais/coletados/total-coletado/semana/${id}`).then((res) => {
     return res.data
@@ -339,7 +346,7 @@ function getTotalAmountMaterialsCollectedLastWeek() {
 }
 
 // GET: /materiais/coletados/reciclagem-semanal/{id}
-function getAmountCollectedByWeek() {
+export function getAmountCollectedByWeek() {
   const id = 0
   api.get(`/materiais/coletados/reciclagem-semanal/${id}`).then((res) => {
     return res.data
@@ -347,7 +354,7 @@ function getAmountCollectedByWeek() {
 }
 
 // GET: /materiais/coletados/porcentagem-material/{id}
-function getPercentMaterial() {
+export function getPercentMaterial() {
   const id = 0
   api.get(`/materiais/coletados/total-coletado/semana/${id}`).then((res) => {
     return res.data
@@ -355,7 +362,7 @@ function getPercentMaterial() {
 }
 
 // GET: /materiais/coletados/material-por-coleta/ano/{id}
-function getTotalAmountMaterialsCollectedLastWeek() {
+export function getTotalAmountMaterialsCollectedLastYear() {
   const id = 0
   api.get(`/materiais/coletados/total-coletado/semana/${id}`).then((res) => {
     return res.data
@@ -363,7 +370,7 @@ function getTotalAmountMaterialsCollectedLastWeek() {
 }
 
 // GET: /materiais/coletados/mais-coletado/{id}
-function getMostCollectedMaterial() {
+export function getMostCollectedMaterial() {
   const id = 0
   api.get(`/materiais/coletados/total-coletado/semana/${id}`).then((res) => {
     return res.data
@@ -371,7 +378,7 @@ function getMostCollectedMaterial() {
 }
 
 // POST: /materiais/coletados/cadastrar
-function addCollectedMaterials(data: CollectedMaterialsProps) {
+export function addCollectedMaterials(data: CollectedMaterialsProps) {
   api
     .post('/materiais/coletados/cadastrar', data, {
       headers: {
@@ -385,7 +392,7 @@ function addCollectedMaterials(data: CollectedMaterialsProps) {
 
 // Requisições Imagem
 // POST: /arquivo/upload-imagem
-function addUserImage(data: UploadImageProps) {
+export function addUserImage(data: UploadImageProps) {
   api
     .post('/arquivo/upload-imagem', data, {
       headers: {
