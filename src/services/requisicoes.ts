@@ -18,6 +18,44 @@ interface CooperativeProps {
   complemento?: string
 }
 
+interface CondoProps {
+  nome: string
+  cnpj: string
+  email: string
+  senha: string
+  cep?: string
+  logradouro?: string
+  bairro?: string
+  cidade?: string
+  complemento?: string
+  qtdMoradores?: number
+  qtdMoradias?: number
+  qtdBags?: number
+}
+
+interface ScheduleProps {
+  datRetirada: Date
+  qtBag: number
+  status: string
+  fkCooperativa: number
+  fkCondominio: number
+}
+
+interface UserProps {
+  email: string
+  senha: string
+}
+
+interface CollectedMaterialsProps {
+  qntKgColetado: number
+  fkAgendamento: number
+  fkMaterialPreco: number
+}
+
+interface UploadImageProps {
+  file: string
+}
+
 // Requisições Materiais
 
 // GET: /materiais/precos/listar
