@@ -6,15 +6,15 @@ export default function ConfigCond() {
 
     return (
         <>
-            <main className="flex flex-row gap-1 justify-center items-center bg-marine-50">
+            <main className="flex p-2 h-full gap-1 bg-marine-50">
                 <SideBarCondominio />
-                <div className="flex flex-col items-center justify-center self-stretch h-[47rem] w-[70rem] bg-marine-700 rounded-2xl mt-2">
-                    <div className="flex flex-col justify-center w-5/6 h-5/6 rounded-2xl gap-16 bg-moss-green-50">
-                        <div className="flex flex-col justify-center mt-10 items-center gap-1">
+                <div className="flex flex-col items-center justify-center self-stretch w-full h-[38.75rem] bg-marine-700 rounded-2xl">
+                    <div className="flex flex-col justify-center items-center w-5/6 h-5/6 rounded-2xl gap-6 bg-moss-green-50">
+                        <div className="flex flex-col justify-center mt-4 items-center gap-1">
                             <p className="text-marine-900 text-center text-3xl">Editar Perfil</p>
-                            <div className="w-[600px] h-[2px] bg-gray-500"></div>
+                            <div className="w-[590px] h-[2px] bg-gray-500"></div>
                         </div>
-                        <div className="flex flex-wrap flex-row gap-8 self-center justify-center items-center content-center w-5/6">
+                        <div className="flex flex-wrap flex-row gap-8 self-center justify-center items-center content-center w-4/6">
                             <div className="w-[280px] h-[300px] flex flex-col text-marine-900">
                                 <div className="flex flex-col gap-1">
                                     <label htmlFor="">CEP</label>
@@ -59,9 +59,9 @@ export default function ConfigCond() {
                                     <input className="w-[280px] bg-white rounded" id="confirmar-senha-cad" type="password" />
                                 </div>
                             </div>
-                        </div>
-                        <div className="w-[88px] h-[40px] justify-center self-center">
-                            <button className="bg-moss-green-500 w-max h-max p-2 rounded-lg">Alterar Dados</button>
+                            <div className="w-[88px] h-[40px] justify-center self-center">
+                                <button className="bg-moss-green-500 w-max h-max p-2 rounded-lg">Alterar Dados</button>
+                            </div>
                         </div>
                     </div>
                 </div>
