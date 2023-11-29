@@ -9,7 +9,13 @@ import RelatorioCond from './pages/dash-condominio/RelatorioCond'
 import PedidosCond from './pages/dash-condominio/PedidosCond'
 import CoopPedidos from './pages/cooperativa/CoopPedidos'
 import CoopCondominios from './pages/cooperativa/CoopCondominios'
+<<<<<<< HEAD
 import path from 'path'
+=======
+import CoopChat from './pages/cooperativa/CoopChat'
+import CoopConfig from './pages/cooperativa/CoopConfig'
+import CoopRelatorio from './pages/cooperativa/CoopRelatorio'
+>>>>>>> 63834a29c86179a87e94822a0d4fc23560372617
 
 // !!! Aqui é onde vamos adicionar tudo que vai vir de Rotas de navegação
 // entre páginas do nosso projeto !!!
@@ -40,6 +46,7 @@ const routes = createBrowserRouter([
   },
   {
     path: '/condominio',
+<<<<<<< HEAD
     element: <LandingPageCond />
   },
   {path: '/config-condominio',
@@ -52,6 +59,33 @@ const routes = createBrowserRouter([
   {
     path: '/pedidos-condominio',
     element: <PedidosCond />
+=======
+    element: <LandingPageCond />,
+  },
+  {
+    path: '/condominio/config',
+    element: <ConfigCond />,
+  },
+  {
+    path: '/cooperativa/chat',
+    element: <CoopChat />,
+  },
+  {
+    path: '/cooperativa/config',
+    element: <CoopConfig />,
+  },
+  {
+    path: '/cooperativa/relatorio',
+    element: <CoopRelatorio />,
+  },
+  {
+    path: '/relatorio-condominio',
+    element: <RelatorioCond />,
+  },
+  {
+    path: '/pedidos-condominio',
+    element: <PedidosCond />,
+>>>>>>> 63834a29c86179a87e94822a0d4fc23560372617
   },
 ])
 
