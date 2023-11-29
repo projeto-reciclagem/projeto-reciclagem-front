@@ -45,6 +45,10 @@ const routes = createBrowserRouter([
     element: <LandingPageCond />,
   },
   {
+    path: '/condominio/config',
+    element: <ConfigCond />,
+  },
+  {
     path: '/cooperativa/chat',
     element: <CoopChat />,
   },
