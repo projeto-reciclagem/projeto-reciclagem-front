@@ -16,8 +16,8 @@ export default function SideBarCondominio() {
 
     return (
         <>
-            <header className='flex h-3/4 gap-4 bg-marine-50'>
-                <div className='flex w-56 max-h-[37.5rem] justify-between self-center flex-shrink-0 rounded-3xl bg-marine-700 p-6'>
+            <header className='flex h-full gap-4 bg-marine-50'>
+                <div className='flex justify-between self-center flex-shrink-0 rounded-3xl bg-marine-700 p-6'>
                     <nav className='flex flex-col items-center self-center'>
                         <img src={logo} alt="" className='w-44 h-12' />
                         <div className="flex w-11/12 flex-col items-center gap-2 pb-4">

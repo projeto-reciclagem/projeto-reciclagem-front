@@ -7,9 +7,9 @@ export default function LandingPageCond() {
 
   return (
     <>
-      <main className="flex p-1 h-full gap-2 bg-marine-50">
+      <main className="flex p-2 h-full gap-1 bg-marine-50">
         <SideBarCondominio />
-        <div className='flex flex-col items-start p-4 self-stretch max-h-[37.5rem] w-full gap-3 bg-marine-700 rounded-2xl'>
+        <div className='flex flex-col items-start p-4 self-stretch w-full gap-3 bg-marine-700 rounded-2xl'>
           <div className='flex justify-between items-center self-stretch'>
             <div className='flex flex-col w-56 h-28 p-3 justify-center items-center gap-2 self-stretch rounded-xl border-2 border-solid border-moss-green-300 bg-moss-green-50'>
               <p className='text-xl text-marine-900'>Valor total (Último mês)</p>

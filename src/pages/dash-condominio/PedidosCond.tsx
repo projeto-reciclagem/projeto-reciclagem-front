@@ -7,9 +7,9 @@ export default function PedidosCond() {
     return (
 
         <>
-            <main className="flex flex-row justify-center gap-1 items-center bg-marine-50">
+            <main className="flex p-2 h-full gap-1 bg-marine-50">
                 <SideBarCondominio />
-                <div className="flex flex-col mt-2 rounded-2xl gap-6 h-[47rem] w-[70rem] justify-between items-start self-stretch py-3 px-2 bg-marine-700">
+                <div className="flex flex-col rounded-2xl gap-6 h-[38.75rem] w-[70rem] justify-between items-start self-stretch py-3 px-2 bg-marine-700">
                     <div className="flex py-2 justify-between items-start self-stretch">
                         <div className="flex h-max w-auto gap-2">
                             <p className="font-sans font-medium text-2xl">Status do pedido atual:</p>
@@ -21,7 +21,7 @@ export default function PedidosCond() {
                     </div>
                     <div className="flex flex-col items-start py-6 px-4 bg-moss-green-300 w-max h-5/6 rounded-2xl">
                         <p className="flex font-sans text-2xl font-medium">Histórico de pedidos</p>
-                        <div className="flex bg-white h-[35.75rem] w-[67rem]">
+                        <div className="flex bg-white h-[35.75rem] w-[67rem] rounded-lg">
                             
                         </div>
                     </div>

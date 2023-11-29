@@ -16,9 +16,9 @@ export default function RelatorioCond() {
 
     return (
         <>
-            <main className="flex flex-row justify-center gap-1 items-center bg-marine-50">
+            <main className="flex p-2 h-full gap-1 bg-marine-50">
                 <SideBarCondominio />
-                <div className='flex flex-col p-4 self-stretch h-[47rem] w-[70rem] gap-3 bg-marine-700 rounded-2xl mt-2'>
+                <div className='flex flex-col p-4 self-stretch h-[38.75rem] w-[70rem] gap-3 bg-marine-700 rounded-2xl'>
                     <div className="flex flex-col gap-2 h-28 w-full self-stretch">
                         <p className="text-marine-50 text-base font-normal">Relatórios disponíveis:</p>
                         <div className="flex items-center justify-between py-2 px-0 w-full h-14 self-stretch">
