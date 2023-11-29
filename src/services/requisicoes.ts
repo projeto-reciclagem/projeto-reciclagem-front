@@ -6,6 +6,18 @@ interface MaterialsProps {
   fkCooperativa: number
 }
 
+interface CooperativeProps {
+  nome: string
+  cnpj: string
+  email: string
+  senha: string
+  cep?: string
+  logradouro?: string
+  bairro?: string
+  cidade?: string
+  complemento?: string
+}
+
 // Requisições Materiais
 
 // GET: /materiais/precos/listar
@@ -108,17 +120,59 @@ function updateCooperativeData(data: CooperativeProps) {
 // DELETE: /cooperativas/deletar/{id}
 function deleteCooperative() {
   const id = 0
-  api.delete(`/cooperativas/atualizar/${id}`).then((res) => {
+  api.delete(`/cooperativas/deletar/${id}`).then((res) => {
     return res.data
   })
 }
 
 // Requisições Condomínios
 // GET: /condominios/listar
+function getAllCondos() {
+  api.get('/condominios/listar').then((res) => {
+    return res.data
+  })
+}
+
 // GET: /condominios/buscar/{id}
+function getCondoById() {
+  const id = 0
+  api.get(`/condominios/buscar/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // POST: /condominios/cadastrar
+function addCondo(data: CondoProps) {
+  api
+    .post('/condominios/cadastrar', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
 // PUT: /condominios/atualizar/{id}
+function updateCondoData(data: CondoProps) {
+  const id = 0
+  api
+    .put(`/condominios/atualizar/${id}`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
 // DELETE: /condominios/deletar/{id}
+function deleteCondo() {
+  const id = 0
+  api.delete(`/condominios/deletar/${id}`).then((res) => {
+    return res.data
+  })
+}
 
 // Requisições Agendamentos
 // GET: /agendamentos/listar
