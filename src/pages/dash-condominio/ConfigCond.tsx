@@ -6,9 +6,9 @@ export default function ConfigCond() {
 
     return (
         <>
-            <main className="flex p-2 h-full gap-1 bg-marine-50">
+            <main className="flex p-2 h-screen gap-1 bg-marine-50">
                 <SideBarCondominio />
-                <div className="flex flex-col items-center justify-center self-stretch w-full h-[38.75rem] bg-marine-700 rounded-2xl">
+                <div className="flex flex-col items-center justify-center self-stretch w-full bg-marine-700 rounded-2xl">
                     <div className="flex flex-col justify-center items-center w-5/6 h-5/6 rounded-2xl gap-6 bg-moss-green-50">
                         <div className="flex flex-col justify-center mt-4 items-center gap-1">
                             <p className="text-marine-900 text-center text-3xl">Editar Perfil</p>

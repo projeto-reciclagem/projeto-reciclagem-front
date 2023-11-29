@@ -57,7 +57,7 @@ const MaterialChart = () => {
                 options={data.options}
                 series={data.series}
                 type="bar"
-                height={400}
+                height={540}
                 width={1000} />
         </div>
     );
