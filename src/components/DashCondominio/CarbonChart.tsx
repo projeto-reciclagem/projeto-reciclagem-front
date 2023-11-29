@@ -5,7 +5,7 @@ const CarbonChart = () => {
         series: [
             {
                 name: 'Redução de Carbono (%)',
-                data: [30, 23, 39, 45, 32, 26],
+                data: [23, 32, 29, 45, 31, 26],
             },
         ],
         options: {
@@ -46,7 +46,7 @@ const CarbonChart = () => {
                 options={data.options}
                 series={data.series}
                 type="line"
-                height={400}
+                height={540}
                 width={1000}
             />
         </div>

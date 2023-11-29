@@ -16,10 +16,10 @@ export default function RelatorioCond() {
 
     return (
         <>
-            <main className="flex p-2 h-full gap-1 bg-marine-50">
+            <main className="flex p-2 h-screen gap-1 bg-marine-50">
                 <SideBarCondominio />
-                <div className='flex flex-col p-4 self-stretch h-[38.75rem] w-[70rem] gap-3 bg-marine-700 rounded-2xl'>
-                    <div className="flex flex-col gap-2 h-28 w-full self-stretch">
+                <div className='flex flex-col p-4 self-stretch w-full gap-3 bg-marine-700 rounded-2xl'>
+                    <div className="flex flex-col gap-2 h-28 w-full">
                         <p className="text-marine-50 text-base font-normal">Relatórios disponíveis:</p>
                         <div className="flex items-center justify-between py-2 px-0 w-full h-14 self-stretch">
                             <div className="flex items-center gap-5 h-max w-96">
@@ -33,7 +33,7 @@ export default function RelatorioCond() {
                             <button className={`flex self-center p-1 gap-2 items-center rounded-lg bg-moss-green-300`}>Exportar Dados</button>
                         </div>
                     </div>
-                    <div className='flex self-center justify-center w-[1094px] h-[588px] bg-marine-50 rounded-xl'>
+                    <div className='flex self-center justify-center w-full h-full bg-marine-50 rounded-xl'>
                         {selectedChart === 'materiais' && <MaterialChart />}
                         {selectedChart === 'carbono' && <CarbonChart />}
                         {selectedChart === 'valor' && <ValorChart />}
