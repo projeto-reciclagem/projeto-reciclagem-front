@@ -285,11 +285,76 @@ function loginUser(data: UserProps) {
 
 // Requisições Material-Coletado
 // GET: /materiais/coletados/valor-total/mes/{id}
+function getTotalPriceOfMaterialsCollectedLastMonth() {
+  const id = 0
+  api.get(`/materiais/coletados/valor-total/mes/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // GET: /materiais/coletados/total-coletado/semana/{id}
+function getTotalAmountMaterialsCollectedLastWeek() {
+  const id = 0
+  api.get(`/materiais/coletados/total-coletado/semana/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // GET: /materiais/coletados/reciclagem-semanal/{id}
+function getAmountCollectedByWeek() {
+  const id = 0
+  api.get(`/materiais/coletados/reciclagem-semanal/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // GET: /materiais/coletados/porcentagem-material/{id}
+function getPercentMaterial() {
+  const id = 0
+  api.get(`/materiais/coletados/total-coletado/semana/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // GET: /materiais/coletados/material-por-coleta/ano/{id}
+function getTotalAmountMaterialsCollectedLastWeek() {
+  const id = 0
+  api.get(`/materiais/coletados/total-coletado/semana/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // GET: /materiais/coletados/mais-coletado/{id}
+function getMostCollectedMaterial() {
+  const id = 0
+  api.get(`/materiais/coletados/total-coletado/semana/${id}`).then((res) => {
+    return res.data
+  })
+}
+
+// POST: /materiais/coletados/cadastrar
+function addCollectedMaterials(data: CollectedMaterialsProps) {
+  api
+    .post('/materiais/coletados/cadastrar', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
 
 // Requisições Imagem
 // POST: /arquivo/upload-imagem
+function addUserImage(data: UploadImageProps) {
+  api
+    .post('/arquivo/upload-imagem', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
