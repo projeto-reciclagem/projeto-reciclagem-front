@@ -6,6 +6,8 @@ import Cooperativa from './pages/cooperativa/Cooperativa'
 import CoopPedidos from './pages/cooperativa/CoopPedidos'
 import CoopCondominios from './pages/cooperativa/CoopCondominios'
 import CoopChat from './pages/cooperativa/CoopChat'
+import CoopConfig from './pages/cooperativa/CoopConfig'
+import CoopRelatorio from './pages/cooperativa/CoopRelatorio'
 
 // !!! Aqui é onde vamos adicionar tudo que vai vir de Rotas de navegação
 // entre páginas do nosso projeto !!!
@@ -37,6 +39,14 @@ const routes = createBrowserRouter([
   {
     path: '/cooperativa/chat',
     element: <CoopChat />,
+  },
+  {
+    path: '/cooperativa/config',
+    element: <CoopConfig />,
+  },
+  {
+    path: '/cooperativa/relatorio',
+    element: <CoopRelatorio />,
   },
 ])
 

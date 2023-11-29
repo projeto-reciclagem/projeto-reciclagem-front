@@ -28,7 +28,7 @@ export default function ContatoChat(props: ContatoChatProps) {
             className={`icon material-symbols-outlined text-4xl ${
               props.status === 'online'
                 ? 'text-moss-green-600'
-                : props.status == 'offline'
+                : props.status === 'offline'
                   ? 'text-camel-600'
                   : 'text-black'
             }`}

@@ -33,7 +33,7 @@ export function LayoutCooperativa({ page }: LayoutCooperativaProps) {
     } else if (activeItem === 'Relatório') {
       navigate('/cooperativa/relatorio')
     } else if (activeItem === 'Configurações') {
-      navigate('/cooperativa/configuracoes')
+      navigate('/cooperativa/config')
     }
   }, [activeItem, navigate])
 
