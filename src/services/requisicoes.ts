@@ -176,15 +176,98 @@ function deleteCondo() {
 
 // Requisições Agendamentos
 // GET: /agendamentos/listar
+function getAllSchedules() {
+  api.get('/agendamentos/listar').then((res) => {
+    return res.data
+  })
+}
+
 // GET: /agendamentos/historico
+function getSchedulesHistory() {
+  api.get('/agendamentos/historico').then((res) => {
+    return res.data
+  })
+}
+
 // GET: /agendamentos/buscar/data
+function getSchedulesByDate(date: Date) {
+  api.get('/agendamentos/historico').then((res) => {
+    return res.data
+  })
+}
+
 // GET: /agendamentos/ultima-coleta/{id}
+function getLastSchedule() {
+  const id = 0
+  api.get(`/agendamentos/ultima-coleta/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // GET: /agendamentos/coletas/ultima-semana/{id}
-// GET: /agendamentos/colestas-solicitadas/mes/{id}
+function getLastWeekCollectSchedules() {
+  const id = 0
+  api.get(`/agendamentos/coletas/ultima-semana/${id}`).then((res) => {
+    return res.data
+  })
+}
+
+// GET: /agendamentos/coletas-solicitadas/mes/{id}
+function getRequestedSchedulesOfMonth() {
+  const id = 0
+  api.get(`/agendamentos/coletas-solicitadas/mes/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // GET: /agendamentos/atendimentos/ultima-semana/{id}
+function getLastWeekSchedules() {
+  const id = 0
+  api.get(`/agendamentos/atendimentos/ultima-semana/${id}`).then((res) => {
+    return res.data
+  })
+}
+
 // POST: /agendamentos/cadastrar
+function addSchedule(data: ScheduleProps) {
+  api
+    .post('/agendamentos/cadastrar', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
+
 // PUT: /agendamentos/atualizar/{id}
+function updateSchedule(data: ScheduleProps) {
+  const id = 0
+  api
+    .post(`/agendamentos/atualizar/${id}`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
+
 // DELETE: /agendamentos/deletar/{id}
+function deleteSchedule(data: ScheduleProps) {
+  const id = 0
+  api
+    .post(`/agendamentos/deletar/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data
+    })
+}
 
 // Requisições Usuário
 // POST: /usuarios/login
