@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from 'react-apexcharts';
+import ReactApexChart from 'react-apexcharts';
 
 const MaterialChart = () => {
     
@@ -47,19 +47,18 @@ const MaterialChart = () => {
                     text: 'Quantidade (kg)',
                 },
             },
-            colors: ['#FF5733', '#3366FF', '#66FF66', '#FFFF66'], // Cores para cada tipo de material
+            colors: ['#FF5733', '#3366FF', '#66FF66', '#FFFF66'], // Cores para cada tipo de material 
         },
     };
 
     return (
-        <div>
-            <Chart
+            <ReactApexChart
                 options={data.options}
                 series={data.series}
                 type="bar"
                 height={540}
-                width={1000} />
-        </div>
+                width={1000}
+                className="flex items-center justify-center sm:w-5/6 sm:h-max md:w-full md:h-max lg:w-full lg:h-max xl:w-full xl:h-max"/>
     );
 };
 

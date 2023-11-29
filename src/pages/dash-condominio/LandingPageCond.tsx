@@ -24,7 +24,7 @@ export default function LandingPageCond() {
               <p className='text-4xl text-moss-green-500'>7 dias atrás</p>
             </div>
           </div>
-          <div className='flex self-center justify-center w-full bg-marine-50 rounded-xl'>
+          <div className='flex items-center justify-center bg-marine-50 rounded-xl sm:w-full sm:h-full md:w-full md:h-full lg:w-full lg:h-max 2xl:w-full 2xl:h-full'>
             <MaterialChart />
           </div>
         </div>

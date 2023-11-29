@@ -16,11 +16,11 @@ export default function SideBarCondominio() {
 
     return (
         <>
-            <header className='flex'>
-                <div className='flex justify-between h-full self-center rounded-3xl bg-marine-700 p-4'>
-                    <nav className='flex flex-col gap-2 items-center self-center'>
+            <header className='flex justify-between'>
+                <div className='flex justify-between h-full rounded-3xl bg-marine-700 p-4'>
+                    <nav className='flex flex-col justify-between items-center'>
                         <img src={logo} alt="" className='w-44 h-12' />
-                        <div className="flex w-11/12 flex-col items-center gap-2 pb-4">
+                        <div className="flex w-11/12 flex-col items-center gap-4 pb-4">
                             <div className="h-20 w-20 rounded-full bg-moss-green-50" />
                             <p className="text-2xl text-moss-green-50">Olá, User!</p>
                         </div>
