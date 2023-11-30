@@ -56,8 +56,8 @@ const MaterialChart = () => {
                 options={data.options}
                 series={data.series}
                 type="bar"
-                height={540}
-                width={1000}
+                height={650}
+                width={1300}
                 className="flex items-center justify-center sm:w-5/6 sm:h-max md:w-full md:h-max lg:w-full lg:h-max xl:w-full xl:h-max"/>
     );
 };

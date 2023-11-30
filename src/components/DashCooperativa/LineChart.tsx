@@ -1,20 +1,20 @@
 import Chart from 'react-apexcharts';
 
-const ValorChart = () => {
+const LineChart = () => {
     const data = {
         series: [
             {
-                name: 'Valor Recebido (R$)',
-                data: [1200, 1500, 1350, 1800, 1400, 1300],
+                name: 'Quantidade total reciclada',
+                data: [40, 42, 58, 49, 45, 38, 45, 48, 41],
             },
         ],
         options: {
             chart: {
-                type: 'area',
+                type: 'line',
                 height: 350,
             },
             title: {
-                text: 'Valor recebido por mês',
+                text: 'Reciclagem Semanal',
                 align: 'center',
                 style: {
                     fontSize: '24px',
@@ -22,20 +22,22 @@ const ValorChart = () => {
                     fontWeight: 400
                 },
             },
-            subtitle: {
-                text: 'Valor em reais',
-                align: 'center',
-                style: {
-                    color: '#4CAF50',
-                    fontStyle: 'italic',
-                },
-            },
             xaxis: {
-                categories: ['Março/2023', 'Abril/2023', 'Maio/2023', 'Junho/2023', 'Julho/2023', 'Agosto/2023'],
+                categories: [
+                    '01/10',
+                    '08/10',
+                    '15/10',
+                    '22/10',
+                    '29/10',
+                    '05/11',
+                    '12/11',
+                    '19/11',
+                    '25/11',
+                ],
             },
             yaxis: {
                 title: {
-                    text: 'Valor Recebido (R$)',
+                    text: 'Quantidade (em toneladas)',
                 },
             },
         },
@@ -46,10 +48,10 @@ const ValorChart = () => {
             options={data.options}
             series={data.series}
             type="area"
-            height={650}
-            width={1300}
+            height={450}
+            width={900}
         />
     );
 };
 
-export default ValorChart;
+export default LineChart;

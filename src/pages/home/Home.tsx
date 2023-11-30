@@ -28,24 +28,24 @@ export default function Home() {
           <div className= "invisible lg:visible lg:h-3/4 lg:w-full rounded-lg bg-[url('@/assets/img/recicle.jpg')] lg:bg-cover lg:bg-bottom lg:bg-no-repeat" />
         </section>
         <LastSection>
-          <section className='h-[80vh] lg:h-[100vh] w-full bg-[url("@/assets/img/imageSection2.png")] bg-cover bg-bottom'>
+          <section className='h-[80vh] lg:h-[95vh] w-full bg-[url("@/assets/img/imageSection2.png")] bg-cover bg-bottom'>
             <div
-              className="flex h-full w-40 lg:w-3/12 flex-col items-start justify-center gap-6 lg:gap-10 bg-marine-900 px-10 lg:px-20 font-light text-white"
-              style={{ borderRadius: '0px 25em 0 0' }}
+              className="flex h-full w-40 lg:w-1/4 flex-col justify-center gap-6 lg:gap-8 bg-marine-900 px-14 font-light text-white"
+              style={{ borderRadius: '0px 20em 0 0' }}
             >
               <h1 className="text-md lg:text-5xl font-medium">
                 Se torne uma empresa parceira!
               </h1>
-              <p className='text-xs lg:text-2xl'>
+              <p className='text-xs lg:text-xl'>
                 A <b>EcoSystem</b> nasceu com um propósito simples:{' '}
                 <b>transformar</b> o mercado de produtos recicláveis.
               </p>
-              <p className='text-xs lg:text-2xl'>
+              <p className='text-xs lg:text-xl'>
                 Se a sua empresa trabalha com produtos recicláveis ou se você se
                 interessa pelo nosso projeto,
                 <b> adoraríamos</b> tê-lo como nosso parceiro!
               </p>
-              <p className='text-xs lg:text-2xl'>
+              <p className='text-xs lg:text-xl'>
                 Juntos, podemos fazer a diferença e contribuir para um mundo
                 mais sustentável.
               </p>

@@ -189,7 +189,7 @@ export function LayoutCooperativa({ page }: LayoutCooperativaProps) {
             </ul>
           </div>
           {/* Sair */}
-          <div className="mx-auto flex h-[50vh] w-5/12 items-center">
+          <div className="mx-auto flex h-[45vh] w-5/12 items-center">
             <p className="flex select-none items-center gap-3 text-xl text-moss-green-50">
               <LogOut size={28} className="text-moss-green-500" />
               <p className="lative cursor-pointer transition-all duration-100">
