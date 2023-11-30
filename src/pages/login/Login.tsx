@@ -74,7 +74,7 @@ export default function Login() {
             } flex h-[60vh] w-7/12 flex-1 flex-col items-center justify-start gap-10 transition-all duration-500`}
           >
             {/* Label condominio/cooperativa */}
-            <div className="select absolute -top-24 left-0 flex w-full items-center justify-center">
+            <div className="absolute -top-24 left-0 flex w-full select-none items-center justify-center">
               <p
                 className={`cursor-pointer select-none rounded-s-full text-xl transition-all duration-300 ${
                   tipoUsuario === 'cooperativa'

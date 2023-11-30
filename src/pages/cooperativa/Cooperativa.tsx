@@ -1,85 +1,57 @@
 import { useState } from 'react'
 import { LayoutCooperativa } from '../../components/DashCooperativa/LayoutCooperativa'
+import LineChart from '../../components/DashCooperativa/LineChart'
+import DonutChart from '../../components/DashCooperativa/DonutChart';
+import PrecoTable from '../../components/DashCooperativa/PrecoTable';
 
 export default function Cooperativa() {
-  // Funções da Overview
-  const [selected1, setSelected1] = useState(true)
-  const [selected2, setSelected2] = useState(false)
-  const [selected3, setSelected3] = useState(false)
 
-  const toggleSelected = () => {
-    setSelected1(true)
-    if (selected2) setSelected2(false)
-    if (selected3) setSelected3(false)
-  }
-  const toggleSelected2 = () => {
-    setSelected2(true)
-    if (selected1) setSelected1(false)
-    if (selected3) setSelected3(false)
-  }
-  const toggleSelected3 = () => {
-    setSelected3(true)
-    if (selected1) setSelected1(false)
-    if (selected2) setSelected2(false)
+  const [selectedChart, setSelectedChart] = useState('reciclagem');
+  const handleChartChange = (chartType: string) => {
+    setSelectedChart(chartType);
   }
 
   return (
     <>
       <LayoutCooperativa page="Overview" />
       <main
-        className={`absolute left-[1.5%] h-screen w-full border-l-4 border-moss-green-500 bg-moss-green-800 transition-all duration-150`}
+        className={`absolute left-[1.5%] w-full h-full flex flex-col border-l-4 border-moss-green-500 bg-moss-green-800 transition-all duration-150`}
       >
-        <div className="mx-auto flex h-[30vh] w-11/12 items-center justify-between gap-5 bg-transparent">
-          <div className="flex h-[200px] w-[300px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
-            <p className="text-lg">Coletas feitas na última semana</p>
-            <span>37</span>
+        <div className="flex self-center h-[24vh] w-11/12 items-center justify-between gap-14 bg-transparent">
+          <div className="flex h-[180px] w-[250px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
+            <p className="text-2xl">Coletas feitas na última semana</p>
+            <span className='text-2xl'>37</span>
           </div>
-          <div className="flex h-[200px] w-[300px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
-            <p className="text-lg">Total reciclado na última semana</p>
-            <span>100 Toneladas</span>
+          <div className="flex h-[180px] w-[250px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
+            <p className="text-2xl">Total reciclado na última semana</p>
+            <span className='text-2xl'>100 Toneladas</span>
           </div>
-          <div className="flex h-[200px] w-[300px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
-            <p className="text-lg">Material mais reciclado na última semana</p>
-            <span>PET - 42ton</span>
+          <div className="flex h-[180px] w-[250px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
+            <p className="text-2xl">Material mais reciclado na última semana</p>
+            <span className='text-2xl'>PET - 26ton</span>
           </div>
-          <div className="flex h-[200px] w-[300px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
-            <p className="text-lg">Condomínios atendidos na última semana</p>
-            <span>28</span>
+          <div className="flex h-[180px] w-[250px] flex-col items-center justify-center gap-5 rounded-xl bg-moss-green-50 p-4 text-center">
+            <p className="text-2xl">Condomínios atendidos na última semana</p>
+            <span className='text-2xl'>28</span>
           </div>
         </div>
-        <div className="relative mx-auto flex h-[65vh] w-11/12 gap-3">
-          <div
-            className={`${
-              selected1
-                ? `left-0 top-0 h-full w-8/12`
-                : `h-[31.8vh] w-[32.3%] ${
-                    selected2 ? 'right-0 top-0' : 'bottom-0 right-0'
-                  }`
-            } trnasition-all absolute cursor-pointer select-none rounded-lg bg-rose-600 duration-200`}
-            onClick={toggleSelected}
-          >
-            <h4 className="text-center">Reciclagem Semanal</h4>
+        <div className='flex flex-col self-center items-center mt-1 gap-1 h-24 w-11/12'>
+          <p className="text-marine-50 text-xl font-normal">Relatórios disponíveis:</p>
+          <div className="flex items-center h-14">
+            <div className="flex items-center gap-5 h-full w-full">
+              <button className={`p-1 justify-center items-center rounded-lg border-solid border-2 border-moss-green-500 
+                                ${selectedChart === 'reciclagem' ? 'select' : 'unselect'}`} onClick={() => handleChartChange('reciclagem')}>Reciclagem semanal</button>
+              <button className={`p-1 justify-center items-center rounded-lg border-solid border-2 border-moss-green-500 
+                                ${selectedChart === 'material' ? 'select' : 'unselect'}`} onClick={() => handleChartChange('material')}>% por material</button>
+              <button className={`p-1 justify-center items-center rounded-lg border-solid border-2 border-moss-green-500 
+                                ${selectedChart === 'preco' ? 'select' : 'unselect'}`} onClick={() => handleChartChange('preco')}>Preço/Material</button>
+            </div>
           </div>
-
-          <div
-            className={`${
-              selected2 ? 'h-full w-8/12' : 'right-0 top-0 h-[31.8vh] w-[32.3%]'
-            } trnasition-all absolute cursor-pointer  select-none rounded-lg bg-teal-400 duration-200`}
-            onClick={toggleSelected2}
-          >
-            <h4 className="text-center">Reciclagem Semanal</h4>
-          </div>
-
-          <div
-            className={`${
-              selected3
-                ? 'h-full w-8/12'
-                : 'bottom-0 right-0 h-[31.8vh] w-[32.3%]'
-            } trnasition-all absolute cursor-pointer  select-none rounded-lg bg-moss-green-50 duration-200`}
-            onClick={toggleSelected3}
-          >
-            <h4 className="text-center">Reciclagem Semanal</h4>
-          </div>
+        </div>
+        <div className='flex items-center mt-1 self-center justify-center sm:w-full sm:h-full md:w-11/12 md:h-4/12 lg:w-7/12 lg:h-1/12 2xl:w-8/12 2xl:h-3/5 bg-marine-50 rounded-lg'>
+          {selectedChart === 'reciclagem' && <LineChart />}
+          {selectedChart === 'material' && <DonutChart />}
+          {selectedChart === 'preco' && <PrecoTable />}
         </div>
       </main>
     </>

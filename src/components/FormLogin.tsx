@@ -6,7 +6,7 @@ import { api } from '../lib/axios'
 import { Form } from './Form'
 
 const loginUserSchema = z.object({
-  email: z.string().min(1, 'O e-mail é obrigatório!').email().toLowerCase(),
+  email: z.string().min(1, 'O e-mail é obrigatório!').email(),
   senha: z.string(),
 })
 
@@ -24,24 +24,26 @@ export function FormLogin() {
       .post('/usuarios/login', data, {
         headers: {
           'Content-Type': 'application/json',
+          Authorization: '',
         },
       })
       .then((res) => {
         if (res.status === 200 && res?.data) {
+          sessionStorage.setItem('id', res.data.id)
           sessionStorage.setItem('token', res.data.token)
           sessionStorage.setItem('tipo', res.data.tipoUsuario)
         }
       })
       .catch((err) => {
-        // TODO: dependendo dos erros vai fazer coisa diferente
-        if (err.res.status === 404) {
-          console.log('Usuário não encontrado')
-        } else {
-          console.log('Usuário inválido')
-        }
+        console.log(err.status)
+        return ''
       })
 
-    navigate('/cooperativa')
+    if (sessionStorage.getItem('tipo') === 'COOPERATIVA') {
+      navigate('/cooperativa')
+    } else {
+      navigate('/condominio')
+    }
   }
 
   const {
