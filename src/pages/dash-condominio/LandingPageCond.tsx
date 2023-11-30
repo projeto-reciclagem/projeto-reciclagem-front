@@ -5,6 +5,8 @@ import { api } from '../../lib/axios'
 
 export default function LandingPageCond() {
   const [valorTotalUltimoMes, setValorTotalUltimoMes] = useState(0)
+  const [totalColetasRealizadas, setTotalColetasRealizadas] = useState(0)
+  const [ultimaColetaRealizada, setUltimaColetaRealizada] = useState(0)
 
   async function getValorTotal() {
     await api.get(`/materiais/coletados/valor-total/mes/21`).then((res) => {
@@ -12,7 +14,23 @@ export default function LandingPageCond() {
     })
   }
 
+  async function getTotalColetasRealizadas() {
+    await api
+      .get('/materiais/coletados/total-coletado/semana/21')
+      .then((res) => {
+        setTotalColetasRealizadas(res.data)
+      })
+  }
+
+  async function getUltimaColetaRealizada() {
+    await api.get('/agendamentos/ultima-coleta/21').then((res) => {
+      setUltimaColetaRealizada(res.data)
+    })
+  }
+
   getValorTotal()
+  getTotalColetasRealizadas()
+  getUltimaColetaRealizada()
 
   return (
     <>
@@ -33,12 +51,17 @@ export default function LandingPageCond() {
             </div>
             <div className="flex h-36 w-56 flex-col items-center justify-center gap-2 self-stretch rounded-xl border-2 border-solid border-moss-green-300 bg-moss-green-50 p-3">
               <p className="text-xl text-marine-900">Coletas realizadas</p>
-              <p className="text-4xl text-moss-green-500">12</p>
+              <p className="text-4xl text-moss-green-500">
+                {totalColetasRealizadas > 0 ? totalColetasRealizadas : 0}
+              </p>
               <p className="text-base text-marine-900">Último mês</p>
             </div>
             <div className="flex h-36 w-56 flex-col items-center justify-center gap-2 self-stretch rounded-xl border-2 border-solid border-moss-green-300 bg-moss-green-50 p-3">
               <p className="text-xl text-marine-900">Última coleta feita</p>
-              <p className="text-4xl text-moss-green-500">7 dias atrás</p>
+              <p className="text-4xl text-moss-green-500">
+                {ultimaColetaRealizada > 0 ? ultimaColetaRealizada : 0} dias
+                atrás
+              </p>
             </div>
           </div>
           <div className="flex items-center justify-center rounded-xl bg-marine-50 sm:h-full sm:w-full md:h-full md:w-full lg:h-max lg:w-full 2xl:h-full 2xl:w-full">
