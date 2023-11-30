@@ -28,6 +28,7 @@ export function FormLogin() {
       })
       .then((res) => {
         if (res.status === 200 && res?.data) {
+          sessionStorage.setItem('id', res.data.id)
           sessionStorage.setItem('token', res.data.token)
           sessionStorage.setItem('tipo', res.data.tipoUsuario)
         }
@@ -41,7 +42,11 @@ export function FormLogin() {
         }
       })
 
-    navigate('/cooperativa')
+    if (sessionStorage.getItem('tipo') === 'COOPERATIVA') {
+      navigate('/cooperativa')
+    } else {
+      navigate('/condominio')
+    }
   }
 
   const {

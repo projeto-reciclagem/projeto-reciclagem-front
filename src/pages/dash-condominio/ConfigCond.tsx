@@ -4,20 +4,22 @@ import { z } from 'zod'
 
 import SideBarCondominio from '../../components/DashCondominio/SidebarCondominio'
 import { Form } from '../../components/Form'
+import { api } from '../../lib/axios'
 
 const updateUserSchema = z.object({
-  nome: z.string(),
+  nome: z.string().min(3),
   email: z.string().email(),
-  telefone: z.string(),
-  cnpj: z.string(),
-  senha: z.string(),
-  confirmSenha: z.string(),
-  cep: z.string(),
-  logradouro: z.string(),
-  numero: z.string(),
-  bairro: z.string(),
-  cidade: z.string(),
-  uf: z.string(),
+  telefone: z.string().min(10).max(11),
+  cnpj: z.string().min(13).max(14),
+  senha: z.string().min(8),
+  confirmSenha: z.string().min(8),
+  cep: z.string().min(8).max(8),
+  logradouro: z.string().min(1),
+  numero: z.string().min(1),
+  complemento: z.string(),
+  bairro: z.string().min(1),
+  cidade: z.string().min(1),
+  uf: z.string().min(2).max(2),
 })
 
 type UpdateUserData = z.infer<typeof updateUserSchema>
@@ -27,24 +29,78 @@ export default function ConfigCond() {
     resolver: zodResolver(updateUserSchema),
   })
 
-  function updateUser(data: UpdateUserData) {
-    console.log(data)
-  }
-
   const {
     handleSubmit,
+    setValue,
     formState: { isSubmitting },
   } = updateUserForm
+
+  function clearAddress() {
+    setValue('logradouro', '')
+    setValue('bairro', '')
+    setValue('cidade', '')
+    setValue('uf', '')
+  }
+
+  async function searchAddress(cep: string) {
+    const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    const data = await res.json()
+
+    if (!('erro' in data)) {
+      setValue('logradouro', data.logradouro)
+      setValue('bairro', data.bairro)
+      setValue('cidade', data.localidade)
+      setValue('uf', data.uf)
+    } else {
+      clearAddress()
+    }
+  }
+
+  function getAddress(value: string) {
+    const cep = value.replace(/\D/g, '')
+
+    if (cep !== '') {
+      const validateCep = /^[0-9]{8}$/
+
+      if (validateCep.test(cep)) {
+        searchAddress(cep)
+      } else {
+        clearAddress()
+      }
+    } else {
+      clearAddress()
+    }
+  }
+
+  function updateUser(data: UpdateUserData) {
+    console.log(data)
+
+    const id = sessionStorage.getItem('id')
+    const complementoAtual = data.complemento
+
+    data.complemento = `${data.numero} ${complementoAtual}`
+    data.cidade = `${data.cidade} ${data.uf}`
+
+    api
+      .put(`/condominios/atualizar/${id}`, data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
+  }
 
   return (
     <>
       <main className="flex h-screen gap-1 bg-marine-50 p-2">
         <SideBarCondominio />
-        <div className="flex h-full w-full flex-col items-center justify-center self-stretch rounded-2xl bg-marine-700">
+        <div className="flex h-full w-full flex-col items-center justify-center rounded-2xl bg-marine-700 p-8">
           <FormProvider {...updateUserForm}>
             <form
               onSubmit={handleSubmit(updateUser)}
-              className="flex h-5/6 w-5/6 flex-col items-center justify-center gap-6 rounded-2xl bg-moss-green-50"
+              className="flex h-full w-full flex-col items-center justify-between rounded-2xl bg-moss-green-50"
             >
               <div className="mt-4 flex flex-col items-center justify-center gap-1">
                 <p className="text-center text-3xl text-marine-900">
@@ -53,41 +109,103 @@ export default function ConfigCond() {
                 <div className="h-[2px] w-[590px] bg-gray-500" />
               </div>
 
-              <div className="flex w-4/6 flex-col items-center justify-center gap-8">
-                <div className="flex gap-8">
-                  <Form.Field className="flex h-[300px] w-[280px] flex-col text-marine-900">
+              <div className="flex h-full flex-col items-center">
+                <div className="flex h-full w-full justify-center gap-8">
+                  <Form.Field className="flex h-full w-[280px] flex-col gap-2 text-marine-900">
                     <Form.Label>Nome</Form.Label>
-                    <Form.Input name="nome" />
+                    <Form.Input
+                      name="nome"
+                      className="rounded-md bg-white px-1 py-2"
+                    />
                     <Form.Label>E-mail</Form.Label>
-                    <Form.Input type="email" name="email" />
+                    <Form.Input
+                      type="email"
+                      name="email"
+                      className="rounded-md bg-white px-1 py-2"
+                    />
                     <Form.Label>Telefone</Form.Label>
-                    <Form.Input type="string" name="telefone" />
+                    <Form.Input
+                      type="string"
+                      name="telefone"
+                      className="rounded-md bg-white px-1 py-2"
+                    />
                     <Form.Label>CNPJ</Form.Label>
-                    <Form.Input type="string" name="cnpj" />
+                    <Form.Input
+                      type="string"
+                      name="cnpj"
+                      className="rounded-md bg-white px-1 py-2"
+                    />
                     <Form.Label>Senha</Form.Label>
-                    <Form.Input type="string" name="senha" />
+                    <Form.Input
+                      type="string"
+                      name="senha"
+                      className="rounded-md bg-white px-1 py-2"
+                    />
                     <Form.Label>Confirmação de Senha</Form.Label>
-                    <Form.Input type="string" name="confirmSenha" />
+                    <Form.Input
+                      type="string"
+                      name="confirmSenha"
+                      className="rounded-md bg-white px-1 py-2"
+                    />
                   </Form.Field>
 
-                  <Form.Field className="flex h-[300px] w-[280px] flex-col text-marine-900">
-                    <Form.Label>Cep</Form.Label>
-                    <Form.Input type="string" name="cep" />
+                  <Form.Field className="flex h-full w-[280px] flex-col gap-2 text-marine-900">
+                    <Form.Label>CEP</Form.Label>
+                    <Form.Input
+                      id="cep"
+                      type="string"
+                      name="cep"
+                      onBlur={(e) => getAddress(e.target.value)}
+                      className="rounded-md bg-white px-1 py-2"
+                    />
                     <Form.Label>Logradouro</Form.Label>
-                    <Form.Input type="string" name="logradouro" />
+                    <Form.Input
+                      id="logradouro"
+                      type="string"
+                      name="logradouro"
+                      className="rounded-md bg-white px-1 py-2 disabled:cursor-not-allowed disabled:bg-zinc-300/80"
+                    />
                     <Form.Label>Número</Form.Label>
-                    <Form.Input type="string" name="numero" />
+                    <Form.Input
+                      id="numero"
+                      type="string"
+                      name="numero"
+                      className="rounded-md bg-white px-1 py-2"
+                    />
+                    <Form.Label>Complemento</Form.Label>
+                    <Form.Input
+                      id="complemento"
+                      type="string"
+                      name="complemento"
+                      className="rounded-md bg-white px-1 py-2"
+                    />
                     <Form.Label>Bairro</Form.Label>
-                    <Form.Input type="string" name="bairro" />
+                    <Form.Input
+                      id="bairro"
+                      type="string"
+                      name="bairro"
+                      className="rounded-md bg-white px-1 py-2 disabled:cursor-not-allowed disabled:bg-zinc-300/80"
+                    />
                     <Form.Label>Cidade</Form.Label>
-                    <Form.Input type="string" name="cidade" />
-                    <Form.Label>UF</Form.Label>
-                    <Form.Input type="string" name="uf" />
+                    <Form.Input
+                      id="cidade"
+                      type="string"
+                      name="cidade"
+                      className="rounded-md bg-white px-1 py-2 disabled:cursor-not-allowed disabled:bg-zinc-300/80"
+                    />
+                    <Form.Label>Estado</Form.Label>
+                    <Form.Input
+                      id="uf"
+                      type="string"
+                      name="uf"
+                      className="rounded-md bg-white px-1 py-2 disabled:cursor-not-allowed disabled:bg-zinc-300/80"
+                    />
                   </Form.Field>
                 </div>
 
                 <div className="h-[40px] w-[88px] justify-center self-center">
                   <button
+                    type="submit"
                     disabled={isSubmitting}
                     className="h-max w-max rounded-lg bg-moss-green-500 p-2"
                   >

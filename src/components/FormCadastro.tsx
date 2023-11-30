@@ -83,7 +83,7 @@ export function FormCadastro({ tipoUsuario, handleMove }: CadastroProps) {
 
           <Form.Field className="w-full">
             <Form.Label
-              htmlFor=""
+              htmlFor="cnpj"
               className="text-moss-green-50 transition-all duration-150"
             >
               CNPJ
@@ -105,7 +105,7 @@ export function FormCadastro({ tipoUsuario, handleMove }: CadastroProps) {
               Email
             </Form.Label>
             <Form.Input
-              id="email-cad"
+              id="email-cadastro"
               name="email"
               type="email"
               className="w-full select-none rounded-none border-b-2 border-moss-green-700 bg-transparent p-2 text-lg text-moss-green-100 outline-none"
@@ -136,7 +136,7 @@ export function FormCadastro({ tipoUsuario, handleMove }: CadastroProps) {
               Senha
             </Form.Label>
             <Form.Input
-              id="senha"
+              id="senha-cadastro"
               name="senha"
               type="password"
               className="w-full select-none rounded-none border-b-2 border-moss-green-700 bg-transparent p-2 text-lg text-moss-green-100 outline-none"

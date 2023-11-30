@@ -193,8 +193,7 @@ export function addCondo(data: CondoProps) {
     })
 }
 // PUT: /condominios/atualizar/{id}
-export function updateCondoData(data: CondoProps) {
-  const id = 0
+export function updateCondoData(data: CondoProps, id: number | null) {
   api
     .put(`/condominios/atualizar/${id}`, data, {
       headers: {
@@ -202,7 +201,7 @@ export function updateCondoData(data: CondoProps) {
       },
     })
     .then((res) => {
-      return res.data
+      console.log(res.data)
     })
 }
 // DELETE: /condominios/deletar/{id}
