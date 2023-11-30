@@ -12,6 +12,8 @@ import CoopCondominios from './pages/cooperativa/CoopCondominios'
 import CoopChat from './pages/cooperativa/CoopChat'
 import CoopConfig from './pages/cooperativa/CoopConfig'
 import CoopRelatorio from './pages/cooperativa/CoopRelatorio'
+import ChatCond from './pages/dash-condominio/ChatCond'
+
 
 // !!! Aqui é onde vamos adicionar tudo que vai vir de Rotas de navegação
 // entre páginas do nosso projeto !!!
@@ -42,19 +44,36 @@ const routes = createBrowserRouter([
   },
   {
     path: '/condominio',
-    element: <LandingPageCond />
+    element: <LandingPageCond />,
   },
-  {path: '/config-condominio',
-    element: <ConfigCond />
+  {
+    path: '/config-condominio',
+    element: <ConfigCond />,
+  },
+  {
+    path: '/cooperativa/chat',
+    element: <CoopChat />,
+  },
+  {
+    path: '/cooperativa/config',
+    element: <CoopConfig />,
+  },
+  {
+    path: '/cooperativa/relatorio',
+    element: <CoopRelatorio />,
   },
   {
     path: '/relatorio-condominio',
-    element: <RelatorioCond />
+    element: <RelatorioCond />,
   },
   {
     path: '/pedidos-condominio',
-    element: <PedidosCond />
+    element: <PedidosCond />,
   },
+  {
+    path: '/chat-condominio',
+    element: <ChatCond />
+  }
 ])
 
 export function Router() {
