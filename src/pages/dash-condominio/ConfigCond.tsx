@@ -4,12 +4,13 @@ import { z } from 'zod'
 
 import SideBarCondominio from '../../components/DashCondominio/SidebarCondominio'
 import { Form } from '../../components/Form'
+import { loginUser } from '../../services/requisicoes'
 import { api } from '../../lib/axios'
 
 const updateUserSchema = z.object({
   nome: z.string().min(3),
   email: z.string().email(),
-  telefone: z.string().min(10).max(11),
+  telefone: z.string().min(10).max(12),
   cnpj: z.string().min(13).max(14),
   senha: z.string().min(8),
   confirmSenha: z.string().min(8),
@@ -73,23 +74,26 @@ export default function ConfigCond() {
   }
 
   function updateUser(data: UpdateUserData) {
-    console.log(data)
-
     const id = sessionStorage.getItem('id')
     const complementoAtual = data.complemento
 
     data.complemento = `${data.numero} ${complementoAtual}`
     data.cidade = `${data.cidade} ${data.uf}`
 
-    api
-      .put(`/condominios/atualizar/${id}`, data, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => {
-        console.log(res.data)
-      })
+    const res = api.put(`/condominios/atualizar/${id}`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    res.then((res) => {
+      const newInfos = {
+        email: res.data.email,
+        senha: data.senha,
+      }
+
+      loginUser(newInfos)
+    })
   }
 
   return (
@@ -100,7 +104,7 @@ export default function ConfigCond() {
           <FormProvider {...updateUserForm}>
             <form
               onSubmit={handleSubmit(updateUser)}
-              className="flex h-full w-full flex-col items-center justify-between rounded-2xl bg-moss-green-50"
+              className="flex h-full w-full flex-col gap-6 rounded-2xl bg-moss-green-50"
             >
               <div className="mt-4 flex flex-col items-center justify-center gap-1">
                 <p className="text-center text-3xl text-marine-900">
@@ -109,8 +113,8 @@ export default function ConfigCond() {
                 <div className="h-[2px] w-[590px] bg-gray-500" />
               </div>
 
-              <div className="flex h-full flex-col items-center">
-                <div className="flex h-full w-full justify-center gap-8">
+              <div className="flex h-full flex-col items-center p-4">
+                <div className="flex h-full w-full justify-center gap-20">
                   <Form.Field className="flex h-full w-[280px] flex-col gap-2 text-marine-900">
                     <Form.Label>Nome</Form.Label>
                     <Form.Input
@@ -203,11 +207,11 @@ export default function ConfigCond() {
                   </Form.Field>
                 </div>
 
-                <div className="h-[40px] w-[88px] justify-center self-center">
+                <div className="h-[40px] w-[88px] justify-center">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="h-max w-max rounded-lg bg-moss-green-500 p-2"
+                    className="h-max w-max rounded-lg bg-marine-500 p-2"
                   >
                     Alterar Dados
                   </button>

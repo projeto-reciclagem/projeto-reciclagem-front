@@ -173,11 +173,12 @@ export function getAllCondos() {
 }
 
 // GET: /condominios/buscar/{id}
-export function getCondoById() {
-  const id = 0
-  api.get(`/condominios/buscar/${id}`).then((res) => {
+export function getCondoById(id: string) {
+  const data = api.get(`/condominios/buscar/${id}`).then((res) => {
     return res.data
   })
+
+  return data
 }
 
 // POST: /condominios/cadastrar
@@ -315,15 +316,35 @@ export function deleteSchedule() {
 
 // Requisições Usuário
 // POST: /usuarios/login
-export function loginUser(data: UserProps) {
+export function loginUser({ email, senha }: UserProps) {
   api
-    .post('/usuarios/login', data, {
-      headers: {
-        'Content-Type': 'application/json',
+    .post(
+      '/usuarios/login',
+      {
+        email,
+        senha,
       },
-    })
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: '',
+        },
+      },
+    )
     .then((res) => {
-      return res.data
+      if (res.status === 200 && res?.data) {
+        sessionStorage.setItem('id', res.data.id)
+        sessionStorage.setItem('token', res.data.token)
+        sessionStorage.setItem('tipo', res.data.tipoUsuario)
+      }
+    })
+    .catch((err) => {
+      // TODO: dependendo dos erros vai fazer coisa diferente
+      if (err.res.status === 404) {
+        console.log('Usuário não encontrado')
+      } else {
+        console.log('Usuário inválido')
+      }
     })
 }
 

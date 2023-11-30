@@ -6,7 +6,7 @@ import { api } from '../lib/axios'
 import { Form } from './Form'
 
 const loginUserSchema = z.object({
-  email: z.string().min(1, 'O e-mail é obrigatório!').email().toLowerCase(),
+  email: z.string().min(1, 'O e-mail é obrigatório!').email(),
   senha: z.string(),
 })
 
