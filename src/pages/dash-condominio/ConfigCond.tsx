@@ -1,72 +1,104 @@
-import { Link } from "react-router-dom";
-import SideBarCondominio from "../../components/DashCondominio/SidebarCondominio";
-import { useState } from "react";
+import { FormProvider, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+
+import SideBarCondominio from '../../components/DashCondominio/SidebarCondominio'
+import { Form } from '../../components/Form'
+
+const updateUserSchema = z.object({
+  nome: z.string(),
+  email: z.string().email(),
+  telefone: z.string(),
+  cnpj: z.string(),
+  senha: z.string(),
+  confirmSenha: z.string(),
+  cep: z.string(),
+  logradouro: z.string(),
+  numero: z.string(),
+  bairro: z.string(),
+  cidade: z.string(),
+  uf: z.string(),
+})
+
+type UpdateUserData = z.infer<typeof updateUserSchema>
 
 export default function ConfigCond() {
+  const updateUserForm = useForm<UpdateUserData>({
+    resolver: zodResolver(updateUserSchema),
+  })
 
-    return (
-        <>
-            <main className="flex p-2 h-screen gap-1 bg-marine-50">
-                <SideBarCondominio />
-                <div className="flex flex-col items-center justify-center self-stretch w-full bg-marine-700 rounded-2xl">
-                    <div className="flex flex-col justify-center items-center w-5/6 h-5/6 rounded-2xl gap-6 bg-moss-green-50">
-                        <div className="flex flex-col justify-center mt-4 items-center gap-1">
-                            <p className="text-marine-900 text-center text-3xl">Editar Perfil</p>
-                            <div className="w-[590px] h-[2px] bg-gray-500"></div>
-                        </div>
-                        <div className="flex flex-wrap flex-row gap-8 self-center justify-center items-center content-center w-4/6">
-                            <div className="w-[280px] h-[300px] flex flex-col text-marine-900">
-                                <div className="flex flex-col gap-1">
-                                    <label htmlFor="">CEP</label>
-                                    <input className="w-[280px] bg-white rounded" id="cep-cad" type="text" />
-                                </div>
-                                <div className="flex flex-col gap-1 mt-1">
-                                    <label htmlFor="">Logradouro</label>
-                                    <input className="w-[280px] bg-white rounded" id="logradouro-cad" type="text" />
-                                </div>
-                                <div className="flex flex-col gap-1 mt-1">
-                                    <label htmlFor="">Número</label>
-                                    <input className="w-[280px] bg-white rounded" id="numero-cad" type="number" />
-                                </div>
-                                <div className="flex flex-col gap-1 mt-1">
-                                    <label htmlFor="">Nome de Usuário</label>
-                                    <input className="w-[280px] bg-white rounded" id="nome-cad" type="text" />
-                                </div>
-                                <div className="flex flex-col gap-1 mt-1">
-                                    <label htmlFor="">E-mail</label>
-                                    <input className="w-[280px] bg-white rounded" id="email-cad" type="email" />
-                                </div>
-                            </div>
-                            <div className="w-[280px] h-[300px] flex flex-col text-marine-900">
-                                <div className="flex flex-col gap-1">
-                                    <label htmlFor="">Bairro</label>
-                                    <input className="w-[280px] bg-white rounded" id="bairro-cad" type="text" />
-                                </div>
-                                <div className="flex flex-col gap-1 mt-1">
-                                    <label htmlFor="">Cidade</label>
-                                    <input className="w-[280px] bg-white rounded" id="cidade-cad" type="text" />
-                                </div>
-                                <div className="flex flex-col gap-1 mt-1">
-                                    <label htmlFor="">UF</label>
-                                    <input className="w-[280px] bg-white rounded" id="uf-cad" type="text" />
-                                </div>
-                                <div className="flex flex-col gap-1 mt-1">
-                                    <label htmlFor="">Senha</label>
-                                    <input className="w-[280px] bg-white rounded" id="senha-cad" type="password" />
-                                </div>
-                                <div className="flex flex-col gap-1 mt-1">
-                                    <label htmlFor="">Confirmar Senha</label>
-                                    <input className="w-[280px] bg-white rounded" id="confirmar-senha-cad" type="password" />
-                                </div>
-                            </div>
-                            <div className="w-[88px] h-[40px] justify-center self-center">
-                                <button className="bg-moss-green-500 w-max h-max p-2 rounded-lg">Alterar Dados</button>
-                            </div>
-                        </div>
-                    </div>
+  function updateUser(data: UpdateUserData) {
+    console.log(data)
+  }
+
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = updateUserForm
+
+  return (
+    <>
+      <main className="flex h-screen gap-1 bg-marine-50 p-2">
+        <SideBarCondominio />
+        <div className="flex h-full w-full flex-col items-center justify-center self-stretch rounded-2xl bg-marine-700">
+          <FormProvider {...updateUserForm}>
+            <form
+              onSubmit={handleSubmit(updateUser)}
+              className="flex h-5/6 w-5/6 flex-col items-center justify-center gap-6 rounded-2xl bg-moss-green-50"
+            >
+              <div className="mt-4 flex flex-col items-center justify-center gap-1">
+                <p className="text-center text-3xl text-marine-900">
+                  Editar Perfil
+                </p>
+                <div className="h-[2px] w-[590px] bg-gray-500" />
+              </div>
+
+              <div className="flex w-4/6 flex-col items-center justify-center gap-8">
+                <div className="flex gap-8">
+                  <Form.Field className="flex h-[300px] w-[280px] flex-col text-marine-900">
+                    <Form.Label>Nome</Form.Label>
+                    <Form.Input name="nome" />
+                    <Form.Label>E-mail</Form.Label>
+                    <Form.Input type="email" name="email" />
+                    <Form.Label>Telefone</Form.Label>
+                    <Form.Input type="string" name="telefone" />
+                    <Form.Label>CNPJ</Form.Label>
+                    <Form.Input type="string" name="cnpj" />
+                    <Form.Label>Senha</Form.Label>
+                    <Form.Input type="string" name="senha" />
+                    <Form.Label>Confirmação de Senha</Form.Label>
+                    <Form.Input type="string" name="confirmSenha" />
+                  </Form.Field>
+
+                  <Form.Field className="flex h-[300px] w-[280px] flex-col text-marine-900">
+                    <Form.Label>Cep</Form.Label>
+                    <Form.Input type="string" name="cep" />
+                    <Form.Label>Logradouro</Form.Label>
+                    <Form.Input type="string" name="logradouro" />
+                    <Form.Label>Número</Form.Label>
+                    <Form.Input type="string" name="numero" />
+                    <Form.Label>Bairro</Form.Label>
+                    <Form.Input type="string" name="bairro" />
+                    <Form.Label>Cidade</Form.Label>
+                    <Form.Input type="string" name="cidade" />
+                    <Form.Label>UF</Form.Label>
+                    <Form.Input type="string" name="uf" />
+                  </Form.Field>
                 </div>
-            </main>
-        </>
-    )
 
+                <div className="h-[40px] w-[88px] justify-center self-center">
+                  <button
+                    disabled={isSubmitting}
+                    className="h-max w-max rounded-lg bg-moss-green-500 p-2"
+                  >
+                    Alterar Dados
+                  </button>
+                </div>
+              </div>
+            </form>
+          </FormProvider>
+        </div>
+      </main>
+    </>
+  )
 }
