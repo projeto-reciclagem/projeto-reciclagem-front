@@ -24,6 +24,7 @@ export function FormLogin() {
       .post('/usuarios/login', data, {
         headers: {
           'Content-Type': 'application/json',
+          Authorization: '',
         },
       })
       .then((res) => {
@@ -34,12 +35,8 @@ export function FormLogin() {
         }
       })
       .catch((err) => {
-        // TODO: dependendo dos erros vai fazer coisa diferente
-        if (err.res.status === 404) {
-          console.log('Usuário não encontrado')
-        } else {
-          console.log('Usuário inválido')
-        }
+        console.log(err.status)
+        return ''
       })
 
     if (sessionStorage.getItem('tipo') === 'COOPERATIVA') {

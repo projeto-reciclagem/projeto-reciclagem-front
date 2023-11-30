@@ -4,12 +4,10 @@ import { useState } from 'react'
 import { api } from '../../lib/axios'
 
 export default function LandingPageCond() {
-  const [valorTotalUltimoMes, setValorTotalUltimoMes] = useState('')
+  const [valorTotalUltimoMes, setValorTotalUltimoMes] = useState(0)
 
   async function getValorTotal() {
-    const id = sessionStorage.getItem('id')
-
-    await api.get(`/materiais/coletados/valor-total/mes/${id}`).then((res) => {
+    await api.get(`/materiais/coletados/valor-total/mes/21`).then((res) => {
       setValorTotalUltimoMes(res.data)
     })
   }
@@ -28,7 +26,9 @@ export default function LandingPageCond() {
               </p>
               <p className="text-4xl text-moss-green-500">
                 R${' '}
-                {valorTotalUltimoMes.length > 0 ? valorTotalUltimoMes : '0,00'}
+                {valorTotalUltimoMes > 0
+                  ? valorTotalUltimoMes.toFixed(2)
+                  : '0,00'}
               </p>
             </div>
             <div className="flex h-36 w-56 flex-col items-center justify-center gap-2 self-stretch rounded-xl border-2 border-solid border-moss-green-300 bg-moss-green-50 p-3">
