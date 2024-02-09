@@ -1,6 +1,8 @@
 {
-  "extends": "@rocketseat/eslint-config/node",
+  "extends": "@rocketseat/eslint-config/react",
+  "plugins": ["simple-import-sort"],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "off"
+    "simple-import-sort/imports": "error",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }

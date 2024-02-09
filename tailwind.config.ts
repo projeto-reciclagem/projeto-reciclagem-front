@@ -1,25 +1,28 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+import type { Config } from 'tailwindcss'
+
+const config = {
+  darkMode: ['class'],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  prefix: '',
   theme: {
     fontFamily: {
-      sans: 'roboto',
-      mono: 'ubuntu',
+      sans: ['Roboto Condensed', 'sans-serif'],
+      mono: ['Ubuntu', 'monospace'],
+    },
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
     },
     extend: {
       colors: {
-        leaf: {
-          50: '#F3F6EB',
-          100: '#DBE2C1',
-          200: '#C9D4A3',
-          300: '#B1C178',
-          400: '#A1B55E',
-          500: '#8AA236',
-          600: '#7E9331',
-          700: '#627326',
-          800: '#4C591E',
-          900: '#3A4417',
-        },
         'moss-green': {
           50: '#EEF4EA',
           100: '#CADEBF',
@@ -56,19 +59,36 @@ export default {
           800: '#68562E',
           900: '#4F4223',
         },
-        cards: {
-          paper: '#35C1FD',
-          plastic: '#F87272',
-          metal: '#F8A035',
-          glass: '#1BD00B',
+        leaf: {
+          50: '#F3F6EB',
+          100: '#DBE2C1',
+          200: '#C9D4A3',
+          300: '#B1C178',
+          400: '#A1B55E',
+          500: '#8AA236',
+          600: '#7E9331',
+          700: '#627326',
+          800: '#4C591E',
+          900: '#3A4417',
         },
       },
-      backgroundImage: {
-        'carousel-item1': 'url("@/assets/img/carrossel-item-1.svg")',
-        'carousel-item2': 'url("@/assets/img/carrossel-item-2.svg")',
-        'carousel-item3': 'url("@/assets/img/carrossel-item-3.svg")',
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: [],
-}
+  plugins: [require('tailwindcss-animate')],
+} satisfies Config
+
+export default config
