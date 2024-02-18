@@ -72,6 +72,11 @@ const config = {
           900: '#3A4417',
         },
       },
+      backgroundImage: {
+        'carousel-item1': 'url("@/assets/carousel-item1.png")',
+        'carousel-item2': 'url("@/assets/carousel-item2.png")',
+        'carousel-item3': 'url("@/assets/carousel-item3.png")',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
