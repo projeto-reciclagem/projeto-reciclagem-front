@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { AppLayout } from './pages/_layouts/app'
 import { AuthLayout } from './pages/_layouts/auth'
 import { LandingLayout } from './pages/_layouts/landing'
+import { NotFound } from './pages/404'
 import { Dashboard } from './pages/app/dashboard/dashboard'
 import { Reports } from './pages/app/reports/reports'
 import { Schedules } from './pages/app/schedules/schedules'
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <LandingLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',
@@ -38,6 +40,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/dashboard',

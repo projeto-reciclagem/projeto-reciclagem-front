@@ -41,7 +41,7 @@ export function MainCarousel() {
           delay: 5000,
         }),
       ]}
-      className="w-[84.5rem]"
+      className="w-[81rem]"
     >
       <CarouselContent>
         {carouselItems.map((item) => (
@@ -50,7 +50,9 @@ export function MainCarousel() {
               className={`${item.src} flex h-[28rem] flex-col justify-center gap-8 rounded-2xl bg-cover bg-center px-6`}
             >
               <div className="flex w-2/3 flex-col justify-center gap-8 px-8">
-                <h1 className="text-4xl text-leaf-500">{item.title}</h1>
+                <h1 className="text-4xl font-bold text-leaf-500">
+                  {item.title}
+                </h1>
                 <p className="w-3/4 text-xl text-white">{item.content}</p>
               </div>
             </div>

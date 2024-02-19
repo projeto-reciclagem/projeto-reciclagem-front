@@ -1,4 +1,5 @@
 import { BarChart3, Calendar, Home } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import ecoSystemLogo from '@/assets/eco-system-black-logo.svg'
 import { NavLink } from '@/components/nav-link'
@@ -10,7 +11,9 @@ export function DashboardHeader() {
   return (
     <header>
       <div className="flex h-16 items-center gap-6 px-6">
-        <img src={ecoSystemLogo} alt="" />
+        <Link to="/">
+          <img src={ecoSystemLogo} alt="" />
+        </Link>
 
         <Separator orientation="vertical" className="h-6" />
 
