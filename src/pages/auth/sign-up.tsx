@@ -1,5 +1,7 @@
-import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Building, Truck } from 'lucide-react'
+import { Helmet } from 'react-helmet-async'
+import { useController, useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -9,7 +11,6 @@ import { Label } from '@/components/ui/label'
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -27,11 +28,22 @@ const SignUpForm = z.object({
 type SignUpForm = z.infer<typeof SignUpForm>
 
 export function SignUp() {
+  const navigate = useNavigate()
+
   const {
+    control,
     register,
     handleSubmit,
     formState: { isSubmitting },
   } = useForm<SignUpForm>()
+
+  const { field } = useController({
+    name: 'orgType',
+    control,
+    defaultValue: '',
+  })
+
+  const { value, onChange } = field
 
   async function handleSignUp(data: SignUpForm) {
     try {
@@ -44,11 +56,17 @@ export function SignUp() {
           description: 'Redirecionando para a página de Login',
           duration: 6000,
         })
+
+        await new Promise((resolve) => setTimeout(resolve, 7000))
+        navigate('/sign-in')
       } else {
         toast.success('Cadastro da cooperativa feito com sucesso', {
           description: 'Redirecionando para a página de Login',
           duration: 6000,
         })
+
+        await new Promise((resolve) => setTimeout(resolve, 7000))
+        navigate('/sign-in')
       }
     } catch {
       toast.error('Erro ao cadastrar o usuário.')
@@ -57,6 +75,7 @@ export function SignUp() {
 
   return (
     <>
+      <Helmet title="Cadastro" />
       <div className="p-8">
         <Button variant={'ghost'} asChild className="absolute right-8 top-8">
           <Link to="/sign-in">Fazer Login</Link>
@@ -114,18 +133,22 @@ export function SignUp() {
               <Label htmlFor="password" className="text-zinc-900">
                 Qual o tipo da sua organização?
               </Label>
-              <Select>
+
+              <Select value={value} onValueChange={onChange}>
                 <SelectTrigger>
-                  <SelectValue
-                    placeholder="Selecione uma organização"
-                    {...register('orgType')}
-                  />
+                  <SelectValue placeholder="Selecione uma organização" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="condominio">Condomínio</SelectItem>
-                    <SelectItem value="cooperativa">Cooperativa</SelectItem>
-                  </SelectGroup>
+                  <SelectItem value="condominio">
+                    <div className="flex items-center gap-2">
+                      Condomínio <Building className="size-4" />
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="cooperativa">
+                    <div className="flex items-center gap-2">
+                      Cooperativa <Truck className="size-4" />
+                    </div>
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>

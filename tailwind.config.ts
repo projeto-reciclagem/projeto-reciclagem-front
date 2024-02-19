@@ -11,7 +11,7 @@ const config = {
   prefix: '',
   theme: {
     fontFamily: {
-      sans: ['Roboto Condensed', 'sans-serif'],
+      sans: ['Roboto', 'sans-serif'],
       mono: ['Ubuntu', 'monospace'],
     },
     container: {

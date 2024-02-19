@@ -1,5 +1,6 @@
+import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -15,7 +16,7 @@ const SignInForm = z.object({
 type SignInForm = z.infer<typeof SignInForm>
 
 export function SignIn() {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -33,6 +34,9 @@ export function SignIn() {
         description: 'Redirecionando para o Dashboard',
         duration: 6000,
       })
+
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      navigate('/dashboard')
     } catch {
       toast.error('Credenciais inválidas')
     }
@@ -40,9 +44,12 @@ export function SignIn() {
 
   return (
     <>
+      <Helmet title="Entrar" />
       <div className="p-8">
         <Button variant={'ghost'} asChild className="absolute right-8 top-8">
-          <Link to="/sign-up">Novo usuário</Link>
+          <Link to="/sign-up" className="font-semibold text-moss-green-400">
+            Novo usuário
+          </Link>
         </Button>
 
         <div className="flex w-[350px] flex-col justify-center gap-6">
@@ -69,7 +76,10 @@ export function SignIn() {
               <Input id="password" type="password" {...register('password')} />
             </div>
 
-            <Button disabled={isSubmitting} className="w-full">
+            <Button
+              disabled={isSubmitting}
+              className="w-full bg-moss-green-400"
+            >
               Acessar
             </Button>
           </form>
