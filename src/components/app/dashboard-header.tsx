@@ -2,10 +2,9 @@ import { BarChart3, Calendar, Home } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import ecoSystemLogo from '@/assets/eco-system-black-logo.svg'
+import { AccountMenu } from '@/components/app/account-menu'
 import { NavLink } from '@/components/nav-link'
 import { Separator } from '@/components/ui/separator'
-
-import { AccountMenu } from './account-menu'
 
 export function DashboardHeader() {
   return (

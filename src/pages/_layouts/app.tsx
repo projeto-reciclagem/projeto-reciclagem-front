@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import { DashboardHeader } from '@/pages/app/dashboard/dashboard-header'
+import { DashboardHeader } from '@/components/app/dashboard-header'
 
 export function AppLayout() {
   return (

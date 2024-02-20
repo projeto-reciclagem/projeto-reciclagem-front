@@ -12,9 +12,7 @@ export function MonthCollectedBagsCard() {
         <LeafyGreen className="size-4 text-moss-green-500" />
       </CardHeader>
       <CardContent className="space-y-1">
-        <span className="text-2xl font-bold tracking-tight">
-          45 coletas feitas
-        </span>
+        <span className="text-2xl font-bold tracking-tight">20</span>
         <p className="text-xs">
           <span className="font-semibold text-moss-green-500">+2%</span> em
           relação ao mês passado.

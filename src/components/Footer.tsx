@@ -1,8 +1,4 @@
-import {
-  FacebookLogo,
-  InstagramLogo,
-  WhatsappLogo,
-} from '@phosphor-icons/react'
+import { Facebook, Instagram, Mail } from 'lucide-react'
 
 import logo from '@/assets/eco-system-black-logo.svg'
 
@@ -20,15 +16,15 @@ export function Footer() {
         </div>
 
         <div className="flex gap-2 ">
-          <FacebookLogo
+          <Facebook
             size={32}
             className="cursor-pointer text-moss-green-400 transition-colors hover:text-moss-green-600"
           />
-          <InstagramLogo
+          <Instagram
             size={32}
             className="cursor-pointer text-moss-green-400 transition-colors hover:text-moss-green-600"
           />
-          <WhatsappLogo
+          <Mail
             size={32}
             className="cursor-pointer text-moss-green-400 transition-colors hover:text-moss-green-600"
           />
