@@ -47,10 +47,6 @@ export function SignUp() {
 
   async function handleSignUp(data: SignUpForm) {
     try {
-      console.log(data)
-
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
       if (data.orgType === 'condominio') {
         toast.success('Cadastro do condomínio feito com sucesso', {
           description: 'Redirecionando para a página de Login',

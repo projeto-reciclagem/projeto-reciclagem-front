@@ -37,6 +37,7 @@ export function SignIn() {
         senha: data.password,
       })
 
+      sessionStorage.setItem('id', userData.id.toString())
       sessionStorage.setItem('token', userData.token)
 
       toast.success('Login efetuado com sucesso', {
