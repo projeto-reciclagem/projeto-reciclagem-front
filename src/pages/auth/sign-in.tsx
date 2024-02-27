@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -18,13 +18,18 @@ const SignInForm = z.object({
 type SignInForm = z.infer<typeof SignInForm>
 
 export function SignIn() {
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<SignInForm>()
+  } = useForm<SignInForm>({
+    defaultValues: {
+      email: searchParams.get('email') ?? '',
+    },
+  })
 
   const { mutateAsync: authenticate } = useMutation({
     mutationFn: signIn,
@@ -48,7 +53,7 @@ export function SignIn() {
       await new Promise((resolve) => setTimeout(resolve, 2000))
       navigate('/dashboard')
     } catch {
-      toast.error('Credenciais inválidas')
+      toast.error('Credenciais inválidas, tente novamente.')
     }
   }
 

@@ -1,3 +1,4 @@
+import { useMutation } from '@tanstack/react-query'
 import { Building, Truck } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 import { useController, useForm } from 'react-hook-form'
@@ -5,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { registerCondo } from '@/api/register-condo'
+import { registerCooperative } from '@/api/register-cooperative'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -45,24 +48,53 @@ export function SignUp() {
 
   const { value, onChange } = field
 
+  const { mutateAsync: registerCondoFn } = useMutation({
+    mutationFn: registerCondo,
+  })
+
+  const { mutateAsync: registerCooperativeFn } = useMutation({
+    mutationFn: registerCooperative,
+  })
+
   async function handleSignUp(data: SignUpForm) {
     try {
       if (data.orgType === 'condominio') {
+        if (data.password === data.confirmPassword) {
+          await registerCondoFn({
+            nome: data.orgName,
+            cnpj: data.cnpj,
+            email: data.email,
+            senha: data.password,
+          })
+        } else {
+          toast.error('Erro ao registrar usuário, tente novamente')
+        }
+
         toast.success('Cadastro do condomínio feito com sucesso', {
           description: 'Redirecionando para a página de Login',
           duration: 6000,
         })
 
         await new Promise((resolve) => setTimeout(resolve, 7000))
-        navigate('/sign-in')
+        navigate(`/sign-in?email=${data.email}`)
       } else {
+        if (data.password === data.confirmPassword) {
+          await registerCooperativeFn({
+            nome: data.orgName,
+            cnpj: data.cnpj,
+            email: data.email,
+            senha: data.password,
+          })
+        } else {
+          toast.error('Erro ao registrar usuário, tente novamente')
+        }
         toast.success('Cadastro da cooperativa feito com sucesso', {
           description: 'Redirecionando para a página de Login',
           duration: 6000,
         })
 
         await new Promise((resolve) => setTimeout(resolve, 7000))
-        navigate('/sign-in')
+        navigate(`/sign-in?email=${data.email}`)
       }
     } catch {
       toast.error('Erro ao cadastrar o usuário.')
