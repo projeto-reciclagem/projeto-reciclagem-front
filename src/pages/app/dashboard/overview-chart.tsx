@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import {
   CartesianGrid,
   Line,
@@ -8,6 +9,7 @@ import {
   YAxis,
 } from 'recharts'
 
+import { getCooperativeProfile } from '@/api/get-cooperative-profile'
 import {
   Card,
   CardContent,
@@ -15,6 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const data = [
   {
@@ -48,6 +51,11 @@ const data = [
 ]
 
 export function OverviewChart() {
+  const { isLoading: isProfileLoading } = useQuery({
+    queryKey: ['cooperativeProfile'],
+    queryFn: getCooperativeProfile,
+  })
+
   return (
     <Card className="col-span-6">
       <CardHeader className="flex-row items-center justify-between pb-8">
@@ -59,29 +67,33 @@ export function OverviewChart() {
         </div>
       </CardHeader>
       <CardContent>
-        <ResponsiveContainer width="100%" height={260}>
-          <LineChart data={data} style={{ fontSize: 12 }}>
-            <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16} />
+        {isProfileLoading ? (
+          <Skeleton className="h-64 w-full" />
+        ) : (
+          <ResponsiveContainer width="100%" height={260}>
+            <LineChart data={data} style={{ fontSize: 12 }}>
+              <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16} />
 
-            <YAxis
-              stroke="#888"
-              axisLine={false}
-              tickLine={false}
-              tickFormatter={(value: number) => value.toLocaleString('pt-BR')}
-            />
+              <YAxis
+                stroke="#888"
+                axisLine={false}
+                tickLine={false}
+                tickFormatter={(value: number) => value.toLocaleString('pt-BR')}
+              />
 
-            <CartesianGrid vertical={false} className="stroke-black/20" />
+              <CartesianGrid vertical={false} className="stroke-black/20" />
 
-            <Line
-              type="linear"
-              strokeWidth={2}
-              dataKey="coletas"
-              stroke="#549431"
-            />
+              <Line
+                type="linear"
+                strokeWidth={2}
+                dataKey="coletas"
+                stroke="#549431"
+              />
 
-            <Tooltip />
-          </LineChart>
-        </ResponsiveContainer>
+              <Tooltip />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
       </CardContent>
     </Card>
   )
