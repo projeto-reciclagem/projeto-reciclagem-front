@@ -37,13 +37,10 @@ export function SignIn() {
 
   async function handleSignIn(data: SignInForm) {
     try {
-      const userData = await authenticate({
+      await authenticate({
         email: data.email,
         senha: data.password,
       })
-
-      sessionStorage.setItem('id', userData.id.toString())
-      sessionStorage.setItem('token', userData.token)
 
       toast.success('Login efetuado com sucesso', {
         description: 'Redirecionando para o Dashboard',
