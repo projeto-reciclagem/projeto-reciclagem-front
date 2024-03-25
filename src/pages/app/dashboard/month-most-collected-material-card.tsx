@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { Recycle } from 'lucide-react'
 
-import { getCooperativeProfile } from '@/api/get-cooperative-profile'
+import { getMostCollectedMaterials } from '@/api/get-most-collected-materials'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
+
+import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function MonthMostCollectedMaterialCard() {
-  const { isLoading: isProfileLoading } = useQuery({
-    queryKey: ['cooperativeProfile'],
-    queryFn: getCooperativeProfile,
+  const { data: mostCollectedMaterials } = useQuery({
+    queryKey: ['collectedMaterials'],
+    queryFn: getMostCollectedMaterials,
   })
 
   return (
@@ -20,18 +21,20 @@ export function MonthMostCollectedMaterialCard() {
         <Recycle className="size-4 text-moss-green-500" />
       </CardHeader>
       <CardContent className="space-y-1">
-        {isProfileLoading ? (
-          <Skeleton className="h-14 w-64" />
-        ) : (
+        {mostCollectedMaterials ? (
           <>
-            <span className="text-2xl font-bold tracking-tight text-red-500">
-              Plástico
+            <span className="text-2xl font-bold tracking-tight">
+              {mostCollectedMaterials.materialMesAtual}
             </span>
             <p className="text-xs">
-              <span className="font-semibold text-yellow-500">Metal</span> foi o
-              material mais coletado do mês passado
+              <span className={`font-semibold`}>
+                {mostCollectedMaterials.materialMesAnterior}
+              </span>{' '}
+              foi o material mais coletado do mês passado
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>
