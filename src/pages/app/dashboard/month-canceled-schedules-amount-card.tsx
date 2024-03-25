@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { Ban } from 'lucide-react'
 
-import { getCooperativeProfile } from '@/api/get-cooperative-profile'
+import { getCanceledSchedules } from '@/api/get-canceled-schedules'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
+
+import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function MonthCanceledSchedulesAmountCard() {
-  const { isLoading: isProfileLoading } = useQuery({
-    queryKey: ['cooperativeProfile'],
-    queryFn: getCooperativeProfile,
+  const { data: monthCanceledSchedules } = useQuery({
+    queryKey: ['canceledSchedules'],
+    queryFn: getCanceledSchedules,
   })
 
   return (
@@ -20,16 +21,20 @@ export function MonthCanceledSchedulesAmountCard() {
         <Ban className="size-4 text-moss-green-500" />
       </CardHeader>
       <CardContent className="space-y-1">
-        {isProfileLoading ? (
-          <Skeleton className="h-14 w-64" />
-        ) : (
+        {monthCanceledSchedules ? (
           <>
-            <span className="text-2xl font-bold tracking-tight">32</span>
+            <span className="text-2xl font-bold tracking-tight">
+              {monthCanceledSchedules.qntMesAtual}
+            </span>
             <p className="text-xs">
-              <span className="font-semibold text-moss-green-500">-2%</span> em
-              relação ao mês passado.
+              <span className="font-semibold text-moss-green-500">
+                +{monthCanceledSchedules.vlrPorentagemDiferanca}%
+              </span>{' '}
+              em relação ao mês passado.
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>

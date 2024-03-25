@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { Truck } from 'lucide-react'
 
-import { getCooperativeProfile } from '@/api/get-cooperative-profile'
+import { getSchedulesCompleted } from '@/api/get-schedules-realized'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
+
+import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function MonthCollectsCard() {
-  const { isLoading: isProfileLoading } = useQuery({
-    queryKey: ['cooperativeProfile'],
-    queryFn: getCooperativeProfile,
+  const { data: monthSchedulesCompleted } = useQuery({
+    queryKey: ['metrics'],
+    queryFn: getSchedulesCompleted,
   })
 
   return (
@@ -20,18 +21,18 @@ export function MonthCollectsCard() {
         <Truck className="size-4 text-moss-green-500" />
       </CardHeader>
       <CardContent className="space-y-1">
-        {isProfileLoading ? (
-          <Skeleton className="h-14 w-64" />
-        ) : (
+        {monthSchedulesCompleted ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
-              45 coletas feitas
+              {monthSchedulesCompleted}
             </span>
             <p className="text-xs">
               <span className="font-semibold text-moss-green-500">+2%</span> em
               relação ao mês passado.
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>

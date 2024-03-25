@@ -7,6 +7,7 @@ interface updateCooperativeProfileBody {
   senha?: string
   cep?: string
   logradouro?: string
+  numero?: string
   bairro?: string
   cidade?: string
   complemento?: string
@@ -19,6 +20,7 @@ export async function updateCooperativeProfile({
   senha,
   cep,
   logradouro,
+  numero,
   bairro,
   cidade,
   complemento,
@@ -32,6 +34,7 @@ export async function updateCooperativeProfile({
     senha,
     cep,
     logradouro,
+    numero,
     bairro,
     cidade,
     complemento,
