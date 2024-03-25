@@ -38,7 +38,7 @@ export function AccountMenu() {
               <>
                 <Avatar className="size-6">
                   <AvatarImage src={profile?.imgUsuario} />
-                  <AvatarFallback>L</AvatarFallback>
+                  <AvatarFallback>{profile?.nome[0]}</AvatarFallback>
                 </Avatar>
                 {profile?.nome}
               </>
