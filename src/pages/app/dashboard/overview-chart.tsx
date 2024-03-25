@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { subDays } from 'date-fns'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
+
 import {
   CartesianGrid,
   Line,
@@ -20,6 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+  
 import { DateRangePicker } from '@/components/ui/date-range-picker'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -79,7 +81,6 @@ export function OverviewChart() {
           </CardTitle>
           <CardDescription>Coleta diária no período</CardDescription>
         </div>
-
         <div className="flex items-center gap-3">
           <Label>Período</Label>
           <DateRangePicker date={dateRange} onDateChange={setDateRange} />

@@ -1,17 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
 import { Ban } from 'lucide-react'
 
+
 import { getCanceledSchedules } from '@/api/get-canceled-schedules'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 import { MetricCardSkeleton } from './metric-card-skeleton'
 
+
+
 export function MonthCanceledSchedulesAmountCard() {
   const { data: monthCanceledSchedules } = useQuery({
     queryKey: ['canceledSchedules'],
     queryFn: getCanceledSchedules,
-  })
-
+  )}
+                                                    
   return (
     <Card>
       <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
