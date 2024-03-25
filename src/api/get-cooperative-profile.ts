@@ -16,11 +16,8 @@ interface GetCooperativeProfileResponse {
 }
 
 export async function getCooperativeProfile() {
-  const id = sessionStorage.getItem('id')
-
-  const response = await api.get<GetCooperativeProfileResponse>(
-    `/cooperativas/buscar/${id}`,
-  )
+  const response =
+    await api.get<GetCooperativeProfileResponse>(`/cooperativas/buscar`)
 
   return response.data
 }
