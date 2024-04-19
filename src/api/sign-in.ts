@@ -18,6 +18,5 @@ export async function signIn({ email, senha }: SignInBody) {
     senha,
   })
 
-
   return response.data
 }

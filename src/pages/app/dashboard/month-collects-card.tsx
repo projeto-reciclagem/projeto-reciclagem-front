@@ -8,7 +8,7 @@ import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function MonthCollectsCard() {
   const { data: monthSchedulesCompleted } = useQuery({
-    queryKey: ['metrics'],
+    queryKey: ['schedulesCompleted'],
     queryFn: getSchedulesCompleted,
   })
 
@@ -24,11 +24,13 @@ export function MonthCollectsCard() {
         {monthSchedulesCompleted ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
-              {monthSchedulesCompleted}
+              {monthSchedulesCompleted.qntMesAtual}
             </span>
             <p className="text-xs">
-              <span className="font-semibold text-moss-green-500">+2%</span> em
-              relação ao mês passado.
+              <span className="font-semibold text-moss-green-500">
+                +{monthSchedulesCompleted.vlrPorcentagemDiferenca}%
+              </span>{' '}
+              em relação ao mês passado.
             </p>
           </>
         ) : (

@@ -42,7 +42,7 @@ export function SignIn() {
         senha: data.password,
       })
 
-      sessionStorage.setItem('id', request.data.id.toString())
+      sessionStorage.setItem('id', request.id.toString())
 
       toast.success('Login efetuado com sucesso', {
         description: 'Redirecionando para o Dashboard',
