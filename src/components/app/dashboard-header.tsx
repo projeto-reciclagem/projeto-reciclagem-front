@@ -25,10 +25,10 @@ export function DashboardHeader() {
             <Calendar className="size-4" />
             Agendamentos
           </NavLink>
-          {/* <NavLink to={'/reports'}>
+          <NavLink to={'/reports'}>
             <BarChart3 className="size-4" />
             Relatórios
-          </NavLink> */}
+          </NavLink>
         </nav>
 
         <div className="ml-auto">

@@ -3,6 +3,7 @@ import { api } from '@/lib/axios'
 interface updateCooperativeProfileBody {
   nome: string
   email: string
+  imgUsuario?: string
   cnpj?: string
   senha?: string
   cep?: string
@@ -17,6 +18,7 @@ export async function updateCooperativeProfile({
   nome,
   email,
   cnpj,
+  imgUsuario,
   senha,
   cep,
   logradouro,
@@ -25,12 +27,11 @@ export async function updateCooperativeProfile({
   cidade,
   complemento,
 }: updateCooperativeProfileBody) {
-  const id = sessionStorage.getItem('id')
-
-  await api.put(`/cooperativas/atualizar/${id}`, {
+  await api.patch('/cooperativas/atualizar', {
     nome,
     email,
     cnpj,
+    imgUsuario,
     senha,
     cep,
     logradouro,
