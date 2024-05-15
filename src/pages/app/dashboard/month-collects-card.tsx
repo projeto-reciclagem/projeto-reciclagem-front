@@ -7,10 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function MonthCollectsCard() {
-  const {
-    data: monthSchedulesCompleted,
-    isLoading: isMonthSchedulesCompletedLoading,
-  } = useQuery({
+  const { data: schedulesRealized } = useQuery({
     queryKey: ['schedulesCompleted'],
     queryFn: getSchedulesCompleted,
   })
@@ -24,16 +21,20 @@ export function MonthCollectsCard() {
         <Truck className="size-4 text-moss-green-500" />
       </CardHeader>
       <CardContent className="space-y-1">
-        {isMonthSchedulesCompletedLoading ? (
-          <MetricCardSkeleton />
-        ) : (
+        {schedulesRealized ? (
           <>
-            <span className="text-2xl font-bold tracking-tight">0</span>
+            <span className="text-2xl font-bold tracking-tight">
+              {schedulesRealized.qntMesAtual}
+            </span>
             <p className="text-xs">
-              <span className="font-semibold text-moss-green-500">+0%</span> em
-              relação ao mês passado.
+              <span className="font-semibold text-moss-green-500">
+                +{schedulesRealized.vlrPorcentagemDiferenca}%
+              </span>{' '}
+              em relação ao mês passado.
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>
