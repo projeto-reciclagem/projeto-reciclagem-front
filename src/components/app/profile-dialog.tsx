@@ -104,6 +104,7 @@ export function ProfileDialog() {
 
   async function handleUpdateProfile(userData: UpdateProfileData) {
     let avatarPublicUrl
+
     if (userData.avatar !== null) {
       const avatarPath = await uploadFile(userData.avatar!)
       avatarPublicUrl = await getProfilePictureUrl(avatarPath)

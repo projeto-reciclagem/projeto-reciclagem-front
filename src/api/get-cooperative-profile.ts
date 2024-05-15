@@ -13,7 +13,7 @@ interface GetCooperativeProfileResponse {
   complemento: string | null
   latitude: string | null
   longitude: string | null
-  imgUsuario: string | undefined
+  imgUsuario?: string
 }
 
 export async function getCooperativeProfile() {
