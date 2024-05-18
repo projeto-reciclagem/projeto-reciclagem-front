@@ -3,7 +3,7 @@ import { api } from '@/lib/axios'
 interface CanceledSchedulesResponse {
   qntMesAtual: number
   qntMesAnterior: number
-  vlrPorentagemDiferanca: number
+  vlrPorcentagemDiferenca: number
 }
 
 export async function getCanceledSchedules() {

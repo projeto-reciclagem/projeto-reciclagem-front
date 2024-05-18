@@ -28,7 +28,7 @@ export function MonthCanceledSchedulesAmountCard() {
             </span>
             <p className="text-xs">
               <span className="font-semibold text-moss-green-500">
-                +{monthCanceledSchedules.vlrPorentagemDiferanca}%
+                +{monthCanceledSchedules.vlrPorcentagemDiferenca}%
               </span>{' '}
               em relação ao mês passado.
             </p>
