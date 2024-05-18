@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
+import { Loader2 } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
@@ -21,19 +22,16 @@ export function SignIn() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<SignInForm>({
+  const { register, handleSubmit } = useForm<SignInForm>({
     defaultValues: {
       email: searchParams.get('email') ?? '',
     },
   })
 
-  const { mutateAsync: authenticate } = useMutation({
-    mutationFn: signIn,
-  })
+  const { mutateAsync: authenticate, isPending: isAuthenticating } =
+    useMutation({
+      mutationFn: signIn,
+    })
 
   async function handleSignIn(data: SignInForm) {
     try {
@@ -91,10 +89,13 @@ export function SignIn() {
             </div>
 
             <Button
-              disabled={isSubmitting}
-              className="w-full bg-moss-green-400"
+              disabled={isAuthenticating}
+              className="w-full gap-2 bg-moss-green-400"
             >
               Acessar
+              {isAuthenticating && (
+                <Loader2 className="size-4 animate-spin" strokeWidth={3} />
+              )}
             </Button>
           </form>
         </div>

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { Building, Truck } from 'lucide-react'
+import { Building, Loader2, Truck } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 import { useController, useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
@@ -33,12 +33,7 @@ type SignUpForm = z.infer<typeof SignUpForm>
 export function SignUp() {
   const navigate = useNavigate()
 
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<SignUpForm>()
+  const { control, register, handleSubmit, setValue } = useForm<SignUpForm>()
 
   const { field } = useController({
     name: 'orgType',
@@ -48,13 +43,32 @@ export function SignUp() {
 
   const { value, onChange } = field
 
-  const { mutateAsync: registerCondoFn } = useMutation({
-    mutationFn: registerCondo,
-  })
+  const { mutateAsync: registerCondoFn, isPending: isRegisteringCondo } =
+    useMutation({
+      mutationFn: registerCondo,
+    })
 
-  const { mutateAsync: registerCooperativeFn } = useMutation({
+  const {
+    mutateAsync: registerCooperativeFn,
+    isPending: isRegisteringCooperative,
+  } = useMutation({
     mutationFn: registerCooperative,
   })
+
+  function formatCnpj(cnpj: string) {
+    const clearedCnpj = cnpj.replace(/\D/g, '')
+
+    if (clearedCnpj.length > 11) {
+      setValue(
+        'cnpj',
+        clearedCnpj
+          .replace(/(\d{2})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1/$2')
+          .replace(/(\d{4})(\d)/, '$1-$2'),
+      )
+    }
+  }
 
   async function handleSignUp(data: SignUpForm) {
     try {
@@ -62,7 +76,7 @@ export function SignUp() {
         if (data.password === data.confirmPassword) {
           await registerCondoFn({
             nome: data.orgName,
-            cnpj: data.cnpj,
+            cnpj: data.cnpj.replace(/\D/g, ''),
             email: data.email,
             senha: data.password,
           })
@@ -134,7 +148,12 @@ export function SignUp() {
               <Label htmlFor="cnpj" className="text-zinc-900">
                 CNPJ
               </Label>
-              <Input id="cnpj" type="text" {...register('cnpj')} />
+              <Input
+                id="cnpj"
+                type="text"
+                {...register('cnpj')}
+                onChange={(e) => formatCnpj(e.target.value)}
+              />
             </div>
 
             <div className="col-span-1 space-y-2">
@@ -187,10 +206,13 @@ export function SignUp() {
             </div>
 
             <Button
-              disabled={isSubmitting}
-              className="col-span-2 w-full bg-moss-green-400"
+              disabled={isRegisteringCondo || isRegisteringCooperative}
+              className="col-span-2 w-full gap-2 bg-moss-green-400"
             >
               Registrar
+              {(isRegisteringCondo || isRegisteringCooperative) && (
+                <Loader2 className="size-4 animate-spin" strokeWidth={3} />
+              )}
             </Button>
 
             <p className="col-span-2 px-6 text-center text-sm leading-relaxed">
