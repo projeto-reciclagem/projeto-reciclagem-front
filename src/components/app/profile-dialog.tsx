@@ -70,7 +70,12 @@ export function ProfileDialog() {
       avatar: null,
       orgName: profile?.nome ?? '',
       email: profile?.email ?? '',
-      cnpj: profile?.cnpj ?? '',
+      cnpj:
+        profile?.cnpj
+          .replace(/(\d{2})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1/$2')
+          .replace(/(\d{4})(\d)/, '$1-$2') ?? '',
       password: '',
       confirmPassword: '',
       cep:
@@ -154,6 +159,21 @@ export function ProfileDialog() {
     setValue('city', localidade)
   }
 
+  function formatCnpj(cnpj: string) {
+    const clearedCnpj = cnpj.replace(/\D/g, '')
+
+    if (clearedCnpj.length > 11) {
+      setValue(
+        'cnpj',
+        clearedCnpj
+          .replace(/(\d{2})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1/$2')
+          .replace(/(\d{4})(\d)/, '$1-$2'),
+      )
+    }
+  }
+
   return (
     <DialogContent className="min-w-[800px]">
       <DialogHeader>
@@ -202,7 +222,12 @@ export function ProfileDialog() {
               <Label className="text-black" htmlFor="cnpj">
                 CNPJ
               </Label>
-              <Input id="cnpj" type="cnpj" {...register('cnpj')} />
+              <Input
+                id="cnpj"
+                type="cnpj"
+                {...register('cnpj')}
+                onChange={(e) => formatCnpj(e.target.value)}
+              />
 
               <Label className="text-black" htmlFor="password">
                 Senha
