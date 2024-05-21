@@ -5,7 +5,7 @@ import { AuthLayout } from './pages/_layouts/auth'
 import { LandingLayout } from './pages/_layouts/landing'
 import { NotFound } from './pages/404'
 import { Dashboard } from './pages/app/dashboard/dashboard'
-// import { Reports } from './pages/app/reports/reports'
+import { Reports } from './pages/app/reports/reports'
 import { Schedules } from './pages/app/schedules/schedules'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
@@ -48,10 +48,10 @@ export const router = createBrowserRouter([
         path: '/schedules',
         element: <Schedules />,
       },
-      // {
-      //   path: '/reports',
-      //   element: <Reports />,
-      // },
+      {
+        path: '/reports',
+        element: <Reports />,
+      },
     ],
   },
   {
