@@ -1,4 +1,4 @@
-import { BarChart3, Calendar, Home } from 'lucide-react'
+import { /* BarChart3, */ Calendar, Home } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import ecoSystemLogo from '@/assets/eco-system-black-logo.svg'
@@ -25,10 +25,10 @@ export function DashboardHeader() {
             <Calendar className="size-4" />
             Agendamentos
           </NavLink>
-          <NavLink to={'/reports'}>
+          {/* <NavLink to={'/reports'}>
             <BarChart3 className="size-4" />
             Relatórios
-          </NavLink>
+          </NavLink> */}
         </nav>
 
         <div className="ml-auto">

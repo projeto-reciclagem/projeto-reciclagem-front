@@ -11,7 +11,7 @@ export interface GetSchedulesResponse {
   schedules: {
     id: number
     datAgendamento: string
-    datRetirada: Date
+    datRetirada: string
     qtdBags: number
     status: 'pending' | 'canceled' | 'scheduled' | 'completed'
     cooperativa: {

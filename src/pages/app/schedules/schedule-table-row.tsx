@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { formatDistanceToNow } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { CalendarCheck, Check, Search, X } from 'lucide-react'
+import { useState } from 'react'
 
 import { approveSchedule } from '@/api/approve-schedule'
 import { cancelSchedule } from '@/api/cancel-schedule'
@@ -18,7 +19,7 @@ interface ScheduleTableRowProps {
   schedule: {
     id: number
     datAgendamento: string
-    datRetirada: Date
+    datRetirada: string
     qtdBags: number
     status: 'pending' | 'canceled' | 'scheduled' | 'completed'
     cooperativa: {
@@ -45,6 +46,7 @@ interface ScheduleTableRowProps {
 }
 
 export function ScheduleTableRow({ schedule }: ScheduleTableRowProps) {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false)
   const queryClient = useQueryClient()
 
   function updateScheduleStatusOnCache(
@@ -102,7 +104,7 @@ export function ScheduleTableRow({ schedule }: ScheduleTableRowProps) {
   return (
     <TableRow>
       <TableCell>
-        <Dialog>
+        <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
           <DialogTrigger asChild>
             <Button variant="outline" size="xs">
               <Search className="size-3" />
@@ -110,7 +112,7 @@ export function ScheduleTableRow({ schedule }: ScheduleTableRowProps) {
             </Button>
           </DialogTrigger>
 
-          <ScheduleDetails />
+          <ScheduleDetails open={isDetailsOpen} scheduleId={schedule.id} />
         </Dialog>
       </TableCell>
       <TableCell className="font-medium">{schedule.condominio.nome}</TableCell>
@@ -120,7 +122,11 @@ export function ScheduleTableRow({ schedule }: ScheduleTableRowProps) {
           addSuffix: true,
         })}
       </TableCell>
-      <TableCell>22/03/2024</TableCell>
+      <TableCell>
+        {format(Date.parse(schedule.datRetirada), 'dd/MM/yyyy', {
+          locale: ptBR,
+        })}
+      </TableCell>
       <TableCell>{schedule.qtdBags} bags</TableCell>
       <TableCell>
         <ScheduleStatus status={schedule.status} />
