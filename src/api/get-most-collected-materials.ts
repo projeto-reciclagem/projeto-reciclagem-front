@@ -1,15 +1,13 @@
 import { api } from '@/lib/axios'
 
 interface MostCollectedMaterialsResponse {
-  materialMesAtual: string
-  materialMesAnterior: string
+  materialAtual: string
+  materialAnterior: string
 }
 
 export async function getMostCollectedMaterials() {
-  const id = sessionStorage.getItem('id')
-
   const response = await api.get<MostCollectedMaterialsResponse>(
-    `/materiais/coletados/mais-coletados/mes/${id}`,
+    `/materiais/mais-coletado`,
   )
 
   return response.data

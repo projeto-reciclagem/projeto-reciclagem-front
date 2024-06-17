@@ -1,9 +1,15 @@
 import { api } from '@/lib/axios'
 
-export async function getSchedulesCompleted() {
-  const id = sessionStorage.getItem('id')
+interface GetMonthSchedulesRealized {
+  qntMesAtual: number
+  qntMesAnterior: number
+  valorDiferenca: number
+}
 
-  const response = await api.get(`/agendamentos/coletas-realizadas/mes/${id}`)
+export async function getSchedulesCompleted() {
+  const response = await api.get<GetMonthSchedulesRealized>(
+    `/agendamentos/realizados`,
+  )
 
   return response.data
 }

@@ -4,11 +4,12 @@ import { Truck } from 'lucide-react'
 import { getSchedulesCompleted } from '@/api/get-schedules-realized'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
+import { DifferentialPercentage } from './differential-percentage'
 import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function MonthCollectsCard() {
-  const { data: monthSchedulesCompleted } = useQuery({
-    queryKey: ['metrics'],
+  const { data: schedulesRealized } = useQuery({
+    queryKey: ['schedulesCompleted'],
     queryFn: getSchedulesCompleted,
   })
 
@@ -21,14 +22,16 @@ export function MonthCollectsCard() {
         <Truck className="size-4 text-moss-green-500" />
       </CardHeader>
       <CardContent className="space-y-1">
-        {monthSchedulesCompleted ? (
+        {schedulesRealized ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
-              {monthSchedulesCompleted}
+              {schedulesRealized.qntMesAtual}
             </span>
             <p className="text-xs">
-              <span className="font-semibold text-moss-green-500">+2%</span> em
-              relação ao mês passado.
+              <DifferentialPercentage
+                valueDifferentialPercentage={schedulesRealized.valorDiferenca}
+              />{' '}
+              em relação ao mês passado.
             </p>
           </>
         ) : (

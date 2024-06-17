@@ -1,5 +1,9 @@
+import { useQuery } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
+import { useSearchParams } from 'react-router-dom'
+import { z } from 'zod'
 
+import { getSchedules } from '@/api/get-schedules'
 import { Pagination } from '@/components/pagination'
 import {
   Table,
@@ -11,8 +15,40 @@ import {
 
 import { ScheduleTableFilters } from './schedule-table-filters'
 import { ScheduleTableRow } from './schedule-table-row'
+import { ScheduleTableSkeleton } from './schedule-table-skeleton'
 
 export function Schedules() {
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const customerName = searchParams.get('customerName')
+  const status = searchParams.get('status')
+
+  const pageIndex = z.coerce
+    .number()
+    .transform((page) => page - 1)
+    .parse(searchParams.get('page') ?? 1)
+
+  const perPage = z.coerce.number().parse(searchParams.get('perPage') ?? 8)
+
+  const { data: result, isLoading: isLoadingSchedules } = useQuery({
+    queryKey: ['schedules', pageIndex, perPage, customerName, status],
+    queryFn: () =>
+      getSchedules({
+        pageIndex,
+        perPage,
+        nomeCliente: customerName,
+        status: status === 'all' ? null : status,
+      }),
+  })
+
+  function handlePaginate(pageIndex: number) {
+    setSearchParams((state) => {
+      state.set('page', (pageIndex + 1).toString())
+
+      return state
+    })
+  }
+
   return (
     <>
       <Helmet title="Agendamentos" />
@@ -36,14 +72,25 @@ export function Schedules() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <ScheduleTableRow key={i} />
-                ))}
+                {result &&
+                  result.schedules.map((schedule) => {
+                    return (
+                      <ScheduleTableRow key={schedule.id} schedule={schedule} />
+                    )
+                  })}
               </TableBody>
             </Table>
+            {isLoadingSchedules && <ScheduleTableSkeleton />}
           </div>
 
-          <Pagination pageIndex={0} totalCount={105} perPage={10} />
+          {result && (
+            <Pagination
+              onPageChange={handlePaginate}
+              pageIndex={result.meta.pageIndex}
+              totalCount={result.meta.totalCount}
+              perPage={result.meta.perPage}
+            />
+          )}
         </div>
 
         <p className="text-xs font-medium leading-tight">

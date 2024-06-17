@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async'
 
-import { MaterialPercentageChart } from './material-percentage-chart'
+// import { MaterialPercentageChart } from './material-percentage-chart'
 import { MonthCanceledSchedulesAmountCard } from './month-canceled-schedules-amount-card'
-import { MonthCollectedBagsCard } from './month-collected-bags-card'
+import { MonthCollectedWeightCard } from './month-collected-weight-card'
 import { MonthCollectsCard } from './month-collects-card'
 import { MonthMostCollectedMaterialCard } from './month-most-collected-material-card'
 import { OverviewChart } from './overview-chart'
@@ -16,15 +16,15 @@ export function Dashboard() {
 
         <div className="grid grid-cols-4 gap-4">
           <MonthCollectsCard />
-          <MonthCollectedBagsCard />
+          <MonthCollectedWeightCard />
           <MonthMostCollectedMaterialCard />
           <MonthCanceledSchedulesAmountCard />
         </div>
       </div>
 
-      <div className="grid grid-cols-9 gap-4">
+      <div className="grid gap-4">
         <OverviewChart />
-        <MaterialPercentageChart />
+        {/* <MaterialPercentageChart /> */}
       </div>
     </>
   )

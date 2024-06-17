@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { Building, Truck } from 'lucide-react'
+import { Building, Loader2, Truck } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 import { useController, useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
@@ -33,12 +33,7 @@ type SignUpForm = z.infer<typeof SignUpForm>
 export function SignUp() {
   const navigate = useNavigate()
 
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<SignUpForm>()
+  const { control, register, handleSubmit, setValue } = useForm<SignUpForm>()
 
   const { field } = useController({
     name: 'orgType',
@@ -48,13 +43,32 @@ export function SignUp() {
 
   const { value, onChange } = field
 
-  const { mutateAsync: registerCondoFn } = useMutation({
-    mutationFn: registerCondo,
-  })
+  const { mutateAsync: registerCondoFn, isPending: isRegisteringCondo } =
+    useMutation({
+      mutationFn: registerCondo,
+    })
 
-  const { mutateAsync: registerCooperativeFn } = useMutation({
+  const {
+    mutateAsync: registerCooperativeFn,
+    isPending: isRegisteringCooperative,
+  } = useMutation({
     mutationFn: registerCooperative,
   })
+
+  function formatCnpj(cnpj: string) {
+    const clearedCnpj = cnpj.replace(/\D/g, '')
+
+    if (clearedCnpj.length > 11) {
+      setValue(
+        'cnpj',
+        clearedCnpj
+          .replace(/(\d{2})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1/$2')
+          .replace(/(\d{4})(\d)/, '$1-$2'),
+      )
+    }
+  }
 
   async function handleSignUp(data: SignUpForm) {
     try {
@@ -62,7 +76,7 @@ export function SignUp() {
         if (data.password === data.confirmPassword) {
           await registerCondoFn({
             nome: data.orgName,
-            cnpj: data.cnpj,
+            cnpj: data.cnpj.replace(/\D/g, ''),
             email: data.email,
             senha: data.password,
           })
@@ -106,10 +120,12 @@ export function SignUp() {
       <Helmet title="Cadastro" />
       <div className="p-8">
         <Button variant={'ghost'} asChild className="absolute right-8 top-8">
-          <Link to="/sign-in">Fazer Login</Link>
+          <Link to="/sign-in" className="font-semibold text-moss-green-400">
+            Fazer Login
+          </Link>
         </Button>
 
-        <div className="flex w-[350px] flex-col justify-center gap-6">
+        <div className="flex w-[500px] flex-col justify-center gap-6">
           <div className="flex flex-col gap-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
               Criar sua conta
@@ -117,36 +133,44 @@ export function SignUp() {
             <p className="text-sm">Faça parte desse EcoSystem</p>
           </div>
 
-          <form onSubmit={handleSubmit(handleSignUp)} className="space-y-4">
-            <div className="space-y-2">
+          <form
+            onSubmit={handleSubmit(handleSignUp)}
+            className="grid grid-cols-2 gap-3"
+          >
+            <div className="col-span-1 space-y-2">
               <Label htmlFor="orgName" className="text-zinc-900">
                 Nome da organização
               </Label>
               <Input id="orgName" type="text" {...register('orgName')} />
             </div>
 
-            <div className="space-y-2">
+            <div className="col-span-1 space-y-2">
               <Label htmlFor="cnpj" className="text-zinc-900">
                 CNPJ
               </Label>
-              <Input id="cnpj" type="text" {...register('cnpj')} />
+              <Input
+                id="cnpj"
+                type="text"
+                {...register('cnpj')}
+                onChange={(e) => formatCnpj(e.target.value)}
+              />
             </div>
 
-            <div className="space-y-2">
+            <div className="col-span-1 space-y-2">
               <Label htmlFor="email" className="text-zinc-900">
                 Seu e-mail
               </Label>
               <Input id="email" type="email" {...register('email')} />
             </div>
 
-            <div className="space-y-2">
+            <div className="col-span-1 space-y-2">
               <Label htmlFor="password" className="text-zinc-900">
                 Sua senha
               </Label>
               <Input id="password" type="password" {...register('password')} />
             </div>
 
-            <div className="space-y-2">
+            <div className="col-span-1 space-y-2">
               <Label htmlFor="confirmPassword" className="text-zinc-900">
                 Confirmação da sua senha
               </Label>
@@ -157,7 +181,7 @@ export function SignUp() {
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="col-span-1 space-y-2">
               <Label htmlFor="password" className="text-zinc-900">
                 Qual o tipo da sua organização?
               </Label>
@@ -181,17 +205,29 @@ export function SignUp() {
               </Select>
             </div>
 
-            <Button disabled={isSubmitting} className="w-full">
+            <Button
+              disabled={isRegisteringCondo || isRegisteringCooperative}
+              className="col-span-2 w-full gap-2 bg-moss-green-400"
+            >
               Registrar
+              {(isRegisteringCondo || isRegisteringCooperative) && (
+                <Loader2 className="size-4 animate-spin" strokeWidth={3} />
+              )}
             </Button>
 
-            <p className="px-6 text-center text-sm leading-relaxed">
+            <p className="col-span-2 px-6 text-center text-sm leading-relaxed">
               Ao continuar você concorda com nossos{' '}
-              <a className="underline underline-offset-4" href="">
+              <a
+                className="text-moss-green-400 underline underline-offset-4"
+                href=""
+              >
                 termos de serviço
               </a>{' '}
               e{' '}
-              <a className="underline underline-offset-4" href="">
+              <a
+                className="text-moss-green-400 underline underline-offset-4"
+                href=""
+              >
                 políticas de privacidade
               </a>
               .

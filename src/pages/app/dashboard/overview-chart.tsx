@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { subDays } from 'date-fns'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
-
 import {
   CartesianGrid,
   Line,
@@ -13,7 +12,7 @@ import {
   YAxis,
 } from 'recharts'
 
-import { getCooperativeProfile } from '@/api/get-cooperative-profile'
+import { getCollectsFromPeriod } from '@/api/get-collects-from-period'
 import {
   Card,
   CardContent,
@@ -21,41 +20,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-  
 import { DateRangePicker } from '@/components/ui/date-range-picker'
 import { Label } from '@/components/ui/label'
-import { Skeleton } from '@/components/ui/skeleton'
-
-const data = [
-  {
-    date: '10/12',
-    coletas: 30,
-  },
-  {
-    date: '11/12',
-    coletas: 12,
-  },
-  {
-    date: '12/12',
-    coletas: 50,
-  },
-  {
-    date: '13/12',
-    coletas: 8,
-  },
-  {
-    date: '14/12',
-    coletas: 6,
-  },
-  {
-    date: '15/12',
-    coletas: 16,
-  },
-  {
-    date: '16/12',
-    coletas: 28,
-  },
-]
 
 export function OverviewChart() {
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
@@ -63,12 +29,12 @@ export function OverviewChart() {
     to: new Date(),
   })
 
-  const { isLoading: isProfileLoading } = useQuery({
-    queryKey: ['cooperativeProfile'],
+  const { data: dailyCollectsInPeriod } = useQuery({
+    queryKey: ['metrics', 'collects-in-period'],
     queryFn: () =>
-      getCooperativeProfile({
-        from: dateRange?.from,
-        to: dateRange?.to,
+      getCollectsFromPeriod({
+        initialDate: dateRange?.from,
+        finalDate: dateRange?.to,
       }),
   })
 
@@ -87,11 +53,9 @@ export function OverviewChart() {
         </div>
       </CardHeader>
       <CardContent>
-        {isProfileLoading ? (
-          <Skeleton className="h-64 w-full" />
-        ) : (
+        {dailyCollectsInPeriod && (
           <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={data} style={{ fontSize: 12 }}>
+            <LineChart data={dailyCollectsInPeriod} style={{ fontSize: 12 }}>
               <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16} />
 
               <YAxis
@@ -106,7 +70,7 @@ export function OverviewChart() {
               <Line
                 type="linear"
                 strokeWidth={2}
-                dataKey="coletas"
+                dataKey="coletados"
                 stroke="#549431"
               />
 

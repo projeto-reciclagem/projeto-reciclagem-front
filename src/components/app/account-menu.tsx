@@ -1,7 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { ChevronDown, LogOut, User2 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 import { getCooperativeProfile } from '@/api/get-cooperative-profile'
+import { signOut } from '@/api/sign-out'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -18,10 +21,25 @@ import { Skeleton } from '../ui/skeleton'
 import { ProfileDialog } from './profile-dialog'
 
 export function AccountMenu() {
+  const navigate = useNavigate()
+
   const { data: profile, isLoading: isProfileLoading } = useQuery({
     queryKey: ['cooperativeProfile'],
     queryFn: getCooperativeProfile,
     staleTime: Infinity,
+  })
+
+  const { mutateAsync: signOutFn, isPending: isSigningOut } = useMutation({
+    mutationFn: signOut,
+    onSuccess: async () => {
+      toast.success('Saindo do painel.', {
+        description: 'Redirecionando para a página de login.',
+      })
+
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+
+      navigate('/sign-in')
+    },
   })
 
   return (
@@ -67,9 +85,15 @@ export function AccountMenu() {
               <span>Perfil da cooperativa</span>
             </DropdownMenuItem>
           </DialogTrigger>
-          <DropdownMenuItem className="text-rose-500 dark:text-rose-400">
-            <LogOut className="mr-2 size-4" />
-            <span>Sair</span>
+          <DropdownMenuItem
+            asChild
+            disabled={isSigningOut}
+            className="text-rose-500 dark:text-rose-400"
+          >
+            <button className="w-full" onClick={() => signOutFn()}>
+              <LogOut className="mr-2 size-4" />
+              <span>Sair</span>
+            </button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

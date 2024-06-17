@@ -9,10 +9,11 @@ interface GetCooperativeProfileResponse {
   logradouro: string | null
   bairro: string | null
   cidade: string | null
+  numero: string | null
   complemento: string | null
   latitude: string | null
   longitude: string | null
-  imgUsuario: string | undefined
+  imgUsuario?: string
 }
 
 export async function getCooperativeProfile() {

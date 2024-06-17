@@ -4,7 +4,9 @@ import { Recycle } from 'lucide-react'
 import { getMostCollectedMaterials } from '@/api/get-most-collected-materials'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
+import { LastMostCollectedMaterial } from './last-most-collected-material'
 import { MetricCardSkeleton } from './metric-card-skeleton'
+import { MostCollectedMaterialVariant } from './most-collected-material-variant'
 
 export function MonthMostCollectedMaterialCard() {
   const { data: mostCollectedMaterials } = useQuery({
@@ -23,14 +25,26 @@ export function MonthMostCollectedMaterialCard() {
       <CardContent className="space-y-1">
         {mostCollectedMaterials ? (
           <>
-            <span className="text-2xl font-bold tracking-tight">
-              {mostCollectedMaterials.materialMesAtual}
-            </span>
+            {mostCollectedMaterials.materialAtual ? (
+              <MostCollectedMaterialVariant
+                materialAtual={mostCollectedMaterials.materialAtual}
+              />
+            ) : (
+              <span className="text-2xl font-bold tracking-tight">
+                Sem coletas
+              </span>
+            )}
             <p className="text-xs">
-              <span className={`font-semibold`}>
-                {mostCollectedMaterials.materialMesAnterior}
-              </span>{' '}
-              foi o material mais coletado do mês passado
+              {mostCollectedMaterials.materialAnterior !== null ? (
+                <LastMostCollectedMaterial
+                  lastMaterial={mostCollectedMaterials.materialAnterior}
+                />
+              ) : (
+                <>
+                  <span className="font-semibold">Não houveram coletas</span>{' '}
+                  foi o material mais coletado do mês passado
+                </>
+              )}
             </p>
           </>
         ) : (

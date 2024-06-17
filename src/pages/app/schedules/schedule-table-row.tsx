@@ -1,16 +1,110 @@
-import { CalendarCheck, Search, X } from 'lucide-react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { format, formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
+import { CalendarCheck, Check, Search, X } from 'lucide-react'
+import { useState } from 'react'
 
+import { approveSchedule } from '@/api/approve-schedule'
+import { cancelSchedule } from '@/api/cancel-schedule'
+import { completeSchedule } from '@/api/complete-schedule'
+import { GetSchedulesResponse } from '@/api/get-schedules'
+import { ScheduleStatus } from '@/components/schedule-status'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { TableCell, TableRow } from '@/components/ui/table'
 
 import { ScheduleDetails } from './schedule-details'
 
-export function ScheduleTableRow() {
+interface ScheduleTableRowProps {
+  schedule: {
+    id: number
+    datAgendamento: string
+    datRetirada: string
+    qtdBags: number
+    status: 'pending' | 'canceled' | 'scheduled' | 'completed'
+    cooperativa: {
+      nome: string
+      email: string
+      cep: string
+      logradouro: string
+      bairro: string
+      cidade: string
+      complemento: string
+      numero: string
+    }
+    condominio: {
+      nome: string
+      email: string
+      cep: string
+      logradouro: string
+      bairro: string
+      cidade: string
+      complemento: string
+      numero: string
+    }
+  }
+}
+
+export function ScheduleTableRow({ schedule }: ScheduleTableRowProps) {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false)
+  const queryClient = useQueryClient()
+
+  function updateScheduleStatusOnCache(
+    scheduleId: number,
+    status: ScheduleStatus,
+  ) {
+    const schedulesListCache = queryClient.getQueriesData<GetSchedulesResponse>(
+      {
+        queryKey: ['schedules'],
+      },
+    )
+
+    schedulesListCache.forEach(([cacheKey, cacheData]) => {
+      if (!cacheData) {
+        return
+      }
+
+      queryClient.setQueryData<GetSchedulesResponse>(cacheKey, {
+        ...cacheData,
+        schedules: cacheData.schedules.map((schedule) => {
+          if (schedule.id === scheduleId) {
+            return { ...schedule, status }
+          }
+
+          return schedule
+        }),
+      })
+    })
+  }
+
+  const { mutateAsync: cancelScheduleFn, isPending: isCancelingSchedule } =
+    useMutation({
+      mutationFn: cancelSchedule,
+      async onSuccess(_, { scheduleId }) {
+        updateScheduleStatusOnCache(scheduleId, 'canceled')
+      },
+    })
+
+  const { mutateAsync: approveScheduleFn, isPending: isApprovingSchedule } =
+    useMutation({
+      mutationFn: approveSchedule,
+      async onSuccess(_, { scheduleId }) {
+        updateScheduleStatusOnCache(scheduleId, 'scheduled')
+      },
+    })
+
+  const { mutateAsync: completeScheduleFn, isPending: isCompletingSchedule } =
+    useMutation({
+      mutationFn: completeSchedule,
+      async onSuccess(_, { scheduleId }) {
+        updateScheduleStatusOnCache(scheduleId, 'completed')
+      },
+    })
+
   return (
     <TableRow>
       <TableCell>
-        <Dialog>
+        <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
           <DialogTrigger asChild>
             <Button variant="outline" size="xs">
               <Search className="size-3" />
@@ -18,27 +112,60 @@ export function ScheduleTableRow() {
             </Button>
           </DialogTrigger>
 
-          <ScheduleDetails />
+          <ScheduleDetails open={isDetailsOpen} scheduleId={schedule.id} />
         </Dialog>
       </TableCell>
-      <TableCell className="font-medium">Condomínio KeyMoema</TableCell>
-      <TableCell>há 1 dia</TableCell>
-      <TableCell>22/03/2024</TableCell>
-      <TableCell>3 bags</TableCell>
+      <TableCell className="font-medium">{schedule.condominio.nome}</TableCell>
       <TableCell>
-        <div className="flex items-center gap-2">
-          <span className="size-2 rounded-full bg-yellow-400"></span>
-          <span className="font-medium">Pendente</span>
-        </div>
+        {formatDistanceToNow(Date.parse(schedule.datAgendamento), {
+          locale: ptBR,
+          addSuffix: true,
+        })}
       </TableCell>
       <TableCell>
-        <Button variant="outline" size="xs">
-          <CalendarCheck className="mr-2 size-4 text-teal-600" />
-          Confirmar
-        </Button>
+        {format(Date.parse(schedule.datRetirada), 'dd/MM/yyyy', {
+          locale: ptBR,
+        })}
+      </TableCell>
+      <TableCell>{schedule.qtdBags} bags</TableCell>
+      <TableCell>
+        <ScheduleStatus status={schedule.status} />
       </TableCell>
       <TableCell>
-        <Button variant="ghost" size="xs">
+        {schedule.status === 'pending' && (
+          <Button
+            disabled={isApprovingSchedule}
+            variant="outline"
+            size="xs"
+            onClick={() => approveScheduleFn({ scheduleId: schedule.id })}
+          >
+            <CalendarCheck className="mr-2 size-4 text-blue-500" />
+            Agendar
+          </Button>
+        )}
+
+        {schedule.status === 'scheduled' && (
+          <Button
+            disabled={isCompletingSchedule}
+            variant="outline"
+            size="xs"
+            onClick={() => completeScheduleFn({ scheduleId: schedule.id })}
+          >
+            <Check className="mr-2 size-4 text-teal-600" />
+            Concluir
+          </Button>
+        )}
+      </TableCell>
+      <TableCell>
+        <Button
+          disabled={
+            !['pending', 'scheduled'].includes(schedule.status) ||
+            isCancelingSchedule
+          }
+          onClick={() => cancelScheduleFn({ scheduleId: schedule.id })}
+          variant="ghost"
+          size="xs"
+        >
           <X className="mr-2 size-4 text-red-500" />
           Cancelar
         </Button>
