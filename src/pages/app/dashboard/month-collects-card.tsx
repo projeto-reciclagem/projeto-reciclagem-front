@@ -29,9 +29,7 @@ export function MonthCollectsCard() {
             </span>
             <p className="text-xs">
               <DifferentialPercentage
-                valueDifferentialPercentage={
-                  schedulesRealized.vlrPorcentagemDiferenca
-                }
+                valueDifferentialPercentage={schedulesRealized.valorDiferenca}
               />{' '}
               em relação ao mês passado.
             </p>
