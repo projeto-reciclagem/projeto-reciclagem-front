@@ -70,7 +70,7 @@ export function OverviewChart() {
               <Line
                 type="linear"
                 strokeWidth={2}
-                dataKey="qntTotal"
+                dataKey="coletados"
                 stroke="#549431"
               />
 
