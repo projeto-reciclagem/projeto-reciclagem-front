@@ -4,6 +4,7 @@ import { Ban } from 'lucide-react'
 import { getCanceledSchedules } from '@/api/get-canceled-schedules'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
+import { DifferentialPercentage } from './differential-percentage'
 import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function MonthCanceledSchedulesAmountCard() {
@@ -27,9 +28,11 @@ export function MonthCanceledSchedulesAmountCard() {
               {monthCanceledSchedules.qntMesAtual}
             </span>
             <p className="text-xs">
-              <span className="font-semibold text-moss-green-500">
-                +{monthCanceledSchedules.vlrPorcentagemDiferenca}%
-              </span>{' '}
+              <DifferentialPercentage
+                valueDifferentialPercentage={
+                  monthCanceledSchedules.vlrPorcentagemDiferenca
+                }
+              />{' '}
               em relação ao mês passado.
             </p>
           </>

@@ -7,10 +7,8 @@ interface CanceledSchedulesResponse {
 }
 
 export async function getCanceledSchedules() {
-  const id = sessionStorage.getItem('id')
-
   const response = await api.get<CanceledSchedulesResponse>(
-    `/agendamentos/total/cancelado/mes/${id}`,
+    `/agendamentos/cancelados`,
   )
 
   return response.data
