@@ -3,7 +3,7 @@ import { api } from '@/lib/axios'
 interface GetMonthSchedulesRealized {
   qntMesAtual: number
   qntMesAnterior: number
-  vlrPorcentagemDiferenca: number
+  valorDiferenca: number
 }
 
 export async function getSchedulesCompleted() {
